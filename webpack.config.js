@@ -22,10 +22,8 @@ module.exports = {
   ],
 
   module: {
-    // правила обработки файлов, подпадающих под условие в test
     rules: [
       {
-        // под эту регулярку попадают и tsx и ts
         test: /\.tsx?$/,
         use: "ts-loader",
         exclude: /node_modules/,
@@ -33,7 +31,6 @@ module.exports = {
     ],
   },
   resolve: {
-    // При импорте файлов с таким расширением не нужно указывать расширение
     extensions: [".tsx", ".ts", ".js"],
   },
 };
