@@ -4,7 +4,6 @@ import { BuildEnv, BuildPaths } from "./config/build/types/config";
 import path from "path";
 
 export default (env: BuildEnv) => {
-  console.log("env", env);
   const paths: BuildPaths = {
     entry: path.resolve(__dirname, "src", "index.tsx"),
     build: path.resolve(__dirname, "build"),
