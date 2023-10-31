@@ -3,16 +3,22 @@ import { Link } from "react-router-dom";
 import { MainPageAsync } from "./pages/MainPage/MainPageAsync";
 import { AboutPageAsync } from "./pages/AboutPage/AboutPageAsync";
 import { Suspense } from "react";
+import { useTheme } from "./theme/useTheme";
 
-export const App = () => (
-  <div>
-    <Link to={"/"}>ГЛАВНАЯ</Link>
-    <Link to={"/about"}>О НАС</Link>
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path={"/"} element={<MainPageAsync />} />
-        <Route path={"/about"} element={<AboutPageAsync />} />
-      </Routes>
-    </Suspense>
-  </div>
-);
+export const App = () => {
+  const { theme, toggleTheme } = useTheme();
+
+  return (
+    <div className={`app ${theme}`}>
+      <button onClick={toggleTheme}>TOGGLE</button>
+      <Link to={"/"}>ГЛАВНАЯ</Link>
+      <Link to={"/about"}>О НАС</Link>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path={"/"} element={<MainPageAsync />} />
+          <Route path={"/about"} element={<AboutPageAsync />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
+};
