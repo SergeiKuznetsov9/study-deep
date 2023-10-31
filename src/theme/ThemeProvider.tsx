@@ -7,7 +7,6 @@ const defaultTheme =
 const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
-  //   useMemo использован в учебных целях, он здесь не нужен на само деле
   const defaultProps = useMemo(
     () => ({
       theme,
