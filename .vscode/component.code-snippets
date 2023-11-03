@@ -1,7 +1,3 @@
-В этом уроке добавим Навбар.
-
-Для удобства также добавим снипет в IDE, который будет выглядеть вот так: 
-
 {
     "Common component": {
         "scope": "typescriptreact,tsx",
@@ -17,7 +13,7 @@
             "",
             "export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = ({ className }) => {",
             "  return (",
-            "    <div className={classNames(cls.navbar, {}, [className])}>",
+            "    <div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}>",
             "    $1"
             "    </div>",
             "  );",
@@ -26,6 +22,3 @@
         "description": "Cниппет для создания компонента"
       }
 }
-
-
-Добавлен общий комопнент ссылки. Для него сделаны разные темы
