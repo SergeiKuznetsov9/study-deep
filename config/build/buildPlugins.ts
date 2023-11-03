@@ -17,8 +17,6 @@ export const buildPlugins = ({
     filename: "css/[name].[contenthash:8].css",
     chunkFilename: "css/[name].[contenthash:8].css",
   }),
-  // Здесь мы присваиваем значение isDev в __IS_DEV__
-  // теперь __IS_DEV__ нам доступна в коде приложения
   new webpack.DefinePlugin({
     __IS_DEV__: JSON.stringify(isDev),
   }),
