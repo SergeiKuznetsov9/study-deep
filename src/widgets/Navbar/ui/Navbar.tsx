@@ -2,6 +2,7 @@ import { FC } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./Navbar.module.scss";
 import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
+import { ThemeSwitcher } from "widgets/ThemeSwitcher";
 
 interface NavbarPops {
   className?: string;
@@ -10,6 +11,8 @@ interface NavbarPops {
 export const Navbar: FC<NavbarPops> = ({ className }) => {
   return (
     <div className={classNames(cls.navbar, {}, [className])}>
+      <ThemeSwitcher />
+
       <div className={cls.links}>
         <AppLink
           to={"/"}

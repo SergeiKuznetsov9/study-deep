@@ -29,5 +29,20 @@ export const buildLoaders = ({
     exclude: /node_modules/,
   };
 
-  return [typeScriptLoader, cssLoader];
+  const svgLoader = {
+    test: /\.svg$/i,
+    issuer: /\.[jt]sx?$/,
+    use: ["@svgr/webpack"],
+  };
+
+  const fileLoader = {
+    test: /\.(png|jpe?g|gif)$/i,
+    use: [
+      {
+        loader: "file-loader",
+      },
+    ],
+  };
+
+  return [typeScriptLoader, cssLoader, svgLoader, fileLoader];
 };
