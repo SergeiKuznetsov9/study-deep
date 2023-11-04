@@ -1,12 +1,6 @@
 import { classNames } from "./classNames";
 
-// стандартная обертка для пачки тестов
 describe("classNames", () => {
-  // тест-кейс для проверки работы тестовой среды
-  //   test("test", () => {
-  //     expect(true).toBe(true);
-  //   });
-
   test("with only first param", () => {
     expect(classNames("someClass")).toBe("someClass");
   });
