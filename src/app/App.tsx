@@ -1,10 +1,9 @@
 import { classNames } from "shared/lib/classNames/classNames";
 import { useTheme } from "./providers/ThemeProvider";
-import { AppRouter } from "./providers/router";
 import { Navbar } from "widgets/Navbar";
 import { Sidebar } from "widgets/Sidebar";
+import { AppRouter } from "./providers/AppRouter";
 import { Suspense } from "react";
-import { useTranslation } from "react-i18next";
 
 import "shared/config/i18n/i18n";
 

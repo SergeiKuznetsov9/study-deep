@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "start": "webpack serve --env port=3000",
     "unit": "jest --config ./config/jest/jest.config.ts",
