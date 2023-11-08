@@ -1,25 +1,10 @@
-import type { Config } from "jest";
-
-const config: Config = {
+export default {
   clearMocks: true,
-  testEnvironment: "jest-environment-jsdom",
-  coveragePathIgnorePatterns: ["\\\\node_modules\\\\", "\\\\build\\\\"],
+  testEnvironment: "jsdom",
+  coveragePathIgnorePatterns: ["\\\\node_modules\\\\"],
+  moduleFileExtensions: ["js", "jsx", "ts", "tsx", "json", "node"],
   moduleDirectories: ["node_modules"],
-  moduleFileExtensions: [
-    "js",
-    "mjs",
-    "cjs",
-    "jsx",
-    "ts",
-    "tsx",
-    "json",
-    "node",
-  ],
-  rootDir: "../../",
+  modulePaths: ["<rootDir>src"],
   testMatch: ["<rootDir>src/**/*(*.)@(spec|test).[tj]s?(x)"],
-  transform: {
-    "^.+\\.tsx?$": "ts-jest",
-  },
+  rootDir: "../../",
 };
-
-export default config;

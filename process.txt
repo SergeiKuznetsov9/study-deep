@@ -1,0 +1,1 @@
+    i18next i18next-browser-languagedetector i18next-http-backend react react-dom react-i18next react-router-dom
