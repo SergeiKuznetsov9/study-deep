@@ -1,5 +1,6 @@
 import { FC, ReactNode, useEffect } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
+import { Portal } from "../Portal/Portal";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {
@@ -42,14 +43,16 @@ export const Modal: FC<ModalProps> = ({
   }, [isOpen, onKeyDown]);
 
   return (
-    <div
-      className={classNames(cls.Modal, { [cls.opened]: isOpen }, [className])}
-    >
-      <div className={cls.overlay} onClick={closeHandler}>
-        <div className={cls.content} onClick={onContentClick}>
-          {children}
+    <Portal>
+      <div
+        className={classNames(cls.Modal, { [cls.opened]: isOpen }, [className])}
+      >
+        <div className={cls.overlay} onClick={closeHandler}>
+          <div className={cls.content} onClick={onContentClick}>
+            {children}
+          </div>
         </div>
       </div>
-    </div>
+    </Portal>
   );
 };
