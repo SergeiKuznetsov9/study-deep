@@ -1,0 +1,70 @@
+В этом уроке добавим редакс
+
+Двигаемся по пунктам:
+
+
+
+1. Создаем стор. Для этого реализуем функцию его создающую (для тестирования удобно):
+export function createReduxStore() {
+  return configureStore({
+    reducer: {},
+    devTools: __IS_DEV__,
+    preloadedState: initialState
+  });
+}
+отключим девТулс в проде и прокинем начальный стейт
+
+
+
+2. Далее, создаем компонент StoreProvider, который вернет редаксовский Provider, в который
+прокинем стор, создаваемый функцией из первого шага. Пропсы сделаем необязательными и
+прокинем их непосредственно в компоненте. initialState присоздании стора будет - undefined.
+Он - не обязателен для его создания. В последующем, для каждого слайса мы сделаем свой
+initialState, и из всех них сформируется конечный стейт.
+
+
+
+3. Далее обернем приложение в провайдер и теперь у нас все готово для создания слайсов.
+В последующем, при создании слайсов, каждый их редьюсер необходимо будет прокинуть в объект
+reducer функции configureStore. Это будет выглядить так:
+configureStore<StateSchema>({
+    reducer: {
+      counter: counterReducer
+    },
+    devTools: __IS_DEV__,
+    preloadedState: initialState
+  });
+
+
+
+4. На следующем шаге начнем создавать слайсы и для примера реализуем счетчик. Счетчик - это
+будет entity. Соответственно создадим такую папку, а в ней Counter. Он будет состоять из 
+ui и model. Начнем этот шаг с создания слайса:
+
+const initialState: CounterSchema = {
+    value: 0
+}
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: state => {      
+      state.value += 1
+    },
+    decrement: state => {
+      state.value -= 1
+    },
+  }
+})
+
+// Action creators are generated for each case reducer function
+export const { actions: counterActions } = counterSlice
+export const { reducer: counterReducer } = counterSlice
+
+После этого нам доступны экшены и редьюсер, который нужно прокинуть в функцию создания
+стора. Это все
+
+Дополнительно созданы селекторы с помощью библиотеки reselect
+
+22.30
