@@ -47,7 +47,6 @@ export const Modal: FC<ModalProps> = ({
     };
   }, [isOpen, onKeyDown]);
 
-  // Здесь будем управлять монтированием
   useEffect(() => {
     if (isOpen) {
       setIsMounted(true);
@@ -56,7 +55,6 @@ export const Modal: FC<ModalProps> = ({
     }
   }, [isOpen]);
 
-  // Если компонент не подгружен, то ничего не отрисовываем
   if (lazy && !isMounted) {
     return null;
   }

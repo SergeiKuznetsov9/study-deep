@@ -3,8 +3,6 @@ export interface User {
   username: string;
 }
 
-// Если пустая - значит пользователь не авторизован
-// иначе - авторизован
 export interface UserSchema {
   authData?: User;
 }
