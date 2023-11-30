@@ -1,4 +1,4 @@
-import { FC, ReactNode, useEffect } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import cls from "./Modal.module.scss";
@@ -8,6 +8,7 @@ interface ModalProps {
   children?: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
+  lazy?: boolean;
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -15,7 +16,11 @@ export const Modal: FC<ModalProps> = ({
   children,
   isOpen,
   onClose,
+  lazy,
 }) => {
+  console.log("Modal", lazy);
+
+  const [isMounted, setIsMounted] = useState(false);
   const closeHandler = () => {
     if (onClose) {
       onClose();
@@ -41,6 +46,20 @@ export const Modal: FC<ModalProps> = ({
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [isOpen, onKeyDown]);
+
+  // Здесь будем управлять монтированием
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    } else {
+      setIsMounted(false);
+    }
+  }, [isOpen]);
+
+  // Если компонент не подгружен, то ничего не отрисовываем
+  if (lazy && !isMounted) {
+    return null;
+  }
 
   return (
     <Portal>
