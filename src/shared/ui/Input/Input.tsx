@@ -36,7 +36,6 @@ export const Input: FC<InputProps> = memo(
     const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       onChange?.(e.target.value);
       setCaretPosition(e.target.value.length);
-      console.log(e.target.value.length);
     };
 
     const onBlur = () => {
