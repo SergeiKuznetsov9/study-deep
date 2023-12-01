@@ -5,7 +5,6 @@ import { userReducer } from "entities/User";
 import { StateSchema } from "./StateSchema";
 import { loginReducer } from "features/authByUserName";
 
-// В курсе не было. Добавлено самостоятельно для решения проблем типизации
 export type ApplicationDispatch = ReturnType<
   typeof createReduxStore
 >["dispatch"];

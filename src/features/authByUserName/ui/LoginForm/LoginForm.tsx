@@ -13,15 +13,12 @@ interface LoginFormProps {
   className?: string;
 }
 
-// для избежания лишних перерисовок обернм в memo
 export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
   const { username, password, error, isLoading } =
     useAppSelector(getLoginState);
 
-  // поскольку будем передавать эту функцию пропсом, то будем использовать
-  // useCallback, чтобы ссылка не изменялась
   const onChangeUserName = useCallback(
     (value: string) => {
       dispatch(loginActions.setUserName(value));
