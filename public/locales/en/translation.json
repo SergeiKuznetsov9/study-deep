@@ -8,6 +8,9 @@
   "Главная страница": "Main page",
   "О сайте": "About",
   "Войти": "Log in",
+  "Выйти": "Log out",
   "Введите Имя": "Enter Name",
-  "Введите Пароль": "Enter Password"
+  "Введите Пароль": "Enter Password",
+  "Форма авторизации": "Authorization form",
+  "Вы ввели неверный логин или пароль": "You've entered invalid login or password"
 }

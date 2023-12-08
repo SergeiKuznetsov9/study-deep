@@ -3,11 +3,12 @@ import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
-import cls from "./LoginForm.module.scss";
 import { loginActions } from "../../model/slice/loginSlice";
 import { getLoginState } from "../../model/selectors/selectLoginState/getLoginState";
 import { loginByUserName } from "../../model/services/loginByUserName/loginByUserName";
 import { useAppDispatch, useAppSelector } from "app/providers/StoreProvider";
+import { Text, TextTheme } from "shared/ui/Text/Text";
+import cls from "./LoginForm.module.scss";
 
 interface LoginFormProps {
   className?: string;
@@ -39,7 +40,8 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
 
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
-      {error && <div>{error}</div>}
+      <Text title={t("Форма авторизации")} />
+      {error && <Text text={t("Вы ввели неверный логин или пароль")} theme={TextTheme.ERROR} />}
       <Input
         type="text"
         className={cls.input}

@@ -1,10 +1,20 @@
-import { Suspense } from "react";
+import { Suspense, useEffect } from "react";
 import { AppRouter } from "./providers/AppRouter";
+import { useAppDispatch } from "./providers/StoreProvider";
 import { Navbar } from "widgets/Navbar";
 import { Sidebar } from "widgets/Sidebar";
+import { userActions } from "entities/User";
 import "shared/config/i18n/i18n";
 
 export const App = () => {
+  const dispatch = useAppDispatch();
+
+  // При загрузке приложения единожды проверяем имеется ли в localStorage сведения
+  // об авторизации
+  useEffect(() => {
+    dispatch(userActions.initAuthData());
+  }, [dispatch]);
+
   return (
     <div className="app">
       <Suspense fallback={""}>
