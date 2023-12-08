@@ -9,8 +9,6 @@ import "shared/config/i18n/i18n";
 export const App = () => {
   const dispatch = useAppDispatch();
 
-  // При загрузке приложения единожды проверяем имеется ли в localStorage сведения
-  // об авторизации
   useEffect(() => {
     dispatch(userActions.initAuthData());
   }, [dispatch]);

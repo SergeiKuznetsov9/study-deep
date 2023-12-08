@@ -27,7 +27,6 @@ export const Navbar: FC<NavbarPops> = ({ className }) => {
   if (authData) {
     return (
       <div className={classNames(cls.navbar, {}, [className])}>
-        {/* Эту кнопку нам не нужно показывать, если пользователь авторизован */}
         <Button
           theme={ButtonTheme.CLEAR_INVERTED}
           className={cls.links}
@@ -41,7 +40,6 @@ export const Navbar: FC<NavbarPops> = ({ className }) => {
 
   return (
     <div className={classNames(cls.navbar, {}, [className])}>
-      {/* Эту кнопку нам не нужно показывать, если пользователь авторизован */}
       <Button
         theme={ButtonTheme.CLEAR_INVERTED}
         className={cls.links}
