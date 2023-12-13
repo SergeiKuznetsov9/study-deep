@@ -1,24 +1,50 @@
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { Input } from "shared/ui/Input/Input";
-import { loginActions } from "../../model/slice/loginSlice";
-import { getLoginState } from "../../model/selectors/selectLoginState/getLoginState";
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
 import { loginByUserName } from "../../model/services/loginByUserName/loginByUserName";
-import { useAppDispatch, useAppSelector } from "app/providers/StoreProvider";
+import {
+  ReduxStoreWithManager,
+  useAppDispatch,
+  useAppSelector,
+} from "app/providers/StoreProvider";
 import { Text, TextTheme } from "shared/ui/Text/Text";
 import cls from "./LoginForm.module.scss";
+import { useStore } from "react-redux";
+import { getLoginUserName } from "../../model/selectors/getLoginUserName/getLoginUserName";
+import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
+import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
+import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 
 interface LoginFormProps {
   className?: string;
 }
 
-export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
+const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-  const { username, password, error, isLoading } =
-    useAppSelector(getLoginState);
+
+  // Получим стор
+  const store = useStore() as ReduxStoreWithManager;
+
+  // Отдельные селекторы нужны для того, чтобы приложение не падало
+  // пояснение - в файле одного из селекторов
+  const username = useAppSelector(getLoginUserName);
+  const password = useAppSelector(getLoginPassword);
+  const error = useAppSelector(getLoginError);
+  const isLoading = useAppSelector(getLoginIsLoading);
+
+  // А теперь собственно подключаем асинхронность
+  useEffect(() => {
+    // В момент монтирования компонента добавляем редьюсер при помощи редьюсерМенеджера
+    store.reducerManager.add("loginForm", loginReducer);
+
+    return () => {
+      store.reducerManager.remove("loginForm");
+    };
+  }, []);
 
   const onChangeUserName = useCallback(
     (value: string) => {
@@ -41,7 +67,12 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   return (
     <div className={classNames(cls.LoginForm, {}, [className])}>
       <Text title={t("Форма авторизации")} />
-      {error && <Text text={t("Вы ввели неверный логин или пароль")} theme={TextTheme.ERROR} />}
+      {error && (
+        <Text
+          text={t("Вы ввели неверный логин или пароль")}
+          theme={TextTheme.ERROR}
+        />
+      )}
       <Input
         type="text"
         className={cls.input}
@@ -68,3 +99,5 @@ export const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
     </div>
   );
 });
+
+export default LoginForm;

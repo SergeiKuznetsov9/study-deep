@@ -47,7 +47,14 @@ export const Navbar: FC<NavbarPops> = ({ className }) => {
       >
         {t("Войти")}
       </Button>
-      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+
+      {/*
+        Учитывая, что мы сделали редьюсер асинхронным, по-хорошему удалять из дом-дерева
+        ненужный компонент
+      */}
+      {isAuthModal && (
+        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
+      )}
     </div>
   );
 };
