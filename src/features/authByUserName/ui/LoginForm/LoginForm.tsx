@@ -26,19 +26,13 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  // Получим стор
   const store = useStore() as ReduxStoreWithManager;
-
-  // Отдельные селекторы нужны для того, чтобы приложение не падало
-  // пояснение - в файле одного из селекторов
   const username = useAppSelector(getLoginUserName);
   const password = useAppSelector(getLoginPassword);
   const error = useAppSelector(getLoginError);
   const isLoading = useAppSelector(getLoginIsLoading);
 
-  // А теперь собственно подключаем асинхронность
   useEffect(() => {
-    // В момент монтирования компонента добавляем редьюсер при помощи редьюсерМенеджера
     store.reducerManager.add("loginForm", loginReducer);
 
     return () => {

@@ -13,11 +13,9 @@ export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
 
-  // Асинхронные редьюсеры
   loginForm?: LoginSchema;
 }
 
-// для создания типа, соответсвующего ключам объекта воспользуемся следующим приемом:
 export type StateSchemaKey = keyof StateSchema;
 
 export interface ReducerManager {
@@ -27,8 +25,6 @@ export interface ReducerManager {
   remove: (key: StateSchemaKey) => void;
 }
 
-// создадим тип для стора с менеджером
-// EnhancedStore - это стандартный тип, который возвращается при создании стора
 export interface ReduxStoreWithManager extends EnhancedStore<StateSchema> {
   reducerManager: ReducerManager;
 }
