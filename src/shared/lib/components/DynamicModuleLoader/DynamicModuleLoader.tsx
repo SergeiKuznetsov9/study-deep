@@ -23,9 +23,6 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
   const store = useStore() as ReduxStoreWithManager;
   const dispatch = useAppDispatch();
 
-  // необходимо отметить, ыто при такой реализации, редьюсер будет инициализироваться
-  // всякий раз при запуске кода. Это не критично, если он всегда будет удаляться
-
   useEffect(() => {
     store.reducerManager.add(name, reducer);
     dispatch({ type: `@INIT ${name} reducer` });
