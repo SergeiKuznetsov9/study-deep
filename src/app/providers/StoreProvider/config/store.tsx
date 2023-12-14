@@ -1,4 +1,8 @@
-import { ReducersMapObject, configureStore } from "@reduxjs/toolkit";
+import {
+  DeepPartial,
+  ReducersMapObject,
+  configureStore,
+} from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { counterReducer } from "entities/Counter";
 import { userReducer } from "entities/User";
@@ -11,8 +15,13 @@ export type ApplicationDispatch = ReturnType<
 export const useAppDispatch = () => useDispatch<ApplicationDispatch>();
 export const useAppSelector: TypedUseSelectorHook<StateSchema> = useSelector;
 
-export function createReduxStore(initialState?: StateSchema) {
+export function createReduxStore(
+  initialState?: StateSchema,
+  // Добавлено по автору для исправки сторисбука
+  asyncReducers?: ReducersMapObject<StateSchema>
+) {
   const rootReducers: ReducersMapObject<StateSchema> = {
+    ...asyncReducers,
     counter: counterReducer,
     user: userReducer,
   };

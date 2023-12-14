@@ -12,11 +12,18 @@ import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLogi
 import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
 import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import { getLoginUserName } from "../../model/selectors/getLoginUserName/getLoginUserName";
-import { DynamicModuleLoader } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import {
+  DynamicModuleLoader,
+  ReducersList,
+} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 
 interface LoginFormProps {
   className?: string;
 }
+
+const initialReducers: ReducersList = {
+  loginForm: loginReducer,
+};
 
 const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   const { t } = useTranslation();
@@ -48,8 +55,8 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
 
   return (
     <DynamicModuleLoader
-      name={"loginForm"}
-      reducer={loginReducer}
+      // вынесем initialReducers за функцию, чтобы ссылка не менялась при ререндере
+      reducers={initialReducers}
       removeAfterUnmount={true}
     >
       <div className={classNames(cls.LoginForm, {}, [className])}>

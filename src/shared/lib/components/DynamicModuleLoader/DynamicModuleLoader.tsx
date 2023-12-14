@@ -7,16 +7,24 @@ import { StateSchemaKey } from "app/providers/StoreProvider/config/StateSchema";
 import { FC, ReactNode, useEffect } from "react";
 import { useStore } from "react-redux";
 
+export type ReducersList = {
+  [name in StateSchemaKey]?: Reducer;
+};
+
+export type ReducersListEntry = [StateSchemaKey, Reducer];
+
 interface DynamicModuleLoaderProps {
-  name: StateSchemaKey;
-  reducer: Reducer;
+  reducers: ReducersList;
   children: ReactNode;
   removeAfterUnmount?: boolean;
 }
 
+// По-хорошему, принимать не один редьюсер, а несколько, т.к. одна фича может содержать
+// несколько редьюсеров
+
+// Можно было бы сделатьи по другому, например передать объект пропсом
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
-  name,
-  reducer,
+  reducers,
   children,
   removeAfterUnmount,
 }) => {
@@ -24,12 +32,20 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    store.reducerManager.add(name, reducer);
-    dispatch({ type: `@INIT ${name} reducer` });
+    Object.entries(reducers).forEach(([name, reducer]: ReducersListEntry) => {
+      store.reducerManager.add(name, reducer);
+      dispatch({ type: `@INIT ${name} reducer` });
+    });
 
     return () => {
       if (removeAfterUnmount) {
-        store.reducerManager.remove(name);
+        Object.entries(reducers).forEach(
+          ([name, reducer]: ReducersListEntry) => {
+            store.reducerManager.remove(name);
+            dispatch({ type: `@INIT ${name} reducer` });
+          }
+        );
+
         dispatch({ type: `@DESTROY ${name} reducer` });
       }
     };
