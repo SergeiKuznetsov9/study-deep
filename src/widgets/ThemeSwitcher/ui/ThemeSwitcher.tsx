@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import { Theme, useTheme } from "app/providers/ThemeProvider";
 import { classNames } from "shared/lib/classNames/classNames";
 import LightIcon from "shared/assets/icons/light-theme.svg";
@@ -10,7 +10,7 @@ interface ThemeSwitcherProps {
   className?: string;
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -31,4 +31,4 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = ({ className }) => {
       )}
     </Button>
   );
-};
+});

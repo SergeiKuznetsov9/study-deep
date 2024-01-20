@@ -1,4 +1,4 @@
-import { FC, useCallback, useState } from "react";
+import { FC, memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -12,7 +12,7 @@ interface NavbarPops {
   className?: string;
 }
 
-export const Navbar: FC<NavbarPops> = ({ className }) => {
+export const Navbar: FC<NavbarPops> = memo(({ className }) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
   const dispatch = useAppDispatch();
@@ -53,4 +53,4 @@ export const Navbar: FC<NavbarPops> = ({ className }) => {
       )}
     </div>
   );
-};
+});
