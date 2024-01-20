@@ -54,11 +54,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className }) => {
   }, [dispatch, username, password]);
 
   return (
-    <DynamicModuleLoader
-      // вынесем initialReducers за функцию, чтобы ссылка не менялась при ререндере
-      reducers={initialReducers}
-      removeAfterUnmount={true}
-    >
+    <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={true}>
       <div className={classNames(cls.LoginForm, {}, [className])}>
         <Text title={t("Форма авторизации")} />
         {error && (

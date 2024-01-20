@@ -17,7 +17,6 @@ export const useAppSelector: TypedUseSelectorHook<StateSchema> = useSelector;
 
 export function createReduxStore(
   initialState?: StateSchema,
-  // Добавлено по автору для исправки сторисбука
   asyncReducers?: ReducersMapObject<StateSchema>
 ) {
   const rootReducers: ReducersMapObject<StateSchema> = {

@@ -19,10 +19,6 @@ interface DynamicModuleLoaderProps {
   removeAfterUnmount?: boolean;
 }
 
-// По-хорошему, принимать не один редьюсер, а несколько, т.к. одна фича может содержать
-// несколько редьюсеров
-
-// Можно было бы сделатьи по другому, например передать объект пропсом
 export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
   reducers,
   children,
