@@ -1,3 +1,3 @@
 export { StoreProvider } from "./ui/StoreProvider";
 export type { StateSchema, ReduxStoreWithManager } from "./config/StateSchema";
-export { useAppDispatch, useAppSelector } from "./config/store";
+export type { AppDispatch } from "./config/store";

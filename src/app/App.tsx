@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { AppRouter } from "./providers/AppRouter";
-import { useAppDispatch } from "./providers/StoreProvider";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Navbar } from "widgets/Navbar";
 import { Sidebar } from "widgets/Sidebar";
 import { userActions } from "entities/User";

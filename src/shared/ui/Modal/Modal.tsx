@@ -18,8 +18,6 @@ export const Modal: FC<ModalProps> = ({
   onClose,
   lazy,
 }) => {
-  console.log("Modal", lazy);
-
   const [isMounted, setIsMounted] = useState(false);
   const closeHandler = () => {
     if (onClose) {
