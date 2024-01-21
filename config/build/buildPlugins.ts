@@ -8,6 +8,7 @@ import { BuildOptions } from "./types/config";
 export const buildPlugins = ({
   paths,
   isDev,
+  apiUrl
 }: BuildOptions): webpack.WebpackPluginInstance[] => [
   new HtmlWebpackPlugin({
     template: paths.html,
@@ -20,6 +21,7 @@ export const buildPlugins = ({
   }),
   new webpack.DefinePlugin({
     __IS_DEV__: JSON.stringify(isDev),
+    __API__: JSON.stringify(apiUrl),     
   }),
   new webpack.HotModuleReplacementPlugin(),
   new BundleAnalyzerPlugin({
