@@ -32,14 +32,9 @@ export function createReduxStore(
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
-          // Благодаря этому в thunkApi в свойстве extra будет досутпен
-          // метод api, который будет являться инстансом axios с базовым
-          // урлом, поэтому его можно в санке удалить
           extraArgument: {
             api: $api,
 
-            // кроме этого, сюда удобно передать navigate, потому как в санке
-            // может использоваться переход часто
             navigate,
           },
         },
