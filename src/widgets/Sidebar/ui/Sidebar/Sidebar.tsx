@@ -1,4 +1,4 @@
-import { FC, memo, useState } from "react";
+import { FC, memo, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import { ThemeSwitcher } from "widgets/ThemeSwitcher";
@@ -19,6 +19,14 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
 
   const onToggle = () => setCollapsed((prev) => !prev);
 
+  const itemsList = useMemo(
+    () =>
+      SideBarItemsList.map((item) => (
+        <SideBarItem key={item.path} item={item} collapsed={collapsed} />
+      )),
+    [collapsed]
+  );
+
   return (
     <div
       data-testid="sidebar"
@@ -37,11 +45,7 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       >
         {collapsed ? ">" : "<"}
       </Button>
-      <div className={cls.items}>
-        {SideBarItemsList.map((item) => (
-          <SideBarItem key={item.path} item={item} collapsed={collapsed} />
-        ))}
-      </div>
+      <div className={cls.items}>{itemsList}</div>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher className={cls.lang} short={collapsed} />
