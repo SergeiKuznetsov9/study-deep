@@ -10,5 +10,10 @@
   "Город": "City",
   "Ваш возраст": "Your age",
   "Ваша фамилия": "Your second name",
-  "Ваше имя": "Your name"
+  "Ваше имя": "Your name",
+  "Серверная ошибка при сохранении": "Server error during updating",
+  "Некорректный возраст": "Uncorrect age",
+  "Некорректный регион": "Uncorrect region",
+  "Имя и фамилия обязательны": "Name and second name are required",
+  "Данные не указаны": "No any data"
 }
