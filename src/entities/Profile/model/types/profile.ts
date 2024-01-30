@@ -1,7 +1,6 @@
 import { Country } from "entities/Country";
 import { Currency } from "entities/Currency";
 
-// Здесь будут храниться типы валидационных ошибок
 export enum ValidateProfileError {
   INCORRECT_USER_DATA = "INCORRECT_USER_DATA",
   INCORRECT_AGE = "INCORRECT_AGE",
@@ -21,7 +20,6 @@ export interface Profile {
   avatar?: string;
 }
 
-// тут добавим новое поле для ошибки
 export interface ProfileSchema {
   data?: Profile;
   form?: Profile;

@@ -13,8 +13,6 @@ export const updateProfileData = createAsyncThunk<
   async (_: void, { rejectWithValue, extra, getState }) => {
     const formData = getProfileForm(getState())!;
 
-    // Ну а здесь в Санке для апдэйта профильДаты будем запускать
-    // функцию валидации
     const errors = validateProfileData(formData);
 
     if (errors.length) {
