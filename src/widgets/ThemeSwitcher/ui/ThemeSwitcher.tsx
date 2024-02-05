@@ -14,7 +14,7 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    document.body.classList.remove(Theme.DARK, Theme.LIGHT);
+    document.body.classList.remove(Theme.DARK, Theme.LIGHT, Theme.ORANGE);
     document.body.classList.add(theme);
   }, [theme]);
 
