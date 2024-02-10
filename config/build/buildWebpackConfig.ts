@@ -18,7 +18,6 @@ export const buildWebpackConfig = (
       filename: "[name].[contenthash].js",
       path: paths.build,
       clean: true,
-      // Это нужно для того, чтобы правильно отрабаьывал роут articles/:id
       publicPath: "/",
     },
 
