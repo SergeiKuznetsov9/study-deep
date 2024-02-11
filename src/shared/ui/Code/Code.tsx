@@ -11,7 +11,6 @@ interface CodeProps {
 }
 
 export const Code: FC<CodeProps> = ({ text, className }) => {
-  // Реализовано копирование в буфер обмена
   const onCopy = useCallback(() => {
     navigator.clipboard.writeText(text);
   }, [text]);
