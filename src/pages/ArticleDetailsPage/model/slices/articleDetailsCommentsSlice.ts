@@ -9,12 +9,9 @@ import { ArticleDetailsCommentsSchema } from "../types/ArticleDetailsCommentsSch
 import { fetchCommentsByArticleId } from "../services/fetchCommentsByArticleId/fetchCommentsByArticleId";
 
 const commentsAdapter = createEntityAdapter<Comment>({
-  // Здесь указывается поле, по которому будет происходить нормализация
   selectId: (comment) => comment.id,
 });
 
-//   Создадим селектор, по которому мы будем получать наши комментарии
-// Если быть точнее - это объект, содержащий различные селектора
 export const getArticleComments = commentsAdapter.getSelectors<StateSchema>(
   (state) =>
     state.articleDetailsComments ||
@@ -45,8 +42,6 @@ const articleDetailsCommentsSlice = createSlice({
         fetchCommentsByArticleId.fulfilled,
         (state, action: PayloadAction<Comment[]>) => {
           state.isLoading = false;
-          // поскольку мы используем адаптер (нормализацию данных), то в стэйт добавляем
-          // все таким способом
           commentsAdapter.setAll(state, action.payload);
         }
       )
