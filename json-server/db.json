@@ -99,7 +99,7 @@
       "id": "3",
       "text": "some comment 3",
       "articleId": "1",
-      "userId": "1"
+      "userId": "2"
     }
   ],
   "users": [
@@ -108,25 +108,38 @@
       "username": "admin",
       "role": "ADMIN",
       "password": "123",
-      "avatar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9mckY5OaDsqbXMxHj3CReR37h-cMDWfCbQw&usqp=CAU"
+      "avatar": "https://rp-wow.ru/upload/056/u5682/59/80/20811.jpg"
     },
     {
       "id": "2",
       "username": "user",
       "password": "123",
       "role": "USER",
-      "avatar": "https://assets.rebelmouse.io/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpbWFnZSI6Imh0dHBzOi8vYXNzZXRzLnJibC5tcy8zMTc4MTkxOS9vcmlnaW4ucG5nIiwiZXhwaXJlc19hdCI6MTcyOTc1MTI2M30.bkSOyoRUhd7pkRT_F4mJzmSKdZXMuoxET3dNuuzzR4s/img.png?width=1200&height=800&quality=100&coordinates=0%2C370%2C0%2C1297"
-
+      "avatar": "https://avatars.dzeninfra.ru/get-zen_doc/4467222/pub_62439a0d9f5e0b1fbda46cdc_62463860b752554f8054c8c8/scale_1200"
     }
   ],
-  "profile": {
-    "first": "Серж",
-    "lastname": "Кузнецов",
-    "age": "38",
-    "currency": "RUB",
-    "country": "Belarus",
-    "city": "Moscow",
-    "username": "admin",
-    "avatar": "https://rp-wow.ru/upload/056/u5682/59/80/20811.jpg"
-  }
+  "profile": [
+    {
+      "id": "1",
+      "first": "Серж",
+      "lastname": "Кузнецов",
+      "age": "38",
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "admin",
+      "avatar": "https://rp-wow.ru/upload/056/u5682/59/80/20811.jpg"
+    },
+    {
+      "id": "2",
+      "first": "Полиграф",
+      "lastname": "Шариков",
+      "age": "45",
+      "currency": "RUB",
+      "country": "Belarus",
+      "city": "Moscow",
+      "username": "user",
+      "avatar": "https://avatars.dzeninfra.ru/get-zen_doc/4467222/pub_62439a0d9f5e0b1fbda46cdc_62463860b752554f8054c8c8/scale_1200"
+    }
+  ]
 }

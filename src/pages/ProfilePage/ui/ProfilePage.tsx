@@ -23,6 +23,7 @@ import { Country } from "entities/Country";
 import { useSelector } from "react-redux";
 import { Text, TextTheme } from "shared/ui/Text/Text";
 import { useTranslation } from "react-i18next";
+import { useParams } from "react-router-dom";
 
 const reducers: ReducersList = {
   profile: profileReducer,
@@ -37,6 +38,7 @@ const ProfilePage = () => {
   const isLoading = useAppSelector(getProfileIsLoading);
   const readonly = useAppSelector(getProfileReadonly);
   const validateErrors = useSelector(getProfileValidateErrors);
+  const { id } = useParams<{ id: string }>();
 
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
@@ -47,7 +49,9 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
-    dispatch(fetchProfileData());
+    if (id) {
+      dispatch(fetchProfileData(id));
+    }
   }, [dispatch]);
 
   const onChangeFirstName = useCallback(
