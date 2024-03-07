@@ -21,8 +21,6 @@ import {
 
 export interface AddCommentFormProps {
   className?: string;
-  // по сути, мы делигировали отправку комментария тому компоненту, который будет
-  // использовать эту фичу
   onSendComment: (text: string) => void;
 }
 
