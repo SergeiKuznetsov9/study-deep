@@ -11,7 +11,7 @@ import { RoutePath } from "shared/config/routeConfig/routeConfig";
 interface CommentCardProps {
   className?: string;
   isLoading?: boolean;
-  comment: Comment;
+  comment?: Comment;
 }
 
 export const CommentCard: FC<CommentCardProps> = ({
@@ -21,7 +21,9 @@ export const CommentCard: FC<CommentCardProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div className={classNames(cls.CommentCard, {}, [className])}>
+      <div
+        className={classNames(cls.CommentCard, {}, [className, cls.loading])}
+      >
         <div className={cls.header}>
           <Skeleton width={30} height={30} borderRadius="50%" />
           <Skeleton width={100} height={16} className={cls.username} />
@@ -29,6 +31,10 @@ export const CommentCard: FC<CommentCardProps> = ({
         <Skeleton width={"100%"} height={50} className={cls.text} />
       </div>
     );
+  }
+
+  if (!comment) {
+    return null;
   }
 
   return (

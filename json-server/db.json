@@ -19,7 +19,9 @@
       "img": "https://teknotower.com/wp-content/uploads/2020/11/js.png",
       "views": 1022,
       "createdAt": "26.02.2022",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -112,6 +114,24 @@
       "userId": "1",
       "text": "Фигня какая-то",
       "id": "yZ4lBF5"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Какой-то коммент",
+      "id": "GvWQ6R6"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "dwad",
+      "id": "SSCvIbR"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "lijil",
+      "id": "YNWRGzG"
     }
   ],
   "users": [
@@ -135,7 +155,7 @@
       "id": "1",
       "first": "Серж",
       "lastname": "Кузнецов",
-      "age": "38",
+      "age": 37,
       "currency": "RUB",
       "country": "Belarus",
       "city": "Moscow",

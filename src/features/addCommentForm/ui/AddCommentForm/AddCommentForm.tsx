@@ -18,17 +18,22 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { sendComment } from "features/addCommentForm/model/services/sendComment/sendComment";
 
-interface AddCommentFormProps {
+export interface AddCommentFormProps {
   className?: string;
+  // по сути, мы делигировали отправку комментария тому компоненту, который будет
+  // использовать эту фичу
+  onSendComment: (text: string) => void;
 }
 
 const reducers: ReducersList = {
   addCommentForm: addCommentFormReducer,
 };
 
-const AddCommentForm: FC<AddCommentFormProps> = ({ className }) => {
+const AddCommentForm: FC<AddCommentFormProps> = ({
+  className,
+  onSendComment,
+}) => {
   const { t } = useTranslation("comments");
   const dispatch = useAppDispatch();
   const text = useAppSelector(getAddCommentFormText);
@@ -41,9 +46,10 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ className }) => {
     [dispatch]
   );
 
-  const onSendComment = useCallback(() => {
-    dispatch(sendComment());
-  }, [dispatch]);
+  const onSendHandler = useCallback(() => {
+    onCommentTextChange("");
+    onSendComment(text || "");
+  }, [onCommentTextChange, onSendComment, text]);
 
   return (
     <DynamicModuleLoader reducers={reducers}>
@@ -54,7 +60,7 @@ const AddCommentForm: FC<AddCommentFormProps> = ({ className }) => {
           onChange={onCommentTextChange}
           className={cls.input}
         />
-        <Button theme={ButtonTheme.OUTLINE} onClick={onSendComment}>
+        <Button theme={ButtonTheme.OUTLINE} onClick={onSendHandler}>
           {t("Отправить")}
         </Button>
       </div>
