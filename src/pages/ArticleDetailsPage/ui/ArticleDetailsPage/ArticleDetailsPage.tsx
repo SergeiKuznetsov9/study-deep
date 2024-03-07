@@ -15,12 +15,10 @@ import {
   getArticleComments,
 } from "../../model/slices/articleDetailsCommentsSlice";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
-import {
-  getArticleCommentsError,
-  getArticleCommentsIsLoading,
-} from "../../model/selectors/comments";
+import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
+import { AddCommentForm } from "features/addCommentForm";
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -36,7 +34,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const { id } = useParams<{ id: string }>();
   const comments = useAppSelector(getArticleComments.selectAll);
   const articleCommentsIsLoading = useAppSelector(getArticleCommentsIsLoading);
-  // const articleCommentsError = useAppSelector(getArticleCommentsError)
 
   useEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
@@ -55,6 +52,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
       <div className={classNames(cls.ArticleDetailsPage, {}, [className])}>
         <ArticleDetails id={id} />
         <Text title={t("Комментарии")} className={cls.commentTitle} />
+        <AddCommentForm />
         <CommentList comments={comments} isLoading={articleCommentsIsLoading} />
       </div>
     </DynamicModuleLoader>
