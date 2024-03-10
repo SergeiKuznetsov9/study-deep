@@ -30,6 +30,11 @@ export enum ArticleType {
   ECONOMICS = "ECONOMICS",
 }
 
+export enum ArticleView {
+  BIG = "BIG",
+  SMALL = "SMALL",
+}
+
 export type ArticleBlock =
   | ArticleCodeBlock
   | ArticleImageBlock
