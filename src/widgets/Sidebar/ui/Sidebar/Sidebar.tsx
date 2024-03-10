@@ -4,9 +4,10 @@ import { classNames } from "shared/lib/classNames/classNames";
 import { ThemeSwitcher } from "widgets/ThemeSwitcher";
 import { LangSwitcher } from "widgets/LangSwitcher";
 import { Button, ButtonSize, ButtonTheme } from "shared/ui/Button/Button";
-import { SideBarItemsList } from "../../model/items";
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";
+import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
+import { getSidebarItems } from "../../model/selectors/getSidebarItems";
 
 interface SidebarProps {
   className?: string;
@@ -14,6 +15,7 @@ interface SidebarProps {
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   const { t } = useTranslation();
+  const sidebarItemsList = useAppSelector(getSidebarItems);
 
   const [collapsed, setCollapsed] = useState(false);
 
@@ -21,10 +23,10 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
 
   const itemsList = useMemo(
     () =>
-      SideBarItemsList.map((item) => (
+      sidebarItemsList.map((item) => (
         <SideBarItem key={item.path} item={item} collapsed={collapsed} />
       )),
-    [collapsed]
+    [collapsed, sidebarItemsList]
   );
 
   return (
