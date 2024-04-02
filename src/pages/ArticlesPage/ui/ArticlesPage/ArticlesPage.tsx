@@ -24,7 +24,7 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
-import { Page } from "shared/ui/Page/page";
+import { Page } from "shared/ui/Page/Page";
 
 interface ArticlesPageProps {
   className?: string;
@@ -60,7 +60,12 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <Page className={classNames(cls.ArticlesPage, {}, [className])}>
+      <Page
+        className={classNames(cls.ArticlesPage, {}, [className])}
+        onScrollEnd={() => {
+          console.log("Hi from callback");
+        }}
+      >
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList view={view} articles={articles} isLoading={isLoading} />
       </Page>
