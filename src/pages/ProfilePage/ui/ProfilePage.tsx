@@ -24,6 +24,7 @@ import { useSelector } from "react-redux";
 import { Text, TextTheme } from "shared/ui/Text/Text";
 import { useTranslation } from "react-i18next";
 import { useParams } from "react-router-dom";
+import { Page } from "shared/ui/Page/page";
 
 const reducers: ReducersList = {
   profile: profileReducer,
@@ -115,7 +116,7 @@ const ProfilePage = () => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount>
-      <div>
+      <Page>
         <ProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err) => (
@@ -139,7 +140,7 @@ const ProfilePage = () => {
           onChangeCountry={onChangeCountry}
           readonly={readonly}
         />
-      </div>
+      </Page>
     </DynamicModuleLoader>
   );
 };
