@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
 
-// Хук для отслеживания наведения
 interface UseHoverBind {
   onMouseEnter: () => void;
   onMouseLeave: () => void;

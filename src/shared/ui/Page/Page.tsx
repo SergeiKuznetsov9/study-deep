@@ -11,7 +11,6 @@ interface PageProps {
 
 export const Page: FC<PageProps> = memo(
   ({ className, children, onScrollEnd }) => {
-    // Здесь заиспользуем наш компонент:
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
 
