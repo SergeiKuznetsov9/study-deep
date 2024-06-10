@@ -26,14 +26,6 @@ export const ArticleList: FC<ArticleListProps> = ({
 }) => {
   const { t } = useTranslation();
 
-  if (isLoading) {
-    return (
-      <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-        {getSkeletons(view)}
-      </div>
-    );
-  }
-
   const renderArticles = (article: Article) => (
     <ArticleListItem
       article={article}
@@ -46,6 +38,7 @@ export const ArticleList: FC<ArticleListProps> = ({
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
       {articles.length && articles.map(renderArticles)}
+      {isLoading && getSkeletons(view)}
     </div>
   );
 };

@@ -21,7 +21,9 @@ import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchA
 import { useSelector } from "react-redux";
 import {
   getArticlesPageError,
+  getArticlesPageHasMore,
   getArticlesPageIsLoading,
+  getArticlesPageNum,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 import { Page } from "shared/ui/Page/Page";
@@ -40,7 +42,9 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
   const error = useSelector(getArticlesPageError);
+  const page = useSelector(getArticlesPageNum);
   const view = useSelector(getArticlesPageView);
+  const hasMore = useSelector(getArticlesPageHasMore);
 
   const onChangeView = useCallback(
     (view: ArticleView) => {
@@ -48,6 +52,17 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
     },
     [dispatch]
   );
+
+  const onLoadNextPart = useCallback(() => {
+    if (hasMore && !isLoading) {
+      dispatch(articlesPageActions.setPage(page + 1));
+      dispatch(
+        fetchArticlesList({
+          page: page + 1,
+        })
+      );
+    }
+  }, [dispatch, hasMore, isLoading, page]);
 
   useEffect(() => {
     dispatch(articlesPageActions.initState());
@@ -62,9 +77,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
     <DynamicModuleLoader reducers={reducers}>
       <Page
         className={classNames(cls.ArticlesPage, {}, [className])}
-        onScrollEnd={() => {
-          console.log("Hi from callback");
-        }}
+        onScrollEnd={onLoadNextPart}
       >
         <ArticleViewSelector view={view} onViewClick={onChangeView} />
         <ArticleList view={view} articles={articles} isLoading={isLoading} />
