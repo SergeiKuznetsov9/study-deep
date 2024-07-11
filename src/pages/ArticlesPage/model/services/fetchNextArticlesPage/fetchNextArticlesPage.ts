@@ -8,6 +8,15 @@ import {
 import { articlesPageActions } from "../../slices/articlesPageSlice";
 import { fetchArticlesList } from "../fetchArticlesList/fetchArticlesList";
 
+// Это санка.
+// Это имя "articlesPage/fetchNextArticlesPage" используется для создания экстраредьюсера
+// 1 дженерик тип createAsyncThunk - тип возвращаемого значения (в случае успешности)
+// 2 дженерик тип createAsyncThunk - тип первого аргумента колбэка
+// 3 дженерик тип createAsyncThunk - тип второго аргумента колбэка
+
+// По своей сути - это функция, которая принимает вторым аргументом функцию и вызывает ее,
+// прокидывая в нее переданные значения и разные редаксовские штуки, такие как dispatch,
+// getState и т.д.
 export const fetchNextArticlesPage = createAsyncThunk<
   void,
   void,
@@ -18,6 +27,8 @@ export const fetchNextArticlesPage = createAsyncThunk<
   const isLoading = getArticlesPageIsLoading(getState());
 
   if (hasMore && !isLoading) {
+
+    // Здесь как раз пример, как вызывается функция редьюсера
     dispatch(articlesPageActions.setPage(page + 1));
     dispatch(
       fetchArticlesList({
