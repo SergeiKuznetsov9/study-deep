@@ -50,8 +50,6 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
     dispatch(fetchNextArticlesPage());
   }, [dispatch]);
 
-  // Здесь появилась тоже какая то относительно существенная логика и поэтому
-  // это все хорошо вынести в отдельный экшн
   useEffect(() => {
     dispatch(initArticlesPage());
   }, [dispatch]);
