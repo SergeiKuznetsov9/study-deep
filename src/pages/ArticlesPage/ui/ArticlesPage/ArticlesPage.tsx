@@ -21,7 +21,7 @@ import {
   getArticlesPageIsLoading,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
-import { Page } from "shared/ui/Page/Page";
+import { Page } from "widgets/Page";
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage";
 
