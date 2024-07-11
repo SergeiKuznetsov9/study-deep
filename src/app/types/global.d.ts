@@ -17,3 +17,8 @@ declare module "*.jpeg";
 
 declare const __IS_DEV__: boolean;
 declare const __API__: string;
+
+// Тот же Record, но с опциональными полями
+type OptionalRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}
