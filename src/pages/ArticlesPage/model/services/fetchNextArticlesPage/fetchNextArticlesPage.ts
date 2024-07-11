@@ -8,8 +8,6 @@ import {
 import { articlesPageActions } from "../../slices/articlesPageSlice";
 import { fetchArticlesList } from "../fetchArticlesList/fetchArticlesList";
 
-// Эта санка будет подгружать не первоначальную порцию данных, а уже следующую
-
 export const fetchNextArticlesPage = createAsyncThunk<
   void,
   void,
