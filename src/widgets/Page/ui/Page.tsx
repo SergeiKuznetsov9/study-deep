@@ -16,6 +16,7 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { getPageScrollByPath } from "../model/selectors/pageSelectors";
 import { StateSchema } from "app/providers/StoreProvider";
+import { useThrottle } from "shared/lib/hooks/useThrottle/useThrottle";
 
 interface PageProps {
   children: ReactNode;
@@ -40,15 +41,15 @@ export const Page: FC<PageProps> = memo(
       callback: onScrollEnd,
     });
 
-    const onScroll = (event: UIEvent<HTMLDivElement>) => {
+    const onScroll = useThrottle((event: UIEvent<HTMLDivElement>) => {
       dispatch(
         pageActions.setScrollPosition({
           path: pathname,
           position: event.currentTarget.scrollTop,
         })
       );
-    };
-
+      console.log(event.currentTarget.scrollTop);
+    }, 1000);
     useEffect(() => {
       wrapperRef.current.scrollTop = scrollPosition;
     }, []);
