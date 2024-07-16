@@ -1,7 +1,21 @@
-import { FC, MutableRefObject, ReactNode, memo, useRef } from "react";
+import {
+  FC,
+  MutableRefObject,
+  ReactNode,
+  memo,
+  useRef,
+  UIEvent,
+  useEffect,
+} from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./Page.module.scss";
 import { useInfiniteScroll } from "shared/lib/hooks/useInfiniteScroll/useInfiniteScroll";
+import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { pageActions } from "../model/slices/pageSlice";
+import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { getPageScrollByPath } from "../model/selectors/pageSelectors";
+import { StateSchema } from "app/providers/StoreProvider";
 
 interface PageProps {
   children: ReactNode;
@@ -13,6 +27,12 @@ export const Page: FC<PageProps> = memo(
   ({ className, children, onScrollEnd }) => {
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
+    const { pathname } = useLocation();
+    const scrollPosition = useSelector((state: StateSchema) =>
+      getPageScrollByPath(state, pathname)
+    );
+
+    const dispatch = useAppDispatch();
 
     useInfiniteScroll({
       triggerRef,
@@ -20,10 +40,24 @@ export const Page: FC<PageProps> = memo(
       callback: onScrollEnd,
     });
 
+    const onScroll = (event: UIEvent<HTMLDivElement>) => {
+      dispatch(
+        pageActions.setScrollPosition({
+          path: pathname,
+          position: event.currentTarget.scrollTop,
+        })
+      );
+    };
+
+    useEffect(() => {
+      wrapperRef.current.scrollTop = scrollPosition;
+    }, []);
+
     return (
       <section
         className={classNames(cls.Page, {}, [className])}
         ref={wrapperRef}
+        onScroll={onScroll}
       >
         {children}
         <div ref={triggerRef} />
