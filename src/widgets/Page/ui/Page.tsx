@@ -48,7 +48,6 @@ export const Page: FC<PageProps> = memo(
           position: event.currentTarget.scrollTop,
         })
       );
-      console.log(event.currentTarget.scrollTop);
     }, 1000);
     useEffect(() => {
       wrapperRef.current.scrollTop = scrollPosition;
@@ -61,7 +60,7 @@ export const Page: FC<PageProps> = memo(
         onScroll={onScroll}
       >
         {children}
-        <div ref={triggerRef} />
+        {onScrollEnd && <div className={cls.trigger} ref={triggerRef} />}
       </section>
     );
   }

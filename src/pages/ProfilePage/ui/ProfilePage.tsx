@@ -71,7 +71,6 @@ const ProfilePage = () => {
 
   const onChangeAge = useCallback(
     (value?: string) => {
-      console.log(value);
       if (/^(\d+)?$/.test(value!)) {
         dispatch(profileActions.updateProfile({ age: Number(value || 0) }));
       }
