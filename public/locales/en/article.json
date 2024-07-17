@@ -3,5 +3,13 @@
   "Произошла ошибка при загрузке статьи": "Error occured while downloading the article",
   "Комментарии": "Comments",
   "Читать далее...": "More...",
-  "Назад к списку": "Back to list"
+  "Назад к списку": "Back to list",
+  "Сортировать ПО": "Sort BY",
+  "Поиск": "Search",
+  "по": "by",
+  "возрастанию": "ascending",
+  "убыванию": "descending",
+  "дате создания": "creation date",
+  "названию": "title",
+  "количеству просмотров": "view times"
 }
