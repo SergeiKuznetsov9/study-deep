@@ -55,7 +55,6 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = ({
     [t]
   );
 
-  // Так делать плохо, лучше делать через дженерик
   const changeSortHandler = useCallback(
     (newSort: string) => {
       onChangeSort(newSort as ArticleSortField);

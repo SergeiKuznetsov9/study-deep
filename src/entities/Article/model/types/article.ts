@@ -1,6 +1,5 @@
 import { User } from "entities/User";
 
-// По этим полям будем осуществлять сортировку
 export enum ArticleSortField {
   VIEWS = "views",
   TITLE = "title",
