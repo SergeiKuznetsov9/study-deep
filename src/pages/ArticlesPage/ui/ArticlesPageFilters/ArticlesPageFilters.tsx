@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useMemo } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticlesPageFilters.module.scss";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -7,10 +7,12 @@ import {
   getArticlesPageOrder,
   getArticlesPageSearch,
   getArticlesPageSort,
+  getArticlesPageType,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 import {
   ArticleSortField,
+  ArticleTypeTabs,
   ArticleView,
   ArticleViewSelector,
 } from "entities/Article";
@@ -20,8 +22,9 @@ import { Input } from "shared/ui/Input/Input";
 import { Card } from "shared/ui/Card/Card";
 import { ArticleSortSelector } from "entities/Article";
 import { SortOrder } from "shared/types";
-import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList";
+import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import { useDebounce } from "shared/lib/hooks/useDebounce/useDebounce";
+import { ArticleType } from "entities/Article/model/types/article";
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -36,6 +39,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
   const sort = useSelector(getArticlesPageSort);
   const order = useSelector(getArticlesPageOrder);
   const search = useSelector(getArticlesPageSearch);
+  const type = useSelector(getArticlesPageType);
 
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({ replace: true }));
@@ -79,6 +83,15 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
     [dispatch, debouncedFetchData]
   );
 
+  const onChangeType = useCallback(
+    (value: ArticleType) => {
+      dispatch(articlesPageActions.setType(value));
+      dispatch(articlesPageActions.setPage(1));
+      fetchData();
+    },
+    [dispatch, debouncedFetchData]
+  );
+
   return (
     <div className={classNames(cls.ArticlesPageFilters, {}, [className])}>
       <div className={cls.sortWrapper}>
@@ -97,6 +110,11 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
           value={search}
         />
       </Card>
+      <ArticleTypeTabs
+        value={type}
+        onChangeType={onChangeType}
+        className={cls.tabs}
+      />
     </div>
   );
 };
