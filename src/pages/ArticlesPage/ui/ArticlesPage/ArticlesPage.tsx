@@ -38,12 +38,7 @@ const reducers: ReducersList = {
 const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
 
-  // Для прокидывания параметров при инициализации воспользуемся
-  // готовым решением
-  // setSearchParams нам тут не нужен, его можно было использовать
-  // там где мы написали свое решение для прокидывания параметров в строку
-  // запроса
-  let [searchParams /* , setSearchParams */] = useSearchParams();
+  let [searchParams] = useSearchParams();
 
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
