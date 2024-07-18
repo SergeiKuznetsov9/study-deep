@@ -25,6 +25,7 @@ import { Page } from "widgets/Page";
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage";
 import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
+import { useSearchParams } from "react-router-dom";
 
 interface ArticlesPageProps {
   className?: string;
@@ -37,6 +38,13 @@ const reducers: ReducersList = {
 const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
 
+  // Для прокидывания параметров при инициализации воспользуемся
+  // готовым решением
+  // setSearchParams нам тут не нужен, его можно было использовать
+  // там где мы написали свое решение для прокидывания параметров в строку
+  // запроса
+  let [searchParams /* , setSearchParams */] = useSearchParams();
+
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);
   const view = useSelector(getArticlesPageView);
@@ -46,7 +54,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    dispatch(initArticlesPage());
+    dispatch(initArticlesPage(searchParams));
   }, [dispatch]);
 
   return (
