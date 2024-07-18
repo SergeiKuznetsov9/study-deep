@@ -21,6 +21,7 @@ import { Card } from "shared/ui/Card/Card";
 import { ArticleSortSelector } from "entities/Article";
 import { SortOrder } from "shared/types";
 import { fetchArticlesList } from "pages/ArticlesPage/model/services/fetchArticlesList/fetchArticlesList";
+import { useDebounce } from "shared/lib/hooks/useDebounce/useDebounce";
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -40,13 +41,15 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
     dispatch(fetchArticlesList({ replace: true }));
   }, [dispatch]);
 
+  const debouncedFetchData = useDebounce(fetchData, 500);
+
   const onChangeView = useCallback(
     (view: ArticleView) => {
       dispatch(articlesPageActions.setView(view));
       dispatch(articlesPageActions.setPage(1));
       fetchData();
     },
-    [dispatch]
+    [dispatch, fetchData]
   );
 
   const onChangeSort = useCallback(
@@ -55,7 +58,7 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
       dispatch(articlesPageActions.setPage(1));
       fetchData();
     },
-    [dispatch]
+    [dispatch, fetchData]
   );
 
   const onChangeOrder = useCallback(
@@ -64,16 +67,16 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
       dispatch(articlesPageActions.setPage(1));
       fetchData();
     },
-    [dispatch]
+    [dispatch, fetchData]
   );
 
   const onChangeSearch = useCallback(
     (search: string) => {
       dispatch(articlesPageActions.setSearch(search));
       dispatch(articlesPageActions.setPage(1));
-      fetchData();
+      debouncedFetchData();
     },
-    [dispatch]
+    [dispatch, debouncedFetchData]
   );
 
   return (
