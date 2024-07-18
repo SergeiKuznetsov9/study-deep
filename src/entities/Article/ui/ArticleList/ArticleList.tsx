@@ -46,7 +46,7 @@ export const ArticleList: FC<ArticleListProps> = ({
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {articles.length && articles.map(renderArticles)}
+      {articles.length > 0 ? articles.map(renderArticles) : null}
       {isLoading && getSkeletons(view)}
     </div>
   );
