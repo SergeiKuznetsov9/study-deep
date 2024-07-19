@@ -12,7 +12,10 @@ import { ProfileSchema } from "entities/Profile";
 import { UserSchema } from "entities/User";
 import { AddCommentFormSchema } from "features/addCommentForm";
 import { LoginSchema } from "features/authByUserName";
-import { ArticleDetailsCommentsSchema } from "pages/ArticleDetailsPage";
+import {
+  ArticleDetailsCommentsSchema,
+  ArticleDetailsRecommendationsSchema,
+} from "pages/ArticleDetailsPage";
 import { ArticlesPageSchema } from "pages/ArticlesPage";
 import { PageSchema } from "widgets/Page";
 
@@ -25,6 +28,7 @@ export interface StateSchema {
   profile?: ProfileSchema;
   articleDetails?: ArticleDetailsSchema;
   articleDetailsComments?: ArticleDetailsCommentsSchema;
+  articleDetailsRecommendations?: ArticleDetailsRecommendationsSchema;
   addCommentForm?: AddCommentFormSchema;
   articlesPage?: ArticlesPageSchema;
 }
