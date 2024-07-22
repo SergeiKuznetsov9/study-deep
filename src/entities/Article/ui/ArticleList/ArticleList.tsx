@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleList.module.scss";
@@ -12,6 +12,7 @@ interface ArticleListProps {
   articles: Article[];
   isLoading: boolean;
   view?: ArticleView;
+  target?: HTMLAttributeAnchorTarget;
 }
 
 const getSkeletons = (view: ArticleView) =>
@@ -24,6 +25,7 @@ export const ArticleList: FC<ArticleListProps> = ({
   articles,
   isLoading,
   view = ArticleView.SMALL,
+  target,
 }) => {
   const { t } = useTranslation("article");
 
@@ -33,6 +35,7 @@ export const ArticleList: FC<ArticleListProps> = ({
       view={view}
       className={cls.card}
       key={article.id}
+      target={target}
     />
   );
 

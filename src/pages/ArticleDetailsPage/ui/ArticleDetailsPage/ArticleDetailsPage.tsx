@@ -10,10 +10,7 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {
-  articleDetailsCommentsReducer,
-  getArticleComments,
-} from "../../model/slices/articleDetailsCommentsSlice";
+import { getArticleComments } from "../../model/slices/articleDetailsCommentsSlice";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -23,20 +20,17 @@ import { addCommentForArticle } from "../../model/services/addCommentForArticle/
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { Page } from "widgets/Page";
-import {
-  articleDetailsPageRecommendationsReducer,
-  getArticleRecommendations,
-} from "../../model/slices/articleDetailsPageRecommendationsSlice";
+import { getArticleRecommendations } from "../../model/slices/articleDetailsPageRecommendationsSlice";
 import { getArticleRecommendationsIsLoading } from "pages/ArticleDetailsPage/model/selectors/recommendations";
 import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
+import { articleDetailsPageReducer } from "../../model/slices";
 
 interface ArticleDetailsPageProps {
   className?: string;
 }
 
 const reducers: ReducersList = {
-  articleDetailsComments: articleDetailsCommentsReducer,
-  articleDetailsRecommendations: articleDetailsPageRecommendationsReducer,
+  articleDetailsPage: articleDetailsPageReducer,
 };
 
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
@@ -91,6 +85,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
           articles={recommendations}
           isLoading={recommendationsIsLoading}
           className={`${cls.recommendations} ${cls.SMALL}`}
+          target="_blank"
         />
         <Text
           size={TextSize.L}
