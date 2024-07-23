@@ -7,6 +7,9 @@ import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { LoginModal } from "features/authByUserName";
 import { getUserAuthData, userActions } from "entities/User";
 import cls from "./Navbar.module.scss";
+import { Text, TextTheme } from "shared/ui/Text/Text";
+import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
+import { RoutePath } from "shared/config/routeConfig/routeConfig";
 
 interface NavbarPops {
   className?: string;
@@ -28,6 +31,18 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
   if (authData) {
     return (
       <header className={classNames(cls.navbar, {}, [className])}>
+        <Text
+          className={cls.appName}
+          title="Wayfarer App"
+          theme={TextTheme.INVERTED}
+        />
+        <AppLink
+          to={RoutePath.article_create}
+          theme={AppLinkTheme.SECONDARY}
+          className={cls.createBtn}
+        >
+          {t("Создать статью")}
+        </AppLink>
         <Button
           theme={ButtonTheme.CLEAR_INVERTED}
           className={cls.links}
