@@ -4,11 +4,12 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 
 import webpack from "webpack";
 import { BuildOptions } from "./types/config";
+import CopyPlugin from "copy-webpack-plugin";
 
 export const buildPlugins = ({
   paths,
   isDev,
-  apiUrl
+  apiUrl,
 }: BuildOptions): webpack.WebpackPluginInstance[] => [
   new HtmlWebpackPlugin({
     template: paths.html,
@@ -21,7 +22,13 @@ export const buildPlugins = ({
   }),
   new webpack.DefinePlugin({
     __IS_DEV__: JSON.stringify(isDev),
-    __API__: JSON.stringify(apiUrl),     
+    __API__: JSON.stringify(apiUrl),
+  }),
+  new CopyPlugin({
+    patterns: [
+      // Указываем откуда берем и куда помещаем
+      { from: paths.locales, to: paths.buildLocales },
+    ],
   }),
   new webpack.HotModuleReplacementPlugin(),
   new BundleAnalyzerPlugin({
