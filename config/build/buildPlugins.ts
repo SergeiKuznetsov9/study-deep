@@ -26,7 +26,6 @@ export const buildPlugins = ({
   }),
   new CopyPlugin({
     patterns: [
-      // Указываем откуда берем и куда помещаем
       { from: paths.locales, to: paths.buildLocales },
     ],
   }),
