@@ -5,3 +5,19 @@ declare module "*.scss" {
   const classNames: IClassNames;
   export = classNames;
 }
+
+declare module "*.svg" {
+  const content: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
+  export default content;
+}
+
+declare module "*.png";
+declare module "*.jpg";
+declare module "*.jpeg";
+
+declare const __IS_DEV__: boolean;
+declare const __API__: string;
+
+type OptionalRecord<K extends keyof any, T> = {
+  [P in K]?: T
+}

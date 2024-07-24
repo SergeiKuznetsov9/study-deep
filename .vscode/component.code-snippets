@@ -1,0 +1,27 @@
+{
+    "Common component": {
+        "scope": "typescriptreact,tsx",
+        "prefix": "comp",
+        "body": [
+            "import { FC } from \"react\";",
+            "import { useTranslation } from \"react-i18next\";",
+            "import { classNames } from \"shared/lib/classNames/classNames\";",
+            "import cls from \"./$TM_FILENAME_BASE.module.scss\";",
+            "",
+            "interface ${TM_FILENAME_BASE}Props {",
+            "  className?: string;",
+            "}",
+            "",
+            "export const ${TM_FILENAME_BASE}: FC<${TM_FILENAME_BASE}Props> = ({ className }) => {",
+            "  const {t} = useTranslation()",
+            "",
+            "  return (",
+            "    <div className={classNames(cls.${TM_FILENAME_BASE}, {}, [className])}>",
+            "    $1"
+            "    </div>",
+            "  );",
+            "};"
+        ],
+        "description": "Cниппет для создания компонента"
+      }
+}

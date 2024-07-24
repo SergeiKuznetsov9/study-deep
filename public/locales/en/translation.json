@@ -1,0 +1,19 @@
+{
+  "Язык": "Русский",
+  "Короткий язык": "Ру",
+  "Страница не найдена": "Page not found",
+  "Произошла непредвиденная ошибка": "Error occured",
+  "Обновить страницу": "Reload page",
+  "Главная страница": "Main page",
+  "О сайте": "About",
+  "Профиль": "Profile",
+  "Статьи": "Articles",
+  "Войти": "Log in",
+  "Выйти": "Log out",
+  "Введите Имя": "Enter Name",
+  "Введите Пароль": "Enter Password",
+  "Форма авторизации": "Authorization form",
+  "Вы ввели неверный логин или пароль": "You've entered invalid login or password",
+  "Укажите страну": "Choose country",
+  "Укажите валюту": "Choose currency"
+}

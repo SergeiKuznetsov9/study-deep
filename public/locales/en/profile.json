@@ -1,0 +1,19 @@
+{
+  "Профиль": "Profile",
+  "Редактировать": "Edit",
+  "Отменить": "Cancel",
+  "Сохранить": "Save",
+  "Произошла ошибка при загрузке профиля": "Error occured when profile downloaded",
+  "Попробуйте обновить страницу": "Try to reload the page",
+  "Введите ссылку на аватар": "Enter avatar link",
+  "Введите имя пользователя": "Enter user name",
+  "Город": "City",
+  "Ваш возраст": "Your age",
+  "Ваша фамилия": "Your second name",
+  "Ваше имя": "Your name",
+  "Серверная ошибка при сохранении": "Server error during updating",
+  "Некорректный возраст": "Uncorrect age",
+  "Некорректный регион": "Uncorrect region",
+  "Имя и фамилия обязательны": "Name and second name are required",
+  "Данные не указаны": "No any data"
+}
