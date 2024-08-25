@@ -5,10 +5,7 @@ import cls from "./AddCommentForm.module.scss";
 import { Input } from "shared/ui/Input/Input";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
-import {
-  getAddCommentFormText,
-  getAddCommentFormError,
-} from "../../model/selectors/addCommentFormSelectors";
+import { getAddCommentFormText } from "../../model/selectors/addCommentFormSelectors";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
   addCommentFormActions,
@@ -35,7 +32,6 @@ const AddCommentForm: FC<AddCommentFormProps> = ({
   const { t } = useTranslation("comments");
   const dispatch = useAppDispatch();
   const text = useAppSelector(getAddCommentFormText);
-  const error = useAppSelector(getAddCommentFormError);
 
   const onCommentTextChange = useCallback(
     (value: string) => {

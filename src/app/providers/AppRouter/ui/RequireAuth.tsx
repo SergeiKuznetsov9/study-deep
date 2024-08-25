@@ -8,8 +8,8 @@ interface RequireAuthProps {
 }
 
 export function RequireAuth({ children }: RequireAuthProps) {
-  let auth = useAppSelector(getUserAuthData);
-  let location = useLocation();
+  const auth = useAppSelector(getUserAuthData);
+  const location = useLocation();
 
   if (!auth) {
     return <Navigate to={RoutePath.main} state={{ from: location }} replace />;

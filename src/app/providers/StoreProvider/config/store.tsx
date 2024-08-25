@@ -33,7 +33,7 @@ export function createReduxStore(
   const store = configureStore<StateSchema>({
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     preloadedState: initialState,
-    // @ts-ignore
+    // @ts-expect-error: ошибки нет
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
@@ -41,7 +41,7 @@ export function createReduxStore(
         },
       }),
   });
-  // @ts-ignore
+  // @ts-expect-error: ошибки нет
   store.reducerManager = reducerManager;
 
   return store;

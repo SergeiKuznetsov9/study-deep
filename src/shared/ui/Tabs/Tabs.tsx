@@ -1,5 +1,4 @@
 import { FC, ReactNode, useCallback } from "react";
-import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./Tabs.module.scss";
 import { Card, CardTheme } from "../Card/Card";
@@ -17,7 +16,6 @@ interface TabsProps {
 }
 
 export const Tabs: FC<TabsProps> = ({ className, tabs, value, onTabClick }) => {
-  const { t } = useTranslation();
 
   const clickHandle = useCallback((tab: TabItem) => {
     return () => {

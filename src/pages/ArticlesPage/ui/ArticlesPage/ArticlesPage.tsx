@@ -18,7 +18,7 @@ import {
 } from "../../model/selectors/articlesPageSelectors";
 import { Page } from "widgets/Page";
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
-import { initArticlesPage } from "pages/ArticlesPage/model/services/initArticlesPage/initArticlesPage";
+import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
 import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 import { useSearchParams } from "react-router-dom";
 
@@ -33,7 +33,7 @@ const reducers: ReducersList = {
 const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
 
-  let [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const articles = useSelector(getArticles.selectAll);
   const isLoading = useSelector(getArticlesPageIsLoading);

@@ -52,7 +52,7 @@ export const Input: FC<InputProps> = memo(
       setIsFocused(true);
     };
 
-    const onSelect = (e: any) => {
+    const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
       setCaretPosition(e?.target?.selectionStart || 0);
     };
 

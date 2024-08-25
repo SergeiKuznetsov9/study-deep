@@ -1,4 +1,4 @@
-import { FC, useCallback, useMemo } from "react";
+import { FC, useCallback } from "react";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticlesPageFilters.module.scss";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";

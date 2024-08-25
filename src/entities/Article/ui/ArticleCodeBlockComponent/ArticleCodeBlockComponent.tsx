@@ -1,5 +1,4 @@
 import { FC, memo } from "react";
-import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleCodeBlockComponent.module.scss";
 import { ArticleCodeBlock } from "../../model/types/article";
@@ -12,7 +11,6 @@ interface ArticleCodeBlockComponentProps {
 
 export const ArticleCodeBlockComponent: FC<ArticleCodeBlockComponentProps> =
   memo(({ className, block }) => {
-    const { t } = useTranslation();
 
     return (
       <div

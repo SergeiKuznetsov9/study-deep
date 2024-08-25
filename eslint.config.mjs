@@ -15,9 +15,11 @@ export default [
       wayfarer
     },
     rules: {
+
+      "react/display-name": "off",
+      "react/prop-types": "off",      
       "react/react-in-jsx-scope": "off",
-      "wayfarer/path-checker": "warn",
-      
+      "wayfarer/path-checker": "warn",      
     },
   },
 ];

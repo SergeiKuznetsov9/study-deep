@@ -1,4 +1,4 @@
-import { FC, HTMLAttributeAnchorTarget, useCallback } from "react";
+import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleListItem.module.scss";
@@ -15,7 +15,6 @@ import { Card } from "shared/ui/Card/Card";
 import { Avatar } from "shared/ui/Avatar/Avatar";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
-import { useNavigate } from "react-router-dom";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { AppLink } from "shared/ui/AppLink/AppLink";
 
@@ -43,7 +42,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
   );
 
   if (view === ArticleView.BIG) {
-    let textBlock = article.blocks.find(
+    const textBlock = article.blocks.find(
       (block) => block.type === ArticleBlockType.TEXT
     ) as ArticleTextBlock;
 

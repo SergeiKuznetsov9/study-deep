@@ -19,7 +19,7 @@ import { AddCommentForm } from "features/addCommentForm";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { Page } from "widgets/Page";
 import { getArticleRecommendations } from "../../model/slices/articleDetailsPageRecommendationsSlice";
-import { getArticleRecommendationsIsLoading } from "pages/ArticleDetailsPage/model/selectors/recommendations";
+import { getArticleRecommendationsIsLoading } from "../../model/selectors/recommendations";
 import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
 import { articleDetailsPageReducer } from "../../model/slices";
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";

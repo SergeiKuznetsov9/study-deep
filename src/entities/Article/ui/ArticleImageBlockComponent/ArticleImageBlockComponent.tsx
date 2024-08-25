@@ -1,5 +1,4 @@
 import { FC, memo } from "react";
-import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleImageBlockComponent.module.scss";
 import { ArticleImageBlock } from "../../model/types/article";
@@ -12,7 +11,6 @@ interface ArticleImageBlockComponentProps {
 
 export const ArticleImageBlockComponent: FC<ArticleImageBlockComponentProps> =
   memo(({ className, block }) => {
-    const { t } = useTranslation();
 
     return (
       <div
