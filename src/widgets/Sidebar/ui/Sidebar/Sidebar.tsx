@@ -7,6 +7,7 @@ import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
 import { getSidebarItems } from "../../model/selectors/getSidebarItems";
+import { VStack } from "shared/ui/Stack";
 
 interface SidebarProps {
   className?: string;
@@ -45,7 +46,9 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       >
         {collapsed ? ">" : "<"}
       </Button>
-      <div className={cls.items}>{itemsList}</div>
+      <VStack gap={"8"} className={cls.items}>
+        {itemsList}
+      </VStack>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher className={cls.lang} short={collapsed} />
