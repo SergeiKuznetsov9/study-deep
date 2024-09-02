@@ -31,7 +31,6 @@ interface TextProps {
 
 type HeaderTag = "h1" | "h2" | "h3";
 
-// При помощи такого мапера в JSX мы сможем использовать нужный HTML-тег
 const mapSizeToHeaderTag: Record<TextSize, HeaderTag> = {
   [TextSize.S]: "h3",
   [TextSize.M]: "h2",

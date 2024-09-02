@@ -46,7 +46,6 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       >
         {collapsed ? ">" : "<"}
       </Button>
-      {/* прокинем role="navigation" для улучшения "доступности", т.е. для семантики */}
       <VStack role="navigation" gap={"8"} className={cls.items}>
         {itemsList}
       </VStack>
