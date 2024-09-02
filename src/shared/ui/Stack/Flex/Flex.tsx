@@ -1,5 +1,5 @@
 import { classNames, Mods } from "shared/lib/classNames/classNames";
-import { ReactNode } from "react";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 import cls from "./Flex.module.scss";
 
 export type FlexJustify = "start" | "center" | "end" | "between";
@@ -32,7 +32,17 @@ const gapClasses: Record<FlexGap, string> = {
   32: cls.gap32,
 };
 
-export interface FlexProps {
+// Если вдруг нам понадобиться закинуть пропс, соответствующий любому из доступных
+//  аттрибутов div, мы этого сделать не сможем, т.к. наши пропсы строго определены.
+// Но их можно заэкстендить и все пропсы див станут нам доступны для нашего копмонента.
+//  Самый простой способ найти тип для дейтсвующих атрибутов, это кликнуть на нужный
+// тег в JSX с зажатым ctrl
+type DivProps = DetailedHTMLProps<
+  HTMLAttributes<HTMLDivElement>,
+  HTMLDivElement
+>;
+
+export interface FlexProps extends DivProps {
   className?: string;
   children: ReactNode;
   justify?: FlexJustify;
@@ -51,6 +61,7 @@ export const Flex = (props: FlexProps) => {
     direction = "row",
     gap,
     max,
+    ...otherProps
   } = props;
 
   const classes = [
@@ -65,5 +76,9 @@ export const Flex = (props: FlexProps) => {
     [cls.max]: max,
   };
 
-  return <div className={classNames(cls.Flex, mods, classes)}>{children}</div>;
+  return (
+    <div className={classNames(cls.Flex, mods, classes)} {...otherProps}>
+      {children}
+    </div>
+  );
 };
