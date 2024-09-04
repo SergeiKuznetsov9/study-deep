@@ -33,46 +33,43 @@ export const ListBox = ({
   onChange,
   readonly,
   label,
-}: ListBoxProps) => {
-  //   пропс as={'div'} используется для указания тега обертки
-  return (
-    <HListbox
-      as={"div"}
-      className={classNames(cls.ListBox, {}, [className])}
-      value={value}
-      onChange={onChange}
-      disabled={readonly}
+}: ListBoxProps) => (
+  <HListbox
+    as={"div"}
+    className={classNames(cls.ListBox, {}, [className])}
+    value={value}
+    onChange={onChange}
+    disabled={readonly}
+  >
+    {label && <span className={cls.label}>{`${label}>`}</span>}
+    <ListboxButton className={cls.trigger} disabled={readonly}>
+      <Button disabled={readonly}>{value ?? defaultValue}</Button>
+    </ListboxButton>
+    <ListboxOptions
+      className={`${cls.options} w-[var(--button-width)]`}
+      style={{ width: "var(--button-width)" }}
+      anchor="bottom"
     >
-      {label && <span className={cls.label}>{`${label}>`}</span>}
-      <ListboxButton className={cls.trigger} disabled={readonly}>
-        <Button disabled={readonly}>{value ?? defaultValue}</Button>
-      </ListboxButton>
-      <ListboxOptions
-        className={`${cls.options} w-[var(--button-width)]`}
-        style={{ width: "var(--button-width)" }}
-        anchor="bottom"
-      >
-        {items?.map((item) => (
-          <ListboxOption
-            key={item.value}
-            value={item.value}
-            disabled={item.disabled}
-            as={Fragment}
-          >
-            {({ focus, selected }) => (
-              <li
-                className={classNames(cls.item, {
-                  [cls.focus]: focus,
-                  [cls.disabled]: item.disabled,
-                })}
-              >
-                {selected && "!!!"}
-                {item.content}
-              </li>
-            )}
-          </ListboxOption>
-        ))}
-      </ListboxOptions>
-    </HListbox>
-  );
-};
+      {items?.map((item) => (
+        <ListboxOption
+          key={item.value}
+          value={item.value}
+          disabled={item.disabled}
+          as={Fragment}
+        >
+          {({ focus, selected }) => (
+            <li
+              className={classNames(cls.item, {
+                [cls.focus]: focus,
+                [cls.disabled]: item.disabled,
+              })}
+            >
+              {selected && "!!!"}
+              {item.content}
+            </li>
+          )}
+        </ListboxOption>
+      ))}
+    </ListboxOptions>
+  </HListbox>
+);
