@@ -10,8 +10,6 @@ interface ArticleRecommendationsListProps {
   className?: string;
 }
 
-// Здесь мы инжектим эндпоинт в объект rtk. Таким образом, он будет инжектиться лишь при подгрузке страницы,
-// использующей этот API
 const recommendationsApi = rtkApi.injectEndpoints({
   endpoints: (build) => ({
     getArticleRecommendationsList: build.query({

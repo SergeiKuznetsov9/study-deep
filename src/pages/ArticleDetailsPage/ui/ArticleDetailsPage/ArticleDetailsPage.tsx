@@ -31,8 +31,6 @@ const reducers: ReducersList = {
   articleDetailsPage: articleDetailsPageReducer,
 };
 
-// В этом компоненте много лишнего. Слой pages д.б. максимально чистым, здесь
-// д.б перечисление фичей и эффекты с обработчиками д.б. максимально спрятаны
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("article");

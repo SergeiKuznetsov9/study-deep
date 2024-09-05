@@ -23,7 +23,6 @@ export function createReduxStore(
     counter: counterReducer,
     user: userReducer,
     page: pageReducer,
-    // созданный объект rtkApi нужно также добавить в редьюсер
     [rtkApi.reducerPath]: rtkApi.reducer,
   };
 
@@ -42,7 +41,6 @@ export function createReduxStore(
         thunk: {
           extraArgument: extraArg,
         },
-        // также нужно добавить мидлвару, обрабатывающую экшн
       }).concat(rtkApi.middleware),
   });
   // @ts-expect-error: ошибки нет
