@@ -10,7 +10,7 @@ import { Text, TextSize } from "shared/ui/Text/Text";
 interface ArticleListProps {
   className?: string;
   articles: Article[];
-  isLoading: boolean;
+  isLoading?: boolean;
   view?: ArticleView;
   target?: HTMLAttributeAnchorTarget;
 }
@@ -39,7 +39,7 @@ export const ArticleList: FC<ArticleListProps> = ({
     />
   );
 
-  if (!isLoading && !articles.length) {
+  if (!isLoading && !articles?.length) {
     return (
       <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
         <Text size={TextSize.L} title={t("Статьи не найдены")} />
@@ -49,7 +49,7 @@ export const ArticleList: FC<ArticleListProps> = ({
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {articles.length > 0 ? articles.map(renderArticles) : null}
+      {articles?.length > 0 ? articles.map(renderArticles) : null}
       {isLoading && getSkeletons(view)}
     </div>
   );

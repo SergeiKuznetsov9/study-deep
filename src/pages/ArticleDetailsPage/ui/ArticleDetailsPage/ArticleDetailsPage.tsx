@@ -2,7 +2,7 @@ import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleDetailsPage.module.scss";
-import { ArticleDetails, ArticleList } from "entities/Article";
+import { ArticleDetails } from "entities/Article";
 import { useParams } from "react-router-dom";
 import { Text, TextSize } from "shared/ui/Text/Text";
 import { CommentList } from "entities/Comment";
@@ -18,12 +18,10 @@ import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByAr
 import { AddCommentForm } from "features/addCommentForm";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { Page } from "widgets/Page";
-import { getArticleRecommendations } from "../../model/slices/articleDetailsPageRecommendationsSlice";
-import { getArticleRecommendationsIsLoading } from "../../model/selectors/recommendations";
-import { fetchArticleRecommendations } from "../../model/services/fetchArticleRecommendations/fetchArticleRecommendations";
 import { articleDetailsPageReducer } from "../../model/slices";
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
 import { VStack } from "shared/ui/Stack";
+import { ArticleRecommendationsList } from "features/articleRecommendationsList";
 
 interface ArticleDetailsPageProps {
   className?: string;
@@ -33,16 +31,14 @@ const reducers: ReducersList = {
   articleDetailsPage: articleDetailsPageReducer,
 };
 
+// В этом компоненте много лишнего. Слой pages д.б. максимально чистым, здесь
+// д.б перечисление фичей и эффекты с обработчиками д.б. максимально спрятаны
 const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation("article");
   const { id } = useParams<{ id: string }>();
   const comments = useAppSelector(getArticleComments.selectAll);
-  const recommendations = useAppSelector(getArticleRecommendations.selectAll);
   const articleCommentsIsLoading = useAppSelector(getArticleCommentsIsLoading);
-  const recommendationsIsLoading = useAppSelector(
-    getArticleRecommendationsIsLoading
-  );
 
   const onSendComment = useCallback(
     (text: string) => {
@@ -53,7 +49,6 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
 
   useEffect(() => {
     dispatch(fetchCommentsByArticleId(id));
-    dispatch(fetchArticleRecommendations());
   }, [dispatch, id]);
 
   if (!id) {
@@ -70,17 +65,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
         <VStack gap="16" max>
           <ArticleDetailsPageHeader />
           <ArticleDetails id={id} />
-          <Text
-            size={TextSize.L}
-            title={t("Рекомендуем")}
-            className={cls.commentTitle}
-          />
-          <ArticleList
-            articles={recommendations}
-            isLoading={recommendationsIsLoading}
-            className={`${cls.recommendations} ${cls.SMALL}`}
-            target="_blank"
-          />
+          <ArticleRecommendationsList />
           <Text
             size={TextSize.L}
             title={t("Комментарии")}

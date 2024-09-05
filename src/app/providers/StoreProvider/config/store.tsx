@@ -12,6 +12,7 @@ import { StateSchema, ThunkExtraArg } from "./StateSchema";
 import { createReducerManager } from "./reducerManager";
 import { $api } from "shared/api/api";
 import { pageReducer } from "widgets/Page";
+import { rtkApi } from "shared/api/rtkApi";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -22,6 +23,8 @@ export function createReduxStore(
     counter: counterReducer,
     user: userReducer,
     page: pageReducer,
+    // созданный объект rtkApi нужно также добавить в редьюсер
+    [rtkApi.reducerPath]: rtkApi.reducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);
@@ -39,7 +42,8 @@ export function createReduxStore(
         thunk: {
           extraArgument: extraArg,
         },
-      }),
+        // также нужно добавить мидлвару, обрабатывающую экшн
+      }).concat(rtkApi.middleware),
   });
   // @ts-expect-error: ошибки нет
   store.reducerManager = reducerManager;

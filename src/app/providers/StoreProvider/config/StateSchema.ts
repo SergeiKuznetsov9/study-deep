@@ -14,12 +14,14 @@ import { AddCommentFormSchema } from "features/addCommentForm";
 import { LoginSchema } from "features/authByUserName";
 import { ArticleDetailsPageSchema } from "pages/ArticleDetailsPage";
 import { ArticlesPageSchema } from "pages/ArticlesPage";
+import { rtkApi } from "shared/api/rtkApi";
 import { PageSchema } from "widgets/Page";
 
 export interface StateSchema {
   counter: CounterSchema;
   user: UserSchema;
   page: PageSchema;
+  [rtkApi.reducerPath]: ReturnType<typeof rtkApi.reducer>;
 
   loginForm?: LoginSchema;
   profile?: ProfileSchema;
