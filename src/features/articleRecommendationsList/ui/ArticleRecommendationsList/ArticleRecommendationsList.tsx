@@ -10,9 +10,6 @@ interface ArticleRecommendationsListProps {
   className?: string;
 }
 
-// с точки зрения методологии FSD, запросы за данными следует хранить в отдельном
-// сегменте API, что и сделаем
-
 export const ArticleRecommendationsList: FC<
   ArticleRecommendationsListProps
 > = ({ className }) => {
