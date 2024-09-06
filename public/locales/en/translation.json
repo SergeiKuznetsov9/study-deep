@@ -15,5 +15,6 @@
   "Форма авторизации": "Authorization form",
   "Вы ввели неверный логин или пароль": "You've entered invalid login or password",
   "Укажите страну": "Choose country",
-  "Укажите валюту": "Choose currency"
+  "Укажите валюту": "Choose currency",
+  "Ошибка при загрузке статей": "Download articles error"
 }

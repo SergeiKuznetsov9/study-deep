@@ -1,26 +1,21 @@
 import { FC, memo, useCallback, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import { Page } from "widgets/Page";
 import { classNames } from "shared/lib/classNames/classNames";
-import cls from "./ArticlesPage.module.scss";
-import { ArticleList } from "entities/Article";
 import {
   DynamicModuleLoader,
   ReducersList,
 } from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import {
-  articlesPageReducer,
-  getArticles,
-} from "../../model/slices/articlesPageSlice";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useSelector } from "react-redux";
-import {
-  getArticlesPageIsLoading,
-  getArticlesPageView,
-} from "../../model/selectors/articlesPageSelectors";
-import { Page } from "widgets/Page";
+
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
 import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
-import { useSearchParams } from "react-router-dom";
+import { ArticlesInfinitList } from "../ArticlesInfinitList/ArticlesInfinitList";
+import { articlesPageReducer } from "../../model/slices/articlesPageSlice";
+
+import cls from "./ArticlesPage.module.scss";
 
 interface ArticlesPageProps {
   className?: string;
@@ -34,10 +29,6 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const dispatch = useAppDispatch();
 
   const [searchParams] = useSearchParams();
-
-  const articles = useSelector(getArticles.selectAll);
-  const isLoading = useSelector(getArticlesPageIsLoading);
-  const view = useSelector(getArticlesPageView);
 
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
@@ -54,12 +45,7 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
         onScrollEnd={onLoadNextPart}
       >
         <ArticlesPageFilters />
-        <ArticleList
-          view={view}
-          articles={articles}
-          isLoading={isLoading}
-          className={cls.list}
-        />
+        <ArticlesInfinitList />
       </Page>
     </DynamicModuleLoader>
   );
