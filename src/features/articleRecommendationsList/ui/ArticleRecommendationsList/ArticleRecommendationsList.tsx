@@ -4,27 +4,14 @@ import { classNames } from "shared/lib/classNames/classNames";
 import { Text, TextSize } from "shared/ui/Text/Text";
 import { ArticleList } from "entities/Article";
 import { VStack } from "shared/ui/Stack";
-import { rtkApi } from "shared/api/rtkApi";
+import { useArticleRecommendationsList } from "../../api/ArticleRecommendationsApi";
 
 interface ArticleRecommendationsListProps {
   className?: string;
 }
 
-const recommendationsApi = rtkApi.injectEndpoints({
-  endpoints: (build) => ({
-    getArticleRecommendationsList: build.query({
-      query: (limit) => ({
-        url: "/articles",
-        params: {
-          _limit: limit,
-        },
-      }),
-    }),
-  }),
-});
-
-const useArticleRecommendationsList =
-  recommendationsApi.useGetArticleRecommendationsListQuery;
+// с точки зрения методологии FSD, запросы за данными следует хранить в отдельном
+// сегменте API, что и сделаем
 
 export const ArticleRecommendationsList: FC<
   ArticleRecommendationsListProps
