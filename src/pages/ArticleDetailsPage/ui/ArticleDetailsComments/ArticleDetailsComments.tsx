@@ -7,6 +7,7 @@ import { classNames } from "shared/lib/classNames/classNames";
 import { Text, TextSize } from "shared/ui/Text/Text";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { VStack } from "shared/ui/Stack";
 
 import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
@@ -43,7 +44,7 @@ export const ArticleDetailsComments: FC<ArticleDetailsCommentsProps> = ({
   }, [dispatch, id]);
 
   return (
-    <div className={classNames("", {}, [className])}>
+    <VStack gap="16" className={classNames("", {}, [className])}>
       <Text
         size={TextSize.L}
         title={t("Комментарии")}
@@ -51,6 +52,6 @@ export const ArticleDetailsComments: FC<ArticleDetailsCommentsProps> = ({
       />
       <AddCommentForm onSendComment={onSendComment} />
       <CommentList comments={comments} isLoading={articleCommentsIsLoading} />
-    </div>
+    </VStack>
   );
 };
