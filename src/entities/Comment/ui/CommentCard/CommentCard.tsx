@@ -22,7 +22,9 @@ export const CommentCard: FC<CommentCardProps> = ({
 }) => {
   if (isLoading) {
     return (
-      <div
+      <VStack
+        gap="8"
+        max
         className={classNames(cls.CommentCard, {}, [className, cls.loading])}
       >
         <div className={cls.header}>
@@ -30,7 +32,7 @@ export const CommentCard: FC<CommentCardProps> = ({
           <Skeleton width={100} height={16} className={cls.username} />
         </div>
         <Skeleton width={"100%"} height={50} className={cls.text} />
-      </div>
+      </VStack>
     );
   }
 
