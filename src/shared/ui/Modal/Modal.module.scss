@@ -31,7 +31,7 @@
 .opened {
   pointer-events: auto;
   opacity: 1;
-  z-index: var(--modal-z-index);
+  z-index: var(--modal-opened-z-index);
 
   .content {
     transform: scale(1);

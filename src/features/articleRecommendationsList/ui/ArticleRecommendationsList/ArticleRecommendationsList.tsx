@@ -17,7 +17,7 @@ export const ArticleRecommendationsList: FC<
 
   const { isLoading, data: articles, error } = useArticleRecommendationsList(3);
 
-  if (error) {
+  if (error || !articles) {
     return null;
   }
 
