@@ -16,5 +16,7 @@
   "Вы ввели неверный логин или пароль": "You've entered invalid login or password",
   "Укажите страну": "Choose country",
   "Укажите валюту": "Choose currency",
-  "Ошибка при загрузке статей": "Download articles error"
+  "Ошибка при загрузке статей": "Download articles error",
+  "Админка": "Admin panel",
+  "У Вас нет доступа к этой странице": "Yoy have no access to this page"
 }

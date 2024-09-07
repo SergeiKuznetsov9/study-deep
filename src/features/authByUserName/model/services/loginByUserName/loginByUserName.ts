@@ -20,7 +20,6 @@ export const loginByUserName = createAsyncThunk<
   ) => {
     try {
       const response = await extra.api.post<User>("/login", authdata);
-
       if (!response.data) {
         throw new Error();
       }

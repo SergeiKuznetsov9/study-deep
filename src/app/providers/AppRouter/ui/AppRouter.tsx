@@ -1,10 +1,12 @@
 import { Suspense, memo, useCallback } from "react";
 import { Route, Routes } from "react-router-dom";
+
+import { PageLoader } from "widgets/PageLoader";
 import {
   AppRoutesProps,
   routeConfig,
 } from "shared/config/routeConfig/routeConfig";
-import { PageLoader } from "widgets/PageLoader";
+
 import { RequireAuth } from "./RequireAuth";
 
 export const AppRouter = memo(() => {
@@ -15,7 +17,11 @@ export const AppRouter = memo(() => {
       <Route
         path={route.path}
         element={
-          route.authOnly ? <RequireAuth>{element}</RequireAuth> : element
+          route.authOnly ? (
+            <RequireAuth roles={route.roles}>{element}</RequireAuth>
+          ) : (
+            element
+          )
         }
         key={route.path}
       />
