@@ -3,19 +3,7 @@ import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import cls from "./ArticleSortSelector.module.scss";
 import { Select, SelectOption } from "shared/ui/Select/Select";
-// import { ArticleSortField } from "../../model/const/const";
-
-// Реализована кольцевая зависимость: импортим сущность из паблик АПИ,
-// но паблик АПИ в свою очередь экспортит этот файл
-import { ArticleSortField } from "entities/Article";
-
-// В результате получим такую ошибку:
-// [1] ERROR in Circular dependency detected:
-// [1] src\entities\Article\index.ts -> src\entities\Article\ui\ArticleSortSelector\ArticleSortSelector.tsx -> src\entities\Article\index.ts
-// [1]
-// [1] ERROR in Circular dependency detected:
-// [1] src\entities\Article\ui\ArticleSortSelector\ArticleSortSelector.tsx -> src\entities\Article\index.ts -> src\entities\Article\ui\ArticleSortSelector\ArticleSortSelector.tsx
-
+import { ArticleSortField } from "../../model/const/const";
 import { SortOrder } from "shared/types";
 
 interface ArticleSortSelectorProps {
