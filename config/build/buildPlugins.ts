@@ -5,6 +5,7 @@ import { BundleAnalyzerPlugin } from "webpack-bundle-analyzer";
 import webpack from "webpack";
 import { BuildOptions } from "./types/config";
 import CopyPlugin from "copy-webpack-plugin";
+import CircularDependencyPlugin from "circular-dependency-plugin";
 
 export const buildPlugins = ({
   paths,
@@ -25,12 +26,16 @@ export const buildPlugins = ({
     __API__: JSON.stringify(apiUrl),
   }),
   new CopyPlugin({
-    patterns: [
-      { from: paths.locales, to: paths.buildLocales },
-    ],
+    patterns: [{ from: paths.locales, to: paths.buildLocales }],
   }),
   new webpack.HotModuleReplacementPlugin(),
   new BundleAnalyzerPlugin({
     openAnalyzer: false,
+  }),
+
+  new CircularDependencyPlugin({
+    exclude: /node_modules/,
+    // add errors to webpack instead of warnings
+    failOnError: true,
   }),
 ];
