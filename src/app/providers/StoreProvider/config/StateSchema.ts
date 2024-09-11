@@ -12,7 +12,7 @@ import { ArticlesPageSchema } from "pages/ArticlesPage";
 import { PageSchema } from "widgets/Page";
 import { AddCommentFormSchema } from "features/addCommentForm";
 import { LoginSchema } from "features/authByUserName";
-import { ProfileSchema } from "features/editableProfileCard/model/types/editableProfileCardSchema";
+import { ProfileSchema } from "features/editableProfileCard";
 import { ArticleDetailsSchema } from "entities/Article";
 import { CounterSchema } from "entities/Counter";
 import { UserSchema } from "entities/User";
