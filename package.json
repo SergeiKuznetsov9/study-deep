@@ -50,6 +50,7 @@
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-wayfarer-plugin": "^0.2.1",
     "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "^9.0.2",
     "globals": "^15.8.0",
     "html-webpack-plugin": "^5.5.3",
     "identity-obj-proxy": "^3.0.0",

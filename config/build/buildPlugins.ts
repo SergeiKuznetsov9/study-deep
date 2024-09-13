@@ -6,6 +6,7 @@ import webpack from "webpack";
 import { BuildOptions } from "./types/config";
 import CopyPlugin from "copy-webpack-plugin";
 import CircularDependencyPlugin from "circular-dependency-plugin";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 
 export const buildPlugins = ({
   paths,
@@ -37,5 +38,14 @@ export const buildPlugins = ({
     exclude: /node_modules/,
     // add errors to webpack instead of warnings
     failOnError: true,
+  }),
+  new ForkTsCheckerWebpackPlugin({
+    typescript: {
+      diagnosticOptions: {
+        semantic: true,
+        syntactic: true,
+      },
+      mode: "write-references",
+    },
   }),
 ];
