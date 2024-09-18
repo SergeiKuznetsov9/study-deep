@@ -17,6 +17,10 @@ import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
 import { RoutePath } from "shared/config/routeConfig/routeConfig";
 import { Dropdown } from "shared/ui/Dropdown/Dropdown";
 import { Avatar } from "shared/ui/Avatar/Avatar";
+import { Icon } from "shared/ui/Icon/Icon";
+import RingBellIcon from "shared/assets/icons/bell-ring.svg";
+import { HStack } from "shared/ui/Stack";
+import { Popover } from "shared/ui/Popover/Popover";
 
 import cls from "./Navbar.module.scss";
 
@@ -56,28 +60,45 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
         >
           {t("Создать статью")}
         </AppLink>
-
-        <Dropdown
-          className={cls.dropdown}
-          items={[
-            ...(isAdminPanelAvailable
-              ? [
-                  {
-                    id: "3",
-                    content: t("Админка"),
-                    href: RoutePath.admin_panel,
-                  },
-                ]
-              : []),
-            {
-              id: "1",
-              content: t("Профиль"),
-              href: RoutePath.profile + authData.id,
-            },
-            { id: "2", content: t("Выйти"), onClick: onLogout },
-          ]}
-          trigger={<Avatar size={30} src={authData.avatar} />}
-        />
+        <HStack gap="16" className={cls.actions}>
+          {/* <Button theme={ButtonTheme.CLEAR}>
+            <Icon Svg={RingBellIcon} inverted />
+          </Button> */}
+          <Popover trigger={<Icon Svg={RingBellIcon} inverted />}>
+            <a href="/analytics" className={cls.item}>
+              Analytics
+            </a>
+            <a href="/engagement" className={cls.item}>
+              Engagement
+            </a>
+            <a href="/security" className={cls.item}>
+              Security
+            </a>
+            <a href="/integrations" className={cls.item}>
+              Integrations
+            </a>
+          </Popover>
+          <Dropdown
+            items={[
+              ...(isAdminPanelAvailable
+                ? [
+                    {
+                      id: "3",
+                      content: t("Админка"),
+                      href: RoutePath.admin_panel,
+                    },
+                  ]
+                : []),
+              {
+                id: "1",
+                content: t("Профиль"),
+                href: RoutePath.profile + authData.id,
+              },
+              { id: "2", content: t("Выйти"), onClick: onLogout },
+            ]}
+            trigger={<Avatar size={30} src={authData.avatar} />}
+          />
+        </HStack>
       </header>
     );
   }
