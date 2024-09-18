@@ -1,13 +1,14 @@
+import { Fragment, ReactNode } from "react";
 import {
   Listbox as HListbox,
   ListboxButton,
   ListboxOption,
   ListboxOptions,
 } from "@headlessui/react";
-import cls from "./ListBox.module.scss";
-import { Fragment, ReactNode } from "react";
+
 import { classNames } from "shared/lib/classNames/classNames";
-import { Button } from "../Button/Button";
+
+import cls from "./ListBox.module.scss";
 
 export interface ListBoxItem {
   value: string;
@@ -43,7 +44,7 @@ export const ListBox = ({
   >
     {label && <span className={cls.label}>{`${label}>`}</span>}
     <ListboxButton className={cls.trigger} disabled={readonly}>
-      <Button disabled={readonly}>{value ?? defaultValue}</Button>
+      {value ?? defaultValue}
     </ListboxButton>
     <ListboxOptions
       className={`${cls.options} w-[var(--button-width)]`}

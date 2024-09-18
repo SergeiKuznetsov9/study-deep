@@ -19,7 +19,7 @@ export const Popover: FC<PopoverProps> = ({ className, trigger, children }) => {
   return (
     <LibPopover className={classNames(cls.Popover, {}, [className])}>
       <PopoverButton className={cls.btn}>{trigger}</PopoverButton>
-      <PopoverPanel anchor="bottom" className={cls.menu}>
+      <PopoverPanel anchor="bottom end" className={cls.menu}>
         {children}
       </PopoverPanel>
     </LibPopover>

@@ -8,6 +8,7 @@ import {
   isUserManager,
   userActions,
 } from "entities/User";
+import { NotificationList } from "entities/Notification";
 import { classNames } from "shared/lib/classNames/classNames";
 import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
@@ -61,22 +62,8 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
           {t("Создать статью")}
         </AppLink>
         <HStack gap="16" className={cls.actions}>
-          {/* <Button theme={ButtonTheme.CLEAR}>
-            <Icon Svg={RingBellIcon} inverted />
-          </Button> */}
           <Popover trigger={<Icon Svg={RingBellIcon} inverted />}>
-            <a href="/analytics" className={cls.item}>
-              Analytics
-            </a>
-            <a href="/engagement" className={cls.item}>
-              Engagement
-            </a>
-            <a href="/security" className={cls.item}>
-              Security
-            </a>
-            <a href="/integrations" className={cls.item}>
-              Integrations
-            </a>
+            <NotificationList className={cls.notifications} />
           </Popover>
           <Dropdown
             items={[
