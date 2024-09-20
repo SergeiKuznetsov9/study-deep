@@ -10,6 +10,11 @@
   align-items: flex-end;
 }
 
+.opened {
+  pointer-events: auto;
+  z-index: var(--modal-opened-z-index);
+}
+
 .content {
   height: 70%;
   background: var(--bg-color);
@@ -20,17 +25,6 @@
   width: 100%;
   min-height: 100px;
   padding: 20px;
-  transition: 0.3s transform;
-  transform: translateY(105%);
   overflow-y: auto;
   overflow-x: hidden;
-}
-
-.opened {
-  pointer-events: auto;
-  z-index: var(--modal-opened-z-index);
-
-  .content {
-    transform: translateY(0%);
-  }
 }

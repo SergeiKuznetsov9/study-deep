@@ -1,4 +1,5 @@
-import { FC, ReactNode, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
+import { animated, useSpring } from "@react-spring/web";
 
 import { useTheme } from "app/providers/ThemeProvider";
 import { classNames } from "shared/lib/classNames/classNames";
@@ -20,29 +21,48 @@ export const Drawer: FC<DrawerProps> = ({
   isOpen,
   onClose,
 }) => {
+  const [isMounted, setIsMounted] = useState(isOpen);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsMounted(true);
+    }
+  }, [isOpen]);
+
   const { theme } = useTheme();
 
-  const [isSwitchOnAnimation, setIsSwitchOnAnimation] = useState(false);
+  const springs = useSpring({
+    from: { transform: "translateY(105%)" },
+    to: { transform: isOpen ? "translateY(0%)" : "translateY(105%)" },
+    config: { tension: 300, friction: 25 },
+    onRest: () => {
+      if (!isOpen) {
+        setTimeout(() => setIsMounted(false), 300);
+      }
+    },
+  });
 
-  setTimeout(() => {
-    if (isOpen) {
-      setIsSwitchOnAnimation(true);
-    } else {
-      setIsSwitchOnAnimation(false);
-    }
-  }, 0);
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <Portal>
       <div
-        className={classNames(
-          cls.Drawer,
-          { [cls.opened]: isSwitchOnAnimation },
-          [className, theme]
-        )}
+        className={classNames(cls.Drawer, { [cls.opened]: isMounted }, [
+          className,
+          theme,
+        ])}
       >
         <Overlay onClick={onClose} />
-        <div className={cls.content}>{children}</div>
+        <animated.div
+          className={cls.content}
+          style={{
+            ...springs,
+          }}
+        >
+          {children}
+        </animated.div>
       </div>
     </Portal>
   );
