@@ -1,4 +1,4 @@
-import { FC, memo, useCallback } from "react";
+import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "shared/ui/Button/Button";
@@ -55,6 +55,18 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
     if (result.meta.requestStatus === "fulfilled") {
       onSuccess();
     }
+  }, [dispatch, onSuccess, username, password]);
+
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Enter") {
+        onLoginClick();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => window.removeEventListener("keydown", onKeyDown);
   }, [dispatch, onSuccess, username, password]);
 
   return (
