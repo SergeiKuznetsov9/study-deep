@@ -1,8 +1,8 @@
 import { FC, memo, ReactNode, useEffect, useState } from "react";
 
-import { useTheme } from "app/providers/ThemeProvider";
-import { useAnimationLibs } from "shared/lib/components/AnimationProvider";
-import { classNames } from "shared/lib/classNames/classNames";
+import { useTheme } from "@/app/providers/ThemeProvider";
+import { useAnimationLibs } from "@/shared/lib/components/AnimationProvider";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
 

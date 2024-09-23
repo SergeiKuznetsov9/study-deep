@@ -5,7 +5,7 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 
-import { classNames } from "shared/lib/classNames/classNames";
+import { classNames } from "@/shared/lib/classNames/classNames";
 
 import cls from "./Popover.module.scss";
 

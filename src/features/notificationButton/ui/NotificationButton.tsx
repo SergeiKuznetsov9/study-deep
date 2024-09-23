@@ -1,14 +1,14 @@
 import { FC, useState } from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 
-import { NotificationList } from "entities/Notification";
-import { classNames } from "shared/lib/classNames/classNames";
-import { AnimationProvider } from "shared/lib/components/AnimationProvider";
-import { Popover } from "shared/ui/Popover/Popover";
-import { Icon } from "shared/ui/Icon/Icon";
-import RingBellIcon from "shared/assets/icons/bell-ring.svg";
-import { Drawer } from "shared/ui/Drawer/Drawer";
-import { Button, ButtonTheme } from "shared/ui/Button/Button";
+import { NotificationList } from "@/entities/Notification";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { AnimationProvider } from "@/shared/lib/components/AnimationProvider";
+import { Popover } from "@/shared/ui/Popover/Popover";
+import { Icon } from "@/shared/ui/Icon/Icon";
+import RingBellIcon from "@/shared/assets/icons/bell-ring.svg";
+import { Drawer } from "@/shared/ui/Drawer/Drawer";
+import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 
 import cls from "./NotificationButton.module.scss";
 

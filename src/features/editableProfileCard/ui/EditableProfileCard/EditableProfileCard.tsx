@@ -2,17 +2,17 @@ import { FC, useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
-import { ProfileCard } from "entities/Profile";
-import { Currency } from "entities/Currency";
-import { Country } from "entities/Country";
-import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextTheme } from "shared/ui/Text/Text";
+import { ProfileCard } from "@/entities/Profile";
+import { Currency } from "@/entities/Currency";
+import { Country } from "@/entities/Country";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import {
   DynamicModuleLoader,
   ReducersList,
-} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { VStack } from "shared/ui/Stack";
+} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { VStack } from "@/shared/ui/Stack";
 
 import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";

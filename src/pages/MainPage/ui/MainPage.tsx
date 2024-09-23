@@ -1,9 +1,9 @@
-import { Counter } from "entities/Counter";
+import { Counter } from "@/entities/Counter";
 import { useTranslation } from "react-i18next";
-import { ListBox } from "shared/ui/ListBox/ListBox";
-import { Page } from "widgets/Page";
+import { ListBox } from "@/shared/ui/ListBox/ListBox";
+import { Page } from "@/widgets/Page";
 
-import { Example } from "entities/Example/Example";
+import { Example } from "@/entities/Example/Example";
 
 const MainPage = () => {
   const { t } = useTranslation("main");

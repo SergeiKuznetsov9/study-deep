@@ -2,15 +2,15 @@ import { FC, memo } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-import { Page } from "widgets/Page";
-import { ArticleRecommendationsList } from "features/articleRecommendationsList";
-import { ArticleDetails } from "entities/Article";
-import { classNames } from "shared/lib/classNames/classNames";
+import { Page } from "@/widgets/Page";
+import { ArticleRecommendationsList } from "@/features/articleRecommendationsList";
+import { ArticleDetails } from "@/entities/Article";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import {
   DynamicModuleLoader,
   ReducersList,
-} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { VStack } from "shared/ui/Stack";
+} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+import { VStack } from "@/shared/ui/Stack";
 
 import { articleDetailsPageReducer } from "../../model/slices";
 import { ArticleDetailsPageHeader } from "../ArticleDetailsPageHeader/ArticleDetailsPageHeader";
