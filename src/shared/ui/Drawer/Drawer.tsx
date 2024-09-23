@@ -37,7 +37,7 @@ export const Drawer: FC<DrawerProps> = ({
     config: { tension: 300, friction: 25 },
     onRest: () => {
       if (!isOpen) {
-        setTimeout(() => setIsMounted(false), 300);
+        setIsMounted(false);
       }
     },
   });

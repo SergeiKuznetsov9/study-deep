@@ -59,9 +59,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
       >
         {t("Войти")}
       </Button>
-      {isAuthModal && (
-        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-      )}
+      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
     </header>
   );
 });
