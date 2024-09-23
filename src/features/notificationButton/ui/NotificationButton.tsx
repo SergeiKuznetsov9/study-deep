@@ -3,6 +3,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 
 import { NotificationList } from "entities/Notification";
 import { classNames } from "shared/lib/classNames/classNames";
+import { AnimationProvider } from "shared/lib/components/AnimationProvider";
 import { Popover } from "shared/ui/Popover/Popover";
 import { Icon } from "shared/ui/Icon/Icon";
 import RingBellIcon from "shared/assets/icons/bell-ring.svg";
@@ -42,9 +43,11 @@ export const NotificationButton: FC<NotificationButtonProps> = ({
         <Button onClick={onOpenDrawer} theme={ButtonTheme.CLEAR}>
           <Icon Svg={RingBellIcon} inverted />
         </Button>
-        <Drawer isOpen={isDrawerOpened} onClose={onCloseDrawer}>
-          <NotificationList />
-        </Drawer>
+        <AnimationProvider>
+          <Drawer isOpen={isDrawerOpened} onClose={onCloseDrawer}>
+            <NotificationList />
+          </Drawer>
+        </AnimationProvider>
       </MobileView>
     </>
   );

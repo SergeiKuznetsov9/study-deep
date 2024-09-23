@@ -1,7 +1,7 @@
-import { FC, ReactNode, useEffect, useState } from "react";
-import { animated, useSpring } from "@react-spring/web";
+import { FC, memo, ReactNode, useEffect, useState } from "react";
 
 import { useTheme } from "app/providers/ThemeProvider";
+import { useAnimationLibs } from "shared/lib/components/AnimationProvider";
 import { classNames } from "shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
@@ -15,12 +15,13 @@ interface DrawerProps {
   onClose?: () => void;
 }
 
-export const Drawer: FC<DrawerProps> = ({
+export const DrawerContent: FC<DrawerProps> = ({
   className,
   children,
   isOpen,
   onClose,
 }) => {
+  const { Spring } = useAnimationLibs();
   const [isMounted, setIsMounted] = useState(isOpen);
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export const Drawer: FC<DrawerProps> = ({
 
   const { theme } = useTheme();
 
-  const springs = useSpring({
+  const springs = Spring.useSpring({
     from: { transform: "translateY(105%)" },
     to: { transform: isOpen ? "translateY(0%)" : "translateY(105%)" },
     config: { tension: 300, friction: 25 },
@@ -55,15 +56,28 @@ export const Drawer: FC<DrawerProps> = ({
         ])}
       >
         <Overlay onClick={onClose} />
-        <animated.div
+        <Spring.animated.div
           className={cls.content}
           style={{
             ...springs,
           }}
         >
           {children}
-        </animated.div>
+        </Spring.animated.div>
       </div>
     </Portal>
   );
 };
+
+// Сделаем обертку, которая будет подгружать либу, чтобы в DrawerContent она уже
+// была подгружена
+
+export const Drawer = memo((props: DrawerProps) => {
+  const { isLoaded } = useAnimationLibs();
+
+  if (!isLoaded) {
+    return null;
+  }
+
+  return <DrawerContent {...props} />;
+});
