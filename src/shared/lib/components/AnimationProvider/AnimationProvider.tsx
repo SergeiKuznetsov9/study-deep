@@ -1,8 +1,3 @@
-// Здесь будут подгружаться библиотеки и отдаваться туда, куда необходимо
-
-// Этот провайдер будет оборачивать только те компоненты, а которых будет использоваться
-// библиотека React Spring
-
 import {
   createContext,
   ReactNode,
@@ -13,7 +8,6 @@ import {
   useState,
 } from "react";
 
-// Получаем типы:
 type SpringType = typeof import("@react-spring/web");
 
 interface AnimationContextPayload {
@@ -23,7 +17,6 @@ interface AnimationContextPayload {
 
 const AnimationContext = createContext<AnimationContextPayload>({});
 
-// Вот функция, которая лениво подгружает библиотеку:
 const getAsyncAnimationModules = () => import("@react-spring/web");
 
 export const useAnimationLibs = () => {
@@ -31,9 +24,6 @@ export const useAnimationLibs = () => {
 };
 
 export const AnimationProvider = ({ children }: { children: ReactNode }) => {
-  // Все подгружаемые библиотеки сложим в рефы. У нас одна библиотека. Было бы больше
-  // библиотек, создали бы и больше рефов. Они нам нужны, чтобы хранить в них значения
-  // между рендерами
   const SpringRef = useRef<SpringType>();
   const [isLoaded, setIsLoaded] = useState(false);
 

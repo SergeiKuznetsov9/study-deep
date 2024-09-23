@@ -69,9 +69,6 @@ export const DrawerContent: FC<DrawerProps> = ({
   );
 };
 
-// Сделаем обертку, которая будет подгружать либу, чтобы в DrawerContent она уже
-// была подгружена
-
 export const Drawer = memo((props: DrawerProps) => {
   const { isLoaded } = useAnimationLibs();
 
