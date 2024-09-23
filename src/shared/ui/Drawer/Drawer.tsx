@@ -1,7 +1,10 @@
-import { FC, memo, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 
 import { useTheme } from "@/app/providers/ThemeProvider";
-import { useAnimationLibs } from "@/shared/lib/components/AnimationProvider";
+import {
+  AnimationProvider,
+  useAnimationLibs,
+} from "@/shared/lib/components/AnimationProvider";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";
@@ -69,7 +72,7 @@ export const DrawerContent: FC<DrawerProps> = ({
   );
 };
 
-export const Drawer = memo((props: DrawerProps) => {
+const DrawerAsync = (props: DrawerProps) => {
   const { isLoaded } = useAnimationLibs();
 
   if (!isLoaded) {
@@ -77,4 +80,10 @@ export const Drawer = memo((props: DrawerProps) => {
   }
 
   return <DrawerContent {...props} />;
-});
+};
+
+export const Drawer = (props: DrawerProps) => (
+  <AnimationProvider>
+    <DrawerAsync {...props} />
+  </AnimationProvider>
+);
