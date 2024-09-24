@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import { Page } from "@/widgets/Page";
+import { ArticleRating } from "@/features/articleRating";
 import { ArticleRecommendationsList } from "@/features/articleRecommendationsList";
 import { ArticleDetails } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
@@ -44,6 +45,7 @@ const ArticleDetailsPage: FC<ArticleDetailsPageProps> = ({ className }) => {
         <VStack gap="16" max>
           <ArticleDetailsPageHeader />
           <ArticleDetails id={id} />
+          <ArticleRating articleId={id} />
           <ArticleRecommendationsList />
           <ArticleDetailsComments id={id} />
         </VStack>
