@@ -11,12 +11,6 @@ import {
   addCommentFormActions,
   addCommentFormReducer,
 } from "../../model/slices/addCommentFormSlice";
-
-// Теперь на такой импорт, линтер будет ругаться 
-// import {
-//   addCommentFormActions,
-//   addCommentFormReducer,
-// } from "@/features/addCommentForm/model/slices/addCommentFormSlice";
 import {
   DynamicModuleLoader,
   ReducersList,
