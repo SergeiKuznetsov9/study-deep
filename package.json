@@ -51,7 +51,7 @@
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.35.0",
-    "eslint-plugin-wayfarer-plugin": "^0.2.1",
+    "eslint-plugin-wayfarer-plugin": "^0.2.2",
     "file-loader": "^6.2.0",
     "fork-ts-checker-webpack-plugin": "^9.0.2",
     "globals": "^15.8.0",
