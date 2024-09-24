@@ -6,6 +6,7 @@ import { StarRating } from "@/shared/ui/StarRating/StarRating";
 import { Page } from "@/widgets/Page";
 
 import { Example } from "@/entities/Example/Example";
+import { RatingCard } from "@/entities/Rating";
 
 const MainPage = () => {
   const { t } = useTranslation("main");
@@ -26,6 +27,11 @@ const MainPage = () => {
       />
       <Example />
       <StarRating size={50} />
+      <RatingCard
+        title={"Как Вам статья?"}
+        feedbackTitle={"Оставьте отзыв о статье"}
+        hasFeedback={true}
+      />
     </Page>
   );
 };
