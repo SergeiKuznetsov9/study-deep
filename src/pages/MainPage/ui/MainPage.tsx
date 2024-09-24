@@ -1,6 +1,8 @@
 import { Counter } from "@/entities/Counter";
 import { useTranslation } from "react-i18next";
+
 import { ListBox } from "@/shared/ui/ListBox/ListBox";
+import { StarRating } from "@/shared/ui/StarRating/StarRating";
 import { Page } from "@/widgets/Page";
 
 import { Example } from "@/entities/Example/Example";
@@ -23,6 +25,7 @@ const MainPage = () => {
         ]}
       />
       <Example />
+      <StarRating size={50} />
     </Page>
   );
 };
