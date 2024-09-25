@@ -1,15 +1,15 @@
 import { FC } from "react";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Avatar } from "@/shared/ui/Avatar/Avatar";
+import { Avatar } from "@/shared/ui/Avatar";
 import { Text } from "@/shared/ui/Text/Text";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
-import { AppLink } from "@/shared/ui/AppLink/AppLink";
+import { Skeleton } from "@/shared/ui/Skeleton";
 import { VStack } from "@/shared/ui/Stack";
-import { getRouteProfile } from "@/shared/const/router";
+import { AppLink } from "@/shared/ui/AppLink";
 
 import { Comment } from "../../model/types";
 import cls from "./CommentCard.module.scss";
+import { getRouteProfile } from "@/shared/const/router";
 
 interface CommentCardProps {
   className?: string;

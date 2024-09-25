@@ -5,13 +5,12 @@ import { ArticleSortSelector } from "@/features/articleSortSelector";
 import { ArticleViewSelector } from "@/features/articleViewSelector";
 import { ArticleTypeTabs } from "@/features/articleTypeTabs";
 import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
-import {} from "@/entities/Article";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Input } from "@/shared/ui/Input/Input";
-import { Card } from "@/shared/ui/Card/Card";
+import { Input } from "@/shared/ui/Input";
+import { Card } from "@/shared/ui/Card";
 import { SortOrder } from "@/shared/types";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 import { articlesPageActions } from "../../model/slices/articlesPageSlice";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";

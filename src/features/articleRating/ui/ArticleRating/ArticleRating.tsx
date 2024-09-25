@@ -1,9 +1,9 @@
 import { FC, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-import { RatingCard } from "@/entities/Rating";
 import { useUserAuthData } from "@/entities/User";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { RatingCard } from "@/entities/Rating";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 import {
   useGetArticleRating,

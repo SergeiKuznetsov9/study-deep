@@ -7,13 +7,13 @@ import {
   User,
   userActions,
 } from "@/entities/User";
-import { Dropdown } from "@/shared/ui/Dropdown/Dropdown";
-import { Avatar } from "@/shared/ui/Avatar/Avatar";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
   getRouteArticleAdminPanel,
   getRouteProfile,
 } from "@/shared/const/router";
+import { Dropdown } from "@/shared/ui/Dropdown";
+import { Avatar } from "@/shared/ui/Avatar";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 interface AvatarDropdownProps {
   className?: string;

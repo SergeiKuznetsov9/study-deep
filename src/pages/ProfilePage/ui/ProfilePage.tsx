@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Page } from "@/widgets/Page";
 import { EditableProfileCard } from "@/features/editableProfileCard";
 import { VStack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text";
 
 const ProfilePage = () => {
   const { id } = useParams<{ id: string }>();
