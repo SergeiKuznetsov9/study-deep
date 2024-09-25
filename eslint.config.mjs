@@ -22,7 +22,10 @@ export default [
       "react/react-in-jsx-scope": "off",
       "wayfarer/path-checker": ["warn", { alias: "@" }],
       "publicApiChecker/public-api-import-checker": ["warn", { alias: "@" }],
-
+      "publicApiChecker/layer-imports": [
+        "warn",
+        { alias: "@", ignoreImportPatterns: ["**/StoreProvider"] },
+      ],
     },
   },
 ];
