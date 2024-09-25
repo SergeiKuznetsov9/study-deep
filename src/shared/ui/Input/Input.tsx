@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./Input.module.scss";
 
 interface InputProps
@@ -52,7 +52,7 @@ export const Input: FC<InputProps> = memo(
       setIsFocused(true);
     };
 
-    const onSelect = (e: any) => {
+    const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
       setCaretPosition(e?.target?.selectionStart || 0);
     };
 
@@ -89,7 +89,7 @@ export const Input: FC<InputProps> = memo(
           />
           {isCaretVisible && (
             <span
-              style={{ left: `${caretPosition * 18}px` }}
+              style={{ left: `${caretPosition * 8.83}px` }}
               className={cls.caret}
             ></span>
           )}

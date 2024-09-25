@@ -1,10 +1,10 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import webpack from "webpack";
 import { BuildOptions } from "./types/config";
+import { buildBabelLoader } from "./loaders/buildBabelLoader";
 
-export const buildLoaders = ({
-  isDev,
-}: BuildOptions): webpack.RuleSetRule[] => {
+export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
+  const { isDev } = options;
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -23,12 +23,6 @@ export const buildLoaders = ({
     ],
   };
 
-  const typeScriptLoader = {
-    test: /\.tsx?$/,
-    use: "ts-loader",
-    exclude: /node_modules/,
-  };
-
   const svgLoader = {
     test: /\.svg$/i,
     issuer: /\.[jt]sx?$/,
@@ -44,16 +38,14 @@ export const buildLoaders = ({
     ],
   };
 
-  const babelLoader = {
-    test: /\.(js|jsx|tsx)$/,
-    exclude: /node_modules/,
-    use: {
-      loader: "babel-loader",
-      options: {
-        presets: ["@babel/preset-env"],
-      },
-    },
-  };
+  const codeBabelLoader = buildBabelLoader({ ...options, isTsx: false });
+  const tsxCodeBabelLoader = buildBabelLoader({ ...options, isTsx: true });
 
-  return [fileLoader, svgLoader, babelLoader, typeScriptLoader, cssLoader];
+  return [
+    fileLoader,
+    svgLoader,
+    codeBabelLoader,
+    tsxCodeBabelLoader,
+    cssLoader,
+  ];
 };

@@ -1,15 +1,19 @@
 import { FC, memo, useCallback, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { classNames } from "shared/lib/classNames/classNames";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
-import { Button, ButtonTheme } from "shared/ui/Button/Button";
-import { LoginModal } from "features/authByUserName";
-import { getUserAuthData, userActions } from "entities/User";
+
+import { LoginModal } from "@/features/authByUserName";
+import { NotificationButton } from "@/features/notificationButton";
+import { AvatarDropdown } from "@/features/avatarDropdown";
+import { getUserAuthData } from "@/entities/User";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
+import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
+import { Text, TextTheme } from "@/shared/ui/Text/Text";
+import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
+import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
+import { HStack } from "@/shared/ui/Stack";
+
 import cls from "./Navbar.module.scss";
-import { Text, TextTheme } from "shared/ui/Text/Text";
-import { AppLink, AppLinkTheme } from "shared/ui/AppLink/AppLink";
-import { RoutePath } from "shared/config/routeConfig/routeConfig";
 
 interface NavbarPops {
   className?: string;
@@ -18,15 +22,10 @@ interface NavbarPops {
 export const Navbar: FC<NavbarPops> = memo(({ className }) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
-  const dispatch = useAppDispatch();
   const authData = useAppSelector(getUserAuthData);
 
   const onCloseModal = useCallback(() => setIsAuthModal(false), []);
   const onShowModal = useCallback(() => setIsAuthModal(true), []);
-  const onLogout = useCallback(
-    () => dispatch(userActions.logout()),
-    [dispatch]
-  );
 
   if (authData) {
     return (
@@ -43,13 +42,10 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
         >
           {t("Создать статью")}
         </AppLink>
-        <Button
-          theme={ButtonTheme.CLEAR_INVERTED}
-          className={cls.links}
-          onClick={onLogout}
-        >
-          {t("Выйти")}
-        </Button>
+        <HStack gap="16" className={cls.actions}>
+          <NotificationButton />
+          <AvatarDropdown authData={authData} />
+        </HStack>
       </header>
     );
   }
@@ -63,9 +59,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
       >
         {t("Войти")}
       </Button>
-      {isAuthModal && (
-        <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
-      )}
+      <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
     </header>
   );
 });

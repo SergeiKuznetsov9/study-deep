@@ -1,20 +1,19 @@
 import { FC, memo, useMemo, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { classNames } from "shared/lib/classNames/classNames";
-import { ThemeSwitcher } from "widgets/ThemeSwitcher";
-import { LangSwitcher } from "widgets/LangSwitcher";
-import { Button, ButtonSize, ButtonTheme } from "shared/ui/Button/Button";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { ThemeSwitcher } from "@/widgets/ThemeSwitcher";
+import { LangSwitcher } from "@/widgets/LangSwitcher";
+import { Button, ButtonSize, ButtonTheme } from "@/shared/ui/Button/Button";
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";
-import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { getSidebarItems } from "../../model/selectors/getSidebarItems";
+import { VStack } from "@/shared/ui/Stack";
 
 interface SidebarProps {
   className?: string;
 }
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
-  const { t } = useTranslation();
   const sidebarItemsList = useAppSelector(getSidebarItems);
 
   const [collapsed, setCollapsed] = useState(false);
@@ -30,7 +29,7 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
   );
 
   return (
-    <menu
+    <aside
       data-testid="sidebar"
       className={classNames(cls.Sidebar, { [cls.collapsed]: collapsed }, [
         className,
@@ -47,11 +46,13 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
       >
         {collapsed ? ">" : "<"}
       </Button>
-      <div className={cls.items}>{itemsList}</div>
+      <VStack role="navigation" gap={"8"} className={cls.items}>
+        {itemsList}
+      </VStack>
       <div className={cls.switchers}>
         <ThemeSwitcher />
         <LangSwitcher className={cls.lang} short={collapsed} />
       </div>
-    </menu>
+    </aside>
   );
 });

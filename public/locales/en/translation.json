@@ -15,5 +15,14 @@
   "Форма авторизации": "Authorization form",
   "Вы ввели неверный логин или пароль": "You've entered invalid login or password",
   "Укажите страну": "Choose country",
-  "Укажите валюту": "Choose currency"
+  "Укажите валюту": "Choose currency",
+  "Ошибка при загрузке статей": "Download articles error",
+  "Админка": "Admin panel",
+  "У Вас нет доступа к этой странице": "Yoy have no access to this page",
+  "Ваш отзыв": "Your comment",
+  "Закрыть": "Close",
+  "Отправить": "Send",
+  "Оцените статью": "Rate the article",
+  "Оставьте свой отзыв о статье, это поможет улучшить качество": "Stay your comment, it helps do service better",
+  "Спасибо за оценку!": "Thanks for rate!"
 }

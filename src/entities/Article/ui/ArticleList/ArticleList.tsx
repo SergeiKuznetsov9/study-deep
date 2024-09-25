@@ -1,16 +1,17 @@
 import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
-import { classNames } from "shared/lib/classNames/classNames";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleList.module.scss";
-import { Article, ArticleView } from "../../model/types/article";
+import { ArticleView } from "../../model/const/const";
+import { Article } from "../../model/types/article";
 import { ArticleListItem } from "../ArticleListItem/ArticleListItem";
 import { ArticleListItemSkeleton } from "../ArticleListItem/ArticleListItemSkeleton";
-import { Text, TextSize } from "shared/ui/Text/Text";
+import { Text, TextSize } from "@/shared/ui/Text/Text";
 
 interface ArticleListProps {
   className?: string;
   articles: Article[];
-  isLoading: boolean;
+  isLoading?: boolean;
   view?: ArticleView;
   target?: HTMLAttributeAnchorTarget;
 }
@@ -39,7 +40,7 @@ export const ArticleList: FC<ArticleListProps> = ({
     />
   );
 
-  if (!isLoading && !articles.length) {
+  if (!isLoading && !articles?.length) {
     return (
       <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
         <Text size={TextSize.L} title={t("Статьи не найдены")} />
@@ -49,7 +50,7 @@ export const ArticleList: FC<ArticleListProps> = ({
 
   return (
     <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-      {articles.length > 0 ? articles.map(renderArticles) : null}
+      {articles?.length > 0 ? articles.map(renderArticles) : null}
       {isLoading && getSkeletons(view)}
     </div>
   );

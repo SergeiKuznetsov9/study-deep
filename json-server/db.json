@@ -1,4 +1,38 @@
 {
+  "notifications": [
+    {
+      "id": "1",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "2",
+      "title": "Уведомление 2",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    },
+    {
+      "id": "3",
+      "title": "Уведомление 3",
+      "description": "Произошло какое-то событие",
+      "userId": "1",
+      "href": "http://localhost:3000/admin"
+    },
+    {
+      "id": "4",
+      "title": "Уведомление 4",
+      "description": "Произошло какое-то событие",
+      "userId": "1"
+    },
+    {
+      "id": "5",
+      "title": "Уведомление 1",
+      "description": "Произошло какое-то событие",
+      "userId": "2"
+    }
+  ],
   "posts": [
     {
       "id": "1",
@@ -20,7 +54,9 @@
       "views": 8567,
       "createdAt": "26.02.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -90,7 +126,9 @@
       "views": 659,
       "createdAt": "21.01.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -112,7 +150,9 @@
       "views": 7739,
       "createdAt": "26.02.2022",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -134,7 +174,9 @@
       "views": 6666,
       "createdAt": "26.02.2024",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -156,7 +198,9 @@
       "views": 7569,
       "createdAt": "26.08.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -178,7 +222,9 @@
       "views": 5489,
       "createdAt": "29.08.2022",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -200,7 +246,9 @@
       "views": 826,
       "createdAt": "01------.07.2024",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -222,7 +270,9 @@
       "views": 4893,
       "createdAt": "01.06.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -244,7 +294,9 @@
       "views": 1569,
       "createdAt": "20.11.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -266,7 +318,9 @@
       "views": 6486,
       "createdAt": "29.03.2022",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -288,7 +342,9 @@
       "views": 9213,
       "createdAt": "26.09.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -310,7 +366,9 @@
       "views": 2489,
       "createdAt": "26.01.2021",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -332,7 +390,9 @@
       "views": 1022,
       "createdAt": "24.12.2019",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -354,7 +414,9 @@
       "views": 159,
       "createdAt": "16.03.2020",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -376,7 +438,9 @@
       "views": 4626,
       "createdAt": "14.01.2023",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -398,7 +462,9 @@
       "views": 12,
       "createdAt": "26.03.2024",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -420,7 +486,9 @@
       "views": 3298,
       "createdAt": "29.07.2022",
       "userId": "1",
-      "type": ["IT"],
+      "type": [
+        "IT"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -442,7 +510,9 @@
       "views": 2138,
       "createdAt": "29.09.2020",
       "userId": "1",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -464,7 +534,9 @@
       "views": 356,
       "createdAt": "05.02.2023",
       "userId": "1",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -486,7 +558,9 @@
       "views": 298,
       "createdAt": "21.04.2022",
       "userId": "1",
-      "type": ["SCIENCE"],
+      "type": [
+        "SCIENCE"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -508,7 +582,9 @@
       "views": 32,
       "createdAt": "27.08.2023",
       "userId": "1",
-      "type": ["ECONOMICS"],
+      "type": [
+        "ECONOMICS"
+      ],
       "blocks": [
         {
           "id": "1",
@@ -577,13 +653,27 @@
       "userId": "1",
       "text": "Хорошая статья",
       "id": "prNVWC_"
+    },
+    {
+      "articleId": "1",
+      "userId": "1",
+      "text": "Новый коммент",
+      "id": "Ldju_ZV"
+    },
+    {
+      "articleId": "2",
+      "userId": "1",
+      "text": "Статья не очень",
+      "id": "hLTtrVo"
     }
   ],
   "users": [
     {
       "id": "1",
       "username": "admin",
-      "role": "ADMIN",
+      "roles": [
+        "ADMIN"
+      ],
       "password": "123",
       "avatar": "https://rp-wow.ru/upload/056/u5682/59/80/20811.jpg"
     },
@@ -591,14 +681,25 @@
       "id": "2",
       "username": "user",
       "password": "123",
-      "role": "USER",
+      "roles": [
+        "USER"
+      ],
+      "avatar": "https://avatars.dzeninfra.ru/get-zen_doc/4467222/pub_62439a0d9f5e0b1fbda46cdc_62463860b752554f8054c8c8/scale_1200"
+    },
+    {
+      "id": "3",
+      "username": "manager",
+      "password": "123",
+      "roles": [
+        "MANAGER"
+      ],
       "avatar": "https://avatars.dzeninfra.ru/get-zen_doc/4467222/pub_62439a0d9f5e0b1fbda46cdc_62463860b752554f8054c8c8/scale_1200"
     }
   ],
   "profile": [
     {
       "id": "1",
-      "first": "Серж",
+      "first": "Сергей",
       "lastname": "Кузнецов",
       "age": 37,
       "currency": "RUB",
@@ -617,6 +718,59 @@
       "city": "Moscow",
       "username": "user",
       "avatar": "https://avatars.dzeninfra.ru/get-zen_doc/4467222/pub_62439a0d9f5e0b1fbda46cdc_62463860b752554f8054c8c8/scale_1200"
+    }
+  ],
+  "article-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хорошая статья",
+      "userId": "1",
+      "articleId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Неплохо",
+      "userId": "1",
+      "articleId": "2"
+    },
+    {
+      "userId": "1",
+      "articleId": "3",
+      "rate": 2,
+      "feedback": "",
+      "id": "hmzwWKs"
+    },
+    {
+      "userId": "1",
+      "articleId": "4",
+      "rate": 5,
+      "feedback": "Нормас",
+      "id": "FZixzzh"
+    },
+    {
+      "userId": "1",
+      "articleId": "7",
+      "rate": 1,
+      "feedback": "Отстой",
+      "id": "9D71HYP"
+    }
+  ],
+  "profile-ratings": [
+    {
+      "id": "1",
+      "rate": 4,
+      "feedback": "Хороший профиль",
+      "userId": "1",
+      "profileId": "1"
+    },
+    {
+      "id": "2",
+      "rate": 4,
+      "feedback": "Нормальный чел",
+      "userId": "1",
+      "profileId": "2"
     }
   ]
 }

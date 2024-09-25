@@ -6,12 +6,13 @@ import {
   ThunkDispatch,
   AnyAction,
 } from "@reduxjs/toolkit";
-import { counterReducer } from "entities/Counter";
-import { userReducer } from "entities/User";
+import { counterReducer } from "@/entities/Counter";
+import { userReducer } from "@/entities/User";
 import { StateSchema, ThunkExtraArg } from "./StateSchema";
 import { createReducerManager } from "./reducerManager";
-import { $api } from "shared/api/api";
-import { pageReducer } from "widgets/Page";
+import { $api } from "@/shared/api/api";
+import { pageReducer } from "@/widgets/Page";
+import { rtkApi } from "@/shared/api/rtkApi";
 
 export function createReduxStore(
   initialState?: StateSchema,
@@ -22,6 +23,7 @@ export function createReduxStore(
     counter: counterReducer,
     user: userReducer,
     page: pageReducer,
+    [rtkApi.reducerPath]: rtkApi.reducer,
   };
 
   const reducerManager = createReducerManager(rootReducers);
@@ -33,15 +35,15 @@ export function createReduxStore(
   const store = configureStore<StateSchema>({
     reducer: reducerManager.reduce as Reducer<CombinedState<StateSchema>>,
     preloadedState: initialState,
-    // @ts-ignore
+    // @ts-expect-error: ошибки нет
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         thunk: {
           extraArgument: extraArg,
         },
-      }),
+      }).concat(rtkApi.middleware),
   });
-  // @ts-ignore
+  // @ts-expect-error: ошибки нет
   store.reducerManager = reducerManager;
 
   return store;

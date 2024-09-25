@@ -1,10 +1,10 @@
 import { Reducer } from "@reduxjs/toolkit";
-import { ReduxStoreWithManager } from "app/providers/StoreProvider";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { ReduxStoreWithManager } from "@/app/providers/StoreProvider";
+import { useAppDispatch } from "../../hooks/useAppDispatch/useAppDispatch";
 import {
   StateSchema,
   StateSchemaKey,
-} from "app/providers/StoreProvider/config/StateSchema";
+} from "@/app/providers/StoreProvider/config/StateSchema";
 import { FC, ReactNode, useEffect } from "react";
 import { useStore } from "react-redux";
 
@@ -38,7 +38,7 @@ export const DynamicModuleLoader: FC<DynamicModuleLoaderProps> = ({
 
     return () => {
       if (removeAfterUnmount) {
-        Object.entries(reducers).forEach(([name, reducer]) => {
+        Object.entries(reducers).forEach(([name]) => {
           store.reducerManager.remove(name as StateSchemaKey);
           dispatch({ type: `@INIT ${name} reducer` });
         });

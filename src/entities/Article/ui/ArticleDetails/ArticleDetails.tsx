@@ -1,30 +1,32 @@
 import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { classNames } from "shared/lib/classNames/classNames";
+import { classNames } from "@/shared/lib/classNames/classNames";
 import cls from "./ArticleDetails.module.scss";
 import {
   DynamicModuleLoader,
   ReducersList,
-} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+} from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
-import { useAppDispatch } from "shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
-import { useAppSelector } from "shared/lib/hooks/useAppSelector/useAppSelector";
+import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import {
   getArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
-import { Text, TextAlign, TextSize } from "shared/ui/Text/Text";
-import { Skeleton } from "shared/ui/Skeleton/Skeleton";
-import { Avatar } from "shared/ui/Avatar/Avatar";
-import EyeIcon from "shared/assets/icons/eye.svg";
-import CalendarIcon from "shared/assets/icons/calendar.svg";
-import { Icon } from "shared/ui/Icon/Icon";
-import { ArticleBlock, ArticleBlockType } from "../../model/types/article";
+import { Text, TextAlign, TextSize } from "@/shared/ui/Text/Text";
+import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Avatar } from "@/shared/ui/Avatar/Avatar";
+import EyeIcon from "@/shared/assets/icons/eye.svg";
+import CalendarIcon from "@/shared/assets/icons/calendar.svg";
+import { Icon } from "@/shared/ui/Icon/Icon";
+import { ArticleBlockType } from "../../model/const/const";
+import { ArticleBlock } from "../../model/types/article";
 import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
 import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
 import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
+import { HStack, VStack } from "@/shared/ui/Stack";
 
 interface ArticleDetailsProps {
   id: string;
@@ -112,24 +114,26 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
     if (article) {
       content = (
         <>
-          <div className={cls.avatarWrapper}>
+          <HStack justify="center" max className={cls.avatarWrapper}>
             <Avatar size={200} src={article.img} className={cls.avatar} />
-          </div>
-          <Text
-            title={article.title}
-            text={article.subtitle}
-            className={cls.title}
-            size={TextSize.L}
-          />
-          <div className={cls.articleInfo}>
-            <Icon Svg={EyeIcon} className={cls.icon} />
-            <Text text={String(article?.views)} />
-          </div>
-          <div className={cls.articleInfo}>
-            <Icon Svg={CalendarIcon} className={cls.icon} />
+          </HStack>
+          <VStack gap="4" max>
+            <Text
+              title={article.title}
+              text={article.subtitle}
+              className={cls.title}
+              size={TextSize.L}
+            />
+            <HStack gap="8" className={cls.articleInfo}>
+              <Icon Svg={EyeIcon} className={cls.icon} />
+              <Text text={String(article?.views)} />
+            </HStack>
+            <HStack gap="8" className={cls.articleInfo}>
+              <Icon Svg={CalendarIcon} className={cls.icon} />
 
-            <Text text={article?.createdAt} />
-          </div>
+              <Text text={article?.createdAt} />
+            </HStack>
+          </VStack>
           {article.blocks.map(renderBlock)}
         </>
       );
@@ -137,9 +141,13 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
 
     return (
       <DynamicModuleLoader reducers={reducers} removeAfterUnmount={true}>
-        <div className={classNames(cls.ArticleDetails, {}, [className])}>
+        <VStack
+          gap="16"
+          max
+          className={classNames(cls.ArticleDetails, {}, [className])}
+        >
           {content}
-        </div>
+        </VStack>
       </DynamicModuleLoader>
     );
   }

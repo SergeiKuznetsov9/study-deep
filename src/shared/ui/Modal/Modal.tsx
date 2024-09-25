@@ -1,6 +1,10 @@
 import { FC, ReactNode, useEffect, useState } from "react";
-import { classNames } from "shared/lib/classNames/classNames";
+import { animated, useSpring } from "@react-spring/web";
+
+import { classNames } from "@/shared/lib/classNames/classNames";
+
 import { Portal } from "../Portal/Portal";
+import { Overlay } from "../Overlay/Overlay";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {
@@ -8,7 +12,6 @@ interface ModalProps {
   children?: ReactNode;
   isOpen?: boolean;
   onClose?: () => void;
-  lazy?: boolean;
 }
 
 export const Modal: FC<ModalProps> = ({
@@ -16,57 +19,57 @@ export const Modal: FC<ModalProps> = ({
   children,
   isOpen,
   onClose,
-  lazy,
 }) => {
   const [isMounted, setIsMounted] = useState(false);
-  const closeHandler = () => {
-    if (onClose) {
-      onClose();
-    }
-  };
 
-  const onKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Escape") {
-      closeHandler();
-    }
-  };
-
-  const onContentClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-  };
+  const springs = useSpring({
+    from: { transform: "scale(0.5)" },
+    to: { transform: isOpen ? "scale(1)" : "scale(0.2)" },
+    config: { tension: 300, friction: 25, duration: 200 },
+    onRest: () => {
+      if (!isOpen) {
+        setIsMounted(false);
+      }
+    },
+  });
 
   useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose?.();
+      }
+    };
+
     if (isOpen) {
       window.addEventListener("keydown", onKeyDown);
+      setIsMounted(true);
     }
 
     return () => {
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isOpen, onKeyDown]);
-
-  useEffect(() => {
-    if (isOpen) {
-      setIsMounted(true);
-    } else {
-      setIsMounted(false);
-    }
   }, [isOpen]);
 
-  if (lazy && !isMounted) {
+  if (!isMounted) {
     return null;
   }
 
   return (
     <Portal>
       <div
-        className={classNames(cls.Modal, { [cls.opened]: isOpen }, [className])}
+        className={classNames(cls.Modal, { [cls.opened]: isMounted }, [
+          className,
+        ])}
       >
-        <div className={cls.overlay} onClick={closeHandler}>
-          <div className={cls.content} onClick={onContentClick}>
-            {children}
-          </div>
-        </div>
+        <Overlay onClick={onClose} />
+        <animated.div
+          className={cls.content}
+          style={{
+            ...springs,
+          }}
+        >
+          {children}
+        </animated.div>
       </div>
     </Portal>
   );
