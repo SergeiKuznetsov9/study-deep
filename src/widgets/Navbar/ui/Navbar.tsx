@@ -10,8 +10,8 @@ import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector
 import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
 import { HStack } from "@/shared/ui/Stack";
+import { RoutePath } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";
 
