@@ -5,7 +5,7 @@ import { LangSwitcher } from "@/features/langSwitcher";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { VStack } from "@/shared/ui/Stack";
-import { Button, ButtonSize, ButtonTheme } from "@/shared/ui/Button/Button";
+import { Button, ButtonSize, ButtonTheme } from "@/shared/ui/Button";
 
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";

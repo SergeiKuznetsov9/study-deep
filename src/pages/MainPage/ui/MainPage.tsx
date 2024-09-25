@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import { Page } from "@/widgets/Page";
-import { ListBox } from "@/shared/ui/ListBox/ListBox";
+import { ListBox } from "@/shared/ui/ListBox";
 
 const MainPage = () => {
   const { t } = useTranslation("main");

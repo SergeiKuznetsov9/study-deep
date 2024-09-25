@@ -7,7 +7,7 @@ import { Currency } from "@/entities/Currency";
 import { Country } from "@/entities/Country";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextTheme } from "@/shared/ui/Text/Text";
+import { Text, TextTheme } from "@/shared/ui/Text";
 import {
   DynamicModuleLoader,
   ReducersList,
