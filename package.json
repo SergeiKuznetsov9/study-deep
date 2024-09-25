@@ -50,6 +50,7 @@
     "circular-dependency-plugin": "^5.2.2",
     "concurrently": "^8.2.2",
     "eslint": "^8.57.0",
+    "eslint-plugin-public-api-imports": "^0.0.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-wayfarer-plugin": "^0.2.2",
     "file-loader": "^6.2.0",

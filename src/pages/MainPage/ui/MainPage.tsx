@@ -5,7 +5,6 @@ import { ListBox } from "@/shared/ui/ListBox/ListBox";
 import { StarRating } from "@/shared/ui/StarRating/StarRating";
 import { Page } from "@/widgets/Page";
 
-import { Example } from "@/entities/Example/Example";
 import { RatingCard } from "@/entities/Rating";
 
 const MainPage = () => {
@@ -25,7 +24,6 @@ const MainPage = () => {
           { value: "13", content: "mh" },
         ]}
       />
-      <Example />
       <StarRating size={50} />
       <RatingCard
         title={"Как Вам статья?"}
