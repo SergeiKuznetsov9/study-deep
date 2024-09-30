@@ -1,8 +1,21 @@
 import { FC, useCallback } from "react";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import cls from "./ArticlesPageFilters.module.scss";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
+
+import { ArticleSortSelector } from "@/features/articleSortSelector";
+import { ArticleViewSelector } from "@/features/articleViewSelector";
+import { ArticleTypeTabs } from "@/features/articleTypeTabs";
+import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
+import {} from "@/entities/Article";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { Input } from "@/shared/ui/Input/Input";
+import { Card } from "@/shared/ui/Card/Card";
+import { SortOrder } from "@/shared/types";
+import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
+
+import { articlesPageActions } from "../../model/slices/articlesPageSlice";
+import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import {
   getArticlesPageOrder,
   getArticlesPageSearch,
@@ -10,21 +23,7 @@ import {
   getArticlesPageType,
   getArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
-import {
-  ArticleSortField,
-  ArticleTypeTabs,
-  ArticleView,
-  ArticleViewSelector,
-} from "@/entities/Article";
-import { articlesPageActions } from "../../model/slices/articlesPageSlice";
-import { useTranslation } from "react-i18next";
-import { Input } from "@/shared/ui/Input/Input";
-import { Card } from "@/shared/ui/Card/Card";
-import { ArticleSortSelector } from "@/entities/Article";
-import { SortOrder } from "@/shared/types";
-import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
-import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
-import { ArticleType } from "@/entities/Article";
+import cls from "./ArticlesPageFilters.module.scss";
 
 interface ArticlesPageFiltersProps {
   className?: string;
