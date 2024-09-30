@@ -6,7 +6,10 @@ import { Dropdown } from "@/shared/ui/Dropdown/Dropdown";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { RoutePath } from "@/shared/const/router";
+import {
+  getRouteArticleAdminPanel,
+  getRouteProfile,
+} from "@/shared/const/router";
 
 interface AvatarDropdownProps {
   className?: string;
@@ -34,14 +37,14 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = ({ authData }) => {
               {
                 id: "3",
                 content: t("Админка"),
-                href: RoutePath.admin_panel,
+                href: getRouteArticleAdminPanel(),
               },
             ]
           : []),
         {
           id: "1",
           content: t("Профиль"),
-          href: RoutePath.profile + authData.id,
+          href: getRouteProfile(authData.id),
         },
         { id: "2", content: t("Выйти"), onClick: onLogout },
       ]}

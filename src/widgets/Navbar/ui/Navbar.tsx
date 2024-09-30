@@ -11,7 +11,7 @@ import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
 import { HStack } from "@/shared/ui/Stack";
-import { RoutePath } from "@/shared/const/router";
+import { getRouteArticleCreate } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";
 
@@ -36,7 +36,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
           theme={TextTheme.INVERTED}
         />
         <AppLink
-          to={RoutePath.article_create}
+          to={getRouteArticleCreate()}
           theme={AppLinkTheme.SECONDARY}
           className={cls.createBtn}
         >
