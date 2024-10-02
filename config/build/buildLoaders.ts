@@ -7,6 +7,7 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
   const { isDev } = options;
   const cssLoader = {
     test: /\.s[ac]ss$/i,
+    exclude: /node_modules/,
     use: [
       isDev ? "style-loader" : MiniCssExtractPlugin.loader,
       {

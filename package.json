@@ -13,7 +13,8 @@
     "build": "webpack",
     "build:prod": "webpack --env mode=production apiUrl=https://study-deep-server.vercel.app",
     "build:dev": "webpack --env mode=development",
-    "lint:ts": "eslint \"**/*.{ts,tsx}\""
+    "lint:ts": "eslint \"**/*.{ts,tsx}\"",
+    "postinstall": "node ./scripts/clear-cache.js"
   },
   "repository": {
     "type": "git",
