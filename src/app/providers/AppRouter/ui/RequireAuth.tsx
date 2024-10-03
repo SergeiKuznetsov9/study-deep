@@ -1,8 +1,7 @@
 import { useMemo } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-import { getUserAuthData, getUserRoles, UserRole } from "@/entities/User";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
+import { useUserRoles, UserRole, useUserAuthData } from "@/entities/User";
 import { getRouteForbidden, getRouteMain } from "@/shared/const/router";
 
 interface RequireAuthProps {
@@ -11,8 +10,8 @@ interface RequireAuthProps {
 }
 
 export function RequireAuth({ children, roles }: RequireAuthProps) {
-  const auth = useAppSelector(getUserAuthData);
-  const userRoles = useAppSelector(getUserRoles);
+  const auth = useUserAuthData();
+  const userRoles = useUserRoles();
   const location = useLocation();
 
   const hasRequiredRoles = useMemo(() => {

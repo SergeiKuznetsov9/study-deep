@@ -9,7 +9,7 @@ import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { VStack } from "@/shared/ui/Stack";
 
-import { getArticleCommentsIsLoading } from "../../model/selectors/comments";
+import { useArticleCommentsIsLoading } from "../../model/selectors/comments";
 import { addCommentForArticle } from "../../model/services/addCommentForArticle/addCommentForArticle";
 import { getArticleComments } from "../../model/slices/articleDetailsCommentsSlice";
 import { fetchCommentsByArticleId } from "../../model/services/fetchCommentsByArticleId/fetchCommentsByArticleId";
@@ -30,7 +30,7 @@ export const ArticleDetailsComments: FC<ArticleDetailsCommentsProps> = ({
   const { t } = useTranslation();
 
   const comments = useAppSelector(getArticleComments.selectAll);
-  const articleCommentsIsLoading = useAppSelector(getArticleCommentsIsLoading);
+  const articleCommentsIsLoading = useArticleCommentsIsLoading();
 
   const onSendComment = useCallback(
     (text: string) => {

@@ -1,10 +1,14 @@
 import { FC, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-import { isUserAdmin, isUserManager, User, userActions } from "@/entities/User";
+import {
+  useIsUserAdmin,
+  useIsUserManager,
+  User,
+  userActions,
+} from "@/entities/User";
 import { Dropdown } from "@/shared/ui/Dropdown/Dropdown";
 import { Avatar } from "@/shared/ui/Avatar/Avatar";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {
   getRouteArticleAdminPanel,
@@ -20,8 +24,8 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = ({ authData }) => {
   const dispatch = useAppDispatch();
   const { t } = useTranslation();
 
-  const isAdmin = useAppSelector(isUserAdmin);
-  const isManager = useAppSelector(isUserManager);
+  const isAdmin = useIsUserAdmin();
+  const isManager = useIsUserManager();
   const isAdminPanelAvailable = isAdmin || isManager;
 
   const onLogout = useCallback(

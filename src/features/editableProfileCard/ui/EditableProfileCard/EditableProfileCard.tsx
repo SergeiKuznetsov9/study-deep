@@ -1,11 +1,9 @@
 import { FC, useEffect, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { ProfileCard } from "@/entities/Profile";
 import { Currency } from "@/entities/Currency";
 import { Country } from "@/entities/Country";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Text, TextTheme } from "@/shared/ui/Text/Text";
 import {
@@ -14,12 +12,12 @@ import {
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { VStack } from "@/shared/ui/Stack";
 
-import { getProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
-import { getProfileError } from "../../model/selectors/getProfileError/getProfileError";
-import { getProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
-import { getProfileReadonly } from "../../model/selectors/getProfileReadOnly/getProfileReadOnly";
+import { useProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
+import { useProfileError } from "../../model/selectors/getProfileError/getProfileError";
+import { useProfileIsLoading } from "../../model/selectors/getProfileIsLoading/getProfileIsLoading";
+import { useProfileReadonly } from "../../model/selectors/getProfileReadOnly/getProfileReadOnly";
 import { profileActions, profileReducer } from "../../model/slice/profileSlice";
-import { getProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
+import { useProfileValidateErrors } from "../../model/selectors/getProfileValidateErrors/getProfileValidateErrors";
 import { fetchProfileData } from "../../model/services/fetchProfileData/fetchProfileData";
 import { ValidateProfileError } from "../../model/const/const";
 import { EditableProfilePageHeader } from "../EditableProfilePageHeader/EditableProfilePageHeader";
@@ -47,7 +45,7 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({
 
   const { t } = useTranslation("profile");
 
-  const validateErrors = useSelector(getProfileValidateErrors);
+  const validateErrors = useProfileValidateErrors();
   const validateErrorTranslates = {
     [ValidateProfileError.SERVER_ERROR]: t("Серверная ошибка при сохранении"),
     [ValidateProfileError.INCORRECT_AGE]: t("Некорректный возраст"),
@@ -56,10 +54,10 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({
     [ValidateProfileError.NO_DATA]: t("Данные не указаны"),
   };
 
-  const formData = useAppSelector(getProfileForm);
-  const error = useAppSelector(getProfileError);
-  const isLoading = useAppSelector(getProfileIsLoading);
-  const readonly = useAppSelector(getProfileReadonly);
+  const formData = useProfileForm();
+  const error = useProfileError();
+  const isLoading = useProfileIsLoading();
+  const readonly = useProfileReadonly();
 
   const onChangeFirstName = useCallback(
     (value?: string) => {

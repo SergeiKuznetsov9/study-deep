@@ -1,5 +1,4 @@
 import { FC, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { ArticleSortSelector } from "@/features/articleSortSelector";
@@ -17,11 +16,11 @@ import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
 import { articlesPageActions } from "../../model/slices/articlesPageSlice";
 import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import {
-  getArticlesPageOrder,
-  getArticlesPageSearch,
-  getArticlesPageSort,
-  getArticlesPageType,
-  getArticlesPageView,
+  useArticlesPageOrder,
+  useArticlesPageSearch,
+  useArticlesPageSort,
+  useArticlesPageType,
+  useArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 import cls from "./ArticlesPageFilters.module.scss";
 
@@ -34,11 +33,11 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
 }) => {
   const { t } = useTranslation("article");
   const dispatch = useAppDispatch();
-  const view = useSelector(getArticlesPageView);
-  const sort = useSelector(getArticlesPageSort);
-  const order = useSelector(getArticlesPageOrder);
-  const search = useSelector(getArticlesPageSearch);
-  const type = useSelector(getArticlesPageType);
+  const view = useArticlesPageView();
+  const sort = useArticlesPageSort();
+  const order = useArticlesPageOrder();
+  const search = useArticlesPageSearch();
+  const type = useArticlesPageType();
 
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({ replace: true }));

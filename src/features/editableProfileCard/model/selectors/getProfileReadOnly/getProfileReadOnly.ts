@@ -1,4 +1,6 @@
 import { StateSchema } from "@/app/providers/StoreProvider";
+import { buildSelector } from "@/shared/lib/store";
 
-export const getProfileReadonly = (state: StateSchema) =>
-  state.profile?.readonly;
+export const [useProfileReadonly] = buildSelector(
+  (state: StateSchema) => state.profile?.readonly
+);

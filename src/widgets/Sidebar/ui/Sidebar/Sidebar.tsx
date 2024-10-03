@@ -3,20 +3,19 @@ import { FC, memo, useMemo, useState } from "react";
 import { ThemeSwitcher } from "@/features/themeSwitcher";
 import { LangSwitcher } from "@/features/langSwitcher";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import { VStack } from "@/shared/ui/Stack";
 import { Button, ButtonSize, ButtonTheme } from "@/shared/ui/Button/Button";
 
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";
-import { getSidebarItems } from "../../model/selectors/getSidebarItems";
+import { useSidebarItems } from "../../model/selectors/getSidebarItems";
 
 interface SidebarProps {
   className?: string;
 }
 
 export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
-  const sidebarItemsList = useAppSelector(getSidebarItems);
+  const sidebarItemsList = useSidebarItems();
 
   const [collapsed, setCollapsed] = useState(false);
 

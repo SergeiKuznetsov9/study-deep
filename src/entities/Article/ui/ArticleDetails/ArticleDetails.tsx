@@ -9,11 +9,10 @@ import {
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import {
   useArticleDetailsData,
-  getArticleDetailsError,
-  getArticleDetailsIsLoading,
+  useArticleDetailsIsLoading,
+  useArticleDetailsError,
 } from "../../model/selectors/articleDetails";
 import { Text, TextAlign, TextSize } from "@/shared/ui/Text/Text";
 import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
@@ -42,8 +41,8 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
     const { t } = useTranslation("article");
     const dispatch = useAppDispatch();
     const article = useArticleDetailsData();
-    const isLoading = useAppSelector(getArticleDetailsIsLoading);
-    const error = useAppSelector(getArticleDetailsError);
+    const isLoading = useArticleDetailsIsLoading();
+    const error = useArticleDetailsError();
 
     const renderBlock = useCallback((block: ArticleBlock) => {
       switch (block.type) {
