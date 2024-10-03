@@ -11,7 +11,7 @@ import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
 import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
 import {
-  getArticleDetailsData,
+  useArticleDetailsData,
   getArticleDetailsError,
   getArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
@@ -41,7 +41,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
   ({ className, id }) => {
     const { t } = useTranslation("article");
     const dispatch = useAppDispatch();
-    const article = useAppSelector(getArticleDetailsData);
+    const article = useArticleDetailsData();
     const isLoading = useAppSelector(getArticleDetailsIsLoading);
     const error = useAppSelector(getArticleDetailsError);
 
