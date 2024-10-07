@@ -52,7 +52,9 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = ({ authData }) => {
         },
         { id: "2", content: t("Выйти"), onClick: onLogout },
       ]}
-      trigger={<Avatar size={30} src={authData.avatar} />}
+      trigger={
+        <Avatar size={30} src={authData.avatar} fallbackInverted={true} />
+      }
     />
   );
 };
