@@ -24,8 +24,6 @@ export const AppImage: FC<AppImageProps> = ({
   const [hasError, setHasError] = useState(false);
   console.log({ isLoading, hasError, src });
 
-  //   Отработает синхронно перед монтированием компонента
-  //   т.е. подгрузка начнется еще до того, как компонент отрендерится
   useLayoutEffect(() => {
     const img = new Image();
     img.src = src ?? "";
