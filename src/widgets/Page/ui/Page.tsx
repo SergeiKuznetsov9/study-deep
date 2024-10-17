@@ -22,10 +22,11 @@ interface PageProps {
   children: ReactNode;
   className?: string;
   onScrollEnd?: () => void;
+  setIsIntersecting?: (isIntersecting: boolean) => void;
 }
 
 export const Page: FC<PageProps> = memo(
-  ({ className, children, onScrollEnd }) => {
+  ({ className, children, onScrollEnd, setIsIntersecting }) => {
     const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const { pathname } = useLocation();
@@ -35,7 +36,7 @@ export const Page: FC<PageProps> = memo(
 
     const dispatch = useAppDispatch();
 
-    useInfiniteScroll({
+    const isIntersecting = useInfiniteScroll({
       triggerRef,
       wrapperRef,
       callback: onScrollEnd,
@@ -49,6 +50,11 @@ export const Page: FC<PageProps> = memo(
         })
       );
     }, 1000);
+
+    useEffect(() => {
+      setIsIntersecting?.(isIntersecting);
+    }, [isIntersecting]);
+
     useEffect(() => {
       wrapperRef.current.scrollTop = scrollPosition;
     }, []);
