@@ -7,16 +7,16 @@ import { VStack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
 
 const ProfilePage = () => {
-  const { id } = useParams<{ id: string }>();
+  const { username } = useParams<{ username: string }>();
   const { t } = useTranslation("profile");
 
-  if (!id) {
+  if (!username) {
     return <Text text={t("Профиль не найден")} />;
   }
   return (
     <Page>
       <VStack max gap={"16"}>
-        <EditableProfileCard id={id} />
+        <EditableProfileCard username={username} />
       </VStack>
     </Page>
   );

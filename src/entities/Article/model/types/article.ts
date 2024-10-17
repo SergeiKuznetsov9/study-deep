@@ -27,7 +27,7 @@ export type ArticleBlock =
   | ArticleTextBlock;
 
 export interface Article {
-  id: string;
+  _id: string;
   title: string;
   user: User;
   subtitle: string;

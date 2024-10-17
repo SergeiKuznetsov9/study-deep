@@ -38,7 +38,7 @@ export const ArticleList: FC<ArticleListProps> = ({
       article={article}
       view={view}
       className={cls.card}
-      key={article.id}
+      key={article._id}
       target={target}
     />
   );

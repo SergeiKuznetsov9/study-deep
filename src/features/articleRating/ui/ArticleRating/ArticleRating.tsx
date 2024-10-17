@@ -21,7 +21,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
 
   const { data, isLoading } = useGetArticleRating({
     articleId,
-    userId: userData?.id ?? "",
+    userId: userData?._id ?? "",
   });
 
   const [rateArticleMutation] = useRateArticle();
@@ -32,7 +32,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
     (rate: number, feedback: string = "") => {
       try {
         rateArticleMutation({
-          userId: userData?.id ?? "",
+          userId: userData?._id ?? "",
           articleId,
           rate,
           feedback,
@@ -41,7 +41,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
         console.error(error);
       }
     },
-    [articleId, rateArticleMutation, userData?.id]
+    [articleId, rateArticleMutation, userData?._id]
   );
 
   const onAccept = useCallback(

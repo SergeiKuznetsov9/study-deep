@@ -24,12 +24,12 @@ import { EditableProfilePageHeader } from "../EditableProfilePageHeader/Editable
 
 interface EditableProfileCardProps {
   className?: string;
-  id?: string;
+  username?: string;
 }
 
 export const EditableProfileCard: FC<EditableProfileCardProps> = ({
   className,
-  id,
+  username,
 }) => {
   const dispatch = useAppDispatch();
 
@@ -38,8 +38,8 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({
   };
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchProfileData(id));
+    if (username) {
+      dispatch(fetchProfileData(username));
     }
   }, [dispatch]);
 

@@ -31,7 +31,7 @@ export const [useSidebarItems, getSidebarItems] = buildSelector(
     if (userData) {
       sideBarItemsList.push(
         {
-          path: getRouteProfile(userData.id),
+          path: getRouteProfile(userData.username),
           text: "Профиль",
           Icon: ProfileIcon,
           authOnly: true,

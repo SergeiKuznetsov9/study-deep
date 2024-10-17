@@ -32,7 +32,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     element: <AboutPage />,
   },
   [AppRoutes.PROFILE]: {
-    path: getRouteProfile(":id"),
+    path: getRouteProfile(":username"),
     element: <ProfilePage />,
     authOnly: true,
   },

@@ -71,7 +71,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
             />
           )}
           <div className={cls.footer}>
-            <AppLink to={getRouteArticleDetails(article.id)} target={target}>
+            <AppLink to={getRouteArticleDetails(article._id)} target={target}>
               <Button theme={ButtonTheme.OUTLINE}>
                 {t("Читать далее...")}
               </Button>
@@ -87,7 +87,7 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
     return (
       <AppLink
         target={target}
-        to={getRouteArticleDetails(article.id)}
+        to={getRouteArticleDetails(article._id)}
         className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
       >
         <Card className={cls.card}>
