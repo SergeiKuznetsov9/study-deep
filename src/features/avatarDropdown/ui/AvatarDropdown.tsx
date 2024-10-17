@@ -48,7 +48,7 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = ({ authData }) => {
         {
           id: "1",
           content: t("Профиль"),
-          href: getRouteProfile(authData.id),
+          href: getRouteProfile(authData.username),
         },
         { id: "2", content: t("Выйти"), onClick: onLogout },
       ]}

@@ -37,6 +37,7 @@ export const Avatar: FC<AvatarProps> = ({
       width={size}
       height={size}
       inverted={fallbackInverted}
+      className={fallbackInverted ? cls.invertedAvatarIcon : cls.avatarIcon}
     />
   );
 
