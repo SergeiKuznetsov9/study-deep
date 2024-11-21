@@ -48,7 +48,7 @@ export const CommentCard: FC<CommentCardProps> = ({
       max
       className={classNames(cls.CommentCard, {}, [className])}
     >
-      <AppLink to={getRouteProfile(comment.user.id)} className={cls.header}>
+      <AppLink to={getRouteProfile(comment.user._id)} className={cls.header}>
         {comment.user.avatar ? (
           <Avatar size={30} src={comment.user.avatar} />
         ) : null}

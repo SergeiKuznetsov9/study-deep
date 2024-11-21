@@ -1,7 +1,7 @@
 import { User } from "@/entities/User";
 
 export interface Comment {
-  id: string;
+  _id: string;
   user: User;
   text: string;
 }

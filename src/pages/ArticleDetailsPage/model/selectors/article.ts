@@ -9,6 +9,6 @@ export const [useCanEditArticle] = buildSelector(
       return false;
     }
 
-    return user.id === article.user.id;
+    return user._id === article.user._id;
   })
 );

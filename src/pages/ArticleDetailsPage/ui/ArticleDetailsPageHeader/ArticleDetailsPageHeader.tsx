@@ -26,10 +26,10 @@ export const ArticleDetailsPageHeader: FC<ArticleDetailsPageHeaderProps> = ({
   }, [navigate]);
 
   const onEditArticle = useCallback(() => {
-    if (article?.id) {
-      navigate(getRouteArticleEdit(article.id));
+    if (article?._id) {
+      navigate(getRouteArticleEdit(article._id));
     }
-  }, [article?.id, navigate]);
+  }, [article?._id, navigate]);
 
   return (
     <HStack max justify="between" className={classNames("", {}, [className])}>

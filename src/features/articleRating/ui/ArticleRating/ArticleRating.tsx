@@ -26,7 +26,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
 
   const [rateArticleMutation] = useRateArticle();
 
-  const rating = data?.[0];
+  const rating = data?.rate;
 
   const handleRateArticle = useCallback(
     (rate: number, feedback: string = "") => {
@@ -66,7 +66,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
     <RatingCard
       onAccept={onAccept}
       onCancel={onCancel}
-      rate={rating?.rate}
+      rate={rating}
       className={className}
       title={t("Оцените статью")}
       feedbackTitle={t(
