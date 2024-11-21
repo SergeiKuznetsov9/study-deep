@@ -4,39 +4,47 @@ import HomeIcon from "@/shared/assets/icons/home.svg";
 import AboutIcon from "@/shared/assets/icons/about.svg";
 import ProfileIcon from "@/shared/assets/icons/profile.svg";
 import ArticleIcon from "@/shared/assets/icons/article.svg";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
+import {
+  getRouteAbout,
+  getRouteArticles,
+  getRouteMain,
+  getRouteProfile,
+} from "@/shared/const/router";
 import { SideBarItemType } from "../types/sidebar";
+import { buildSelector } from "@/shared/lib/store";
 
-export const getSidebarItems = createSelector(getUserAuthData, (userData) => {
-  const sideBarItemsList: SideBarItemType[] = [
-    {
-      path: RoutePath.main,
-      text: "Главная страница",
-      Icon: HomeIcon,
-    },
-    {
-      path: RoutePath.about,
-      text: "О сайте",
-      Icon: AboutIcon,
-    },
-  ];
-
-  if (userData) {
-    sideBarItemsList.push(
+export const [useSidebarItems, getSidebarItems] = buildSelector(
+  createSelector(getUserAuthData, (userData) => {
+    const sideBarItemsList: SideBarItemType[] = [
       {
-        path: `${RoutePath.profile}${userData.id}`,
-        text: "Профиль",
-        Icon: ProfileIcon,
-        authOnly: true,
+        path: getRouteMain(),
+        text: "Главная страница",
+        Icon: HomeIcon,
       },
       {
-        path: RoutePath.articles,
-        text: "Статьи",
-        Icon: ArticleIcon,
-        authOnly: true,
-      }
-    );
-  }
+        path: getRouteAbout(),
+        text: "О сайте",
+        Icon: AboutIcon,
+      },
+    ];
 
-  return sideBarItemsList;
-});
+    if (userData) {
+      sideBarItemsList.push(
+        {
+          path: getRouteProfile(userData.username),
+          text: "Профиль",
+          Icon: ProfileIcon,
+          authOnly: true,
+        },
+        {
+          path: getRouteArticles(),
+          text: "Статьи",
+          Icon: ArticleIcon,
+          authOnly: true,
+        }
+      );
+    }
+
+    return sideBarItemsList;
+  })
+);

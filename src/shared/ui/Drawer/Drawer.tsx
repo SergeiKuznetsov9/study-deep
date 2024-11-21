@@ -1,10 +1,10 @@
 import { FC, ReactNode, useEffect, useState } from "react";
 
-import { useTheme } from "@/app/providers/ThemeProvider";
 import {
   AnimationProvider,
   useAnimationLibs,
 } from "@/shared/lib/components/AnimationProvider";
+import { useTheme } from "@/shared/lib/hooks/useTheme/useTheme";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { Portal } from "../Portal/Portal";
 import { Overlay } from "../Overlay/Overlay";

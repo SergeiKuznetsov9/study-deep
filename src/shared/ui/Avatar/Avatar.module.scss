@@ -1,3 +1,11 @@
 .Avatar {
-    border-radius: 50%;
+  border-radius: 50%;
+}
+
+.invertedAvatarIcon {
+  fill: var(--inverted-primary-color);
+}
+
+.avatarIcon {
+  fill: var(--primary-color);
 }

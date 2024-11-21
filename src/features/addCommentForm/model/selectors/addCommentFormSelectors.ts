@@ -1,6 +1,6 @@
 import { StateSchema } from "@/app/providers/StoreProvider";
+import { buildSelector } from "@/shared/lib/store";
 
-export const getAddCommentFormText = (state: StateSchema) =>
-  state.addCommentForm?.text ?? "";
-export const getAddCommentFormError = (state: StateSchema) =>
-  state.addCommentForm?.error;
+export const [useAddCommentFormText] = buildSelector(
+  (state: StateSchema) => state.addCommentForm?.text ?? ""
+);

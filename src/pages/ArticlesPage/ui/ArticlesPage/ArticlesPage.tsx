@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from "react";
+import { FC, memo, useCallback, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Page } from "@/widgets/Page";
@@ -14,6 +14,10 @@ import { initArticlesPage } from "../../model/services/initArticlesPage/initArti
 import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 import { ArticlesInfinitList } from "../ArticlesInfinitList/ArticlesInfinitList";
 import { articlesPageReducer } from "../../model/slices/articlesPageSlice";
+import {
+  useArticlesPageHasMore,
+  useArticlesPageIsLoading,
+} from "../../model/selectors/articlesPageSelectors";
 
 import cls from "./ArticlesPage.module.scss";
 
@@ -26,7 +30,10 @@ const reducers: ReducersList = {
 };
 
 const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
   const dispatch = useAppDispatch();
+  const isLoading = useArticlesPageIsLoading();
+  const isHasMoreArticles = useArticlesPageHasMore();
 
   const [searchParams] = useSearchParams();
 
@@ -38,14 +45,21 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
     dispatch(initArticlesPage(searchParams));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isHasMoreArticles && isIntersecting && !isLoading) {
+      dispatch(fetchNextArticlesPage());
+    }
+  }, [dispatch, isHasMoreArticles, isIntersecting, isLoading]);
+
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
       <Page
         className={classNames(cls.ArticlesPage, {}, [className])}
         onScrollEnd={onLoadNextPart}
+        setIsIntersecting={setIsIntersecting}
       >
         <ArticlesPageFilters />
-        <ArticlesInfinitList className={cls.list}/>
+        <ArticlesInfinitList className={cls.list} />
       </Page>
     </DynamicModuleLoader>
   );

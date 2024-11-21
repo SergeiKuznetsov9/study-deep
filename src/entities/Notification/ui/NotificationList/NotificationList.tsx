@@ -1,11 +1,13 @@
 import { FC } from "react";
 
+import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { VStack } from "@/shared/ui/Stack";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 import { useNotifications } from "../../api/notificationApi";
 import { NotificationItem } from "../NotificationItem/NotificationItem";
+
 import cls from "./NotificationList.module.scss";
 
 interface NotificationListProps {
@@ -13,7 +15,8 @@ interface NotificationListProps {
 }
 
 export const NotificationList: FC<NotificationListProps> = ({ className }) => {
-  const { data, isLoading } = useNotifications(null, {
+  const authData = useUserAuthData();
+  const { data, isLoading } = useNotifications(authData!._id, {
     pollingInterval: 5000,
   });
 

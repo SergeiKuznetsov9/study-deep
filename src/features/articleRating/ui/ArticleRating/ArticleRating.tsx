@@ -1,10 +1,9 @@
 import { FC, useCallback } from "react";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
+import { useUserAuthData } from "@/entities/User";
 import { RatingCard } from "@/entities/Rating";
-import { getUserAuthData } from "@/entities/User";
-import { Skeleton } from "@/shared/ui/Skeleton/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 import {
   useGetArticleRating,
@@ -18,22 +17,22 @@ export interface ArticleRatingProps {
 
 const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
   const { t } = useTranslation();
-  const userData = useSelector(getUserAuthData);
+  const userData = useUserAuthData();
 
   const { data, isLoading } = useGetArticleRating({
     articleId,
-    userId: userData?.id ?? "",
+    userId: userData?._id ?? "",
   });
 
   const [rateArticleMutation] = useRateArticle();
 
-  const rating = data?.[0];
+  const rating = data?.rate;
 
   const handleRateArticle = useCallback(
     (rate: number, feedback: string = "") => {
       try {
         rateArticleMutation({
-          userId: userData?.id ?? "",
+          userId: userData?._id ?? "",
           articleId,
           rate,
           feedback,
@@ -42,7 +41,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
         console.error(error);
       }
     },
-    [articleId, rateArticleMutation, userData?.id]
+    [articleId, rateArticleMutation, userData?._id]
   );
 
   const onAccept = useCallback(
@@ -67,7 +66,7 @@ const ArticleRating: FC<ArticleRatingProps> = ({ className, articleId }) => {
     <RatingCard
       onAccept={onAccept}
       onCancel={onCancel}
-      rate={rating?.rate}
+      rate={rating}
       className={className}
       title={t("Оцените статью")}
       feedbackTitle={t(

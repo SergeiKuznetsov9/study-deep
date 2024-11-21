@@ -1,18 +1,17 @@
 import { FC, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 
-import { getUserAuthData } from "@/entities/User";
+import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Text } from "@/shared/ui/Text/Text";
-import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
+import { Text } from "@/shared/ui/Text";
+import { Button, ButtonTheme } from "@/shared/ui/Button";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { HStack } from "@/shared/ui/Stack";
 
-import { getProfileData } from "../../model/selectors/getProfileData/getProfileData";
+import { useProfileData } from "../../model/selectors/getProfileData/getProfileData";
 import { profileActions } from "../../model/slice/profileSlice";
 import { updateProfileData } from "../../model/services/updateProfileData/updateProfileData";
-import { getProfileReadonly } from "../../model/selectors/getProfileReadOnly/getProfileReadOnly";
+import { useProfileReadonly } from "../../model/selectors/getProfileReadOnly/getProfileReadOnly";
 
 interface ProfilePageHeaderProps {
   className?: string;
@@ -23,9 +22,9 @@ export const EditableProfilePageHeader: FC<ProfilePageHeaderProps> = ({
 }) => {
   const { t } = useTranslation("profile");
   const dispatch = useAppDispatch();
-  const authData = useAppSelector(getUserAuthData);
-  const profileData = useAppSelector(getProfileData);
-  const canEdit = authData?.id === profileData?.id;
+  const authData = useUserAuthData();
+  const profileData = useProfileData();
+  const canEdit = authData?._id === profileData?.id;
 
   const onEdit = useCallback(() => {
     dispatch(profileActions.setReadOnly(false));
@@ -39,7 +38,7 @@ export const EditableProfilePageHeader: FC<ProfilePageHeaderProps> = ({
     dispatch(updateProfileData());
   }, [dispatch]);
 
-  const readonly = useAppSelector(getProfileReadonly);
+  const readonly = useProfileReadonly();
 
   return (
     <HStack max justify="between" className={classNames("", {}, [className])}>

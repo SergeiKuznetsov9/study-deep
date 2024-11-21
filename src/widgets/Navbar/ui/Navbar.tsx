@@ -4,14 +4,13 @@ import { useTranslation } from "react-i18next";
 import { LoginModal } from "@/features/authByUserName";
 import { NotificationButton } from "@/features/notificationButton";
 import { AvatarDropdown } from "@/features/avatarDropdown";
-import { getUserAuthData } from "@/entities/User";
+import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
-import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
-import { Text, TextTheme } from "@/shared/ui/Text/Text";
-import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink/AppLink";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
+import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { Text, TextTheme } from "@/shared/ui/Text";
+import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink";
 import { HStack } from "@/shared/ui/Stack";
+import { getRouteArticleCreate } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";
 
@@ -22,7 +21,7 @@ interface NavbarPops {
 export const Navbar: FC<NavbarPops> = memo(({ className }) => {
   const { t } = useTranslation();
   const [isAuthModal, setIsAuthModal] = useState(false);
-  const authData = useAppSelector(getUserAuthData);
+  const authData = useUserAuthData();
 
   const onCloseModal = useCallback(() => setIsAuthModal(false), []);
   const onShowModal = useCallback(() => setIsAuthModal(true), []);
@@ -36,7 +35,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
           theme={TextTheme.INVERTED}
         />
         <AppLink
-          to={RoutePath.article_create}
+          to={getRouteArticleCreate()}
           theme={AppLinkTheme.SECONDARY}
           className={cls.createBtn}
         >

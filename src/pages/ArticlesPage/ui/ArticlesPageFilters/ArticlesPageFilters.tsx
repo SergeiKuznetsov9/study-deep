@@ -1,30 +1,27 @@
 import { FC, useCallback } from "react";
-import { classNames } from "@/shared/lib/classNames/classNames";
-import cls from "./ArticlesPageFilters.module.scss";
-import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useSelector } from "react-redux";
-import {
-  getArticlesPageOrder,
-  getArticlesPageSearch,
-  getArticlesPageSort,
-  getArticlesPageType,
-  getArticlesPageView,
-} from "../../model/selectors/articlesPageSelectors";
-import {
-  ArticleSortField,
-  ArticleTypeTabs,
-  ArticleView,
-  ArticleViewSelector,
-} from "@/entities/Article";
-import { articlesPageActions } from "../../model/slices/articlesPageSlice";
 import { useTranslation } from "react-i18next";
-import { Input } from "@/shared/ui/Input/Input";
-import { Card } from "@/shared/ui/Card/Card";
-import { ArticleSortSelector } from "@/entities/Article";
+
+import { ArticleSortSelector } from "@/features/articleSortSelector";
+import { ArticleViewSelector } from "@/features/articleViewSelector";
+import { ArticleTypeTabs } from "@/features/articleTypeTabs";
+import { ArticleSortField, ArticleType, ArticleView } from "@/entities/Article";
+import { Input } from "@/shared/ui/Input";
+import { Card } from "@/shared/ui/Card";
 import { SortOrder } from "@/shared/types";
-import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
 import { useDebounce } from "@/shared/lib/hooks/useDebounce/useDebounce";
-import { ArticleType } from "@/entities/Article";
+import { classNames } from "@/shared/lib/classNames/classNames";
+import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+
+import { articlesPageActions } from "../../model/slices/articlesPageSlice";
+import { fetchArticlesList } from "../../model/services/fetchArticlesList/fetchArticlesList";
+import {
+  useArticlesPageOrder,
+  useArticlesPageSearch,
+  useArticlesPageSort,
+  useArticlesPageType,
+  useArticlesPageView,
+} from "../../model/selectors/articlesPageSelectors";
+import cls from "./ArticlesPageFilters.module.scss";
 
 interface ArticlesPageFiltersProps {
   className?: string;
@@ -35,11 +32,11 @@ export const ArticlesPageFilters: FC<ArticlesPageFiltersProps> = ({
 }) => {
   const { t } = useTranslation("article");
   const dispatch = useAppDispatch();
-  const view = useSelector(getArticlesPageView);
-  const sort = useSelector(getArticlesPageSort);
-  const order = useSelector(getArticlesPageOrder);
-  const search = useSelector(getArticlesPageSearch);
-  const type = useSelector(getArticlesPageType);
+  const view = useArticlesPageView();
+  const sort = useArticlesPageSort();
+  const order = useArticlesPageOrder();
+  const search = useArticlesPageSearch();
+  const type = useArticlesPageType();
 
   const fetchData = useCallback(() => {
     dispatch(fetchArticlesList({ replace: true }));

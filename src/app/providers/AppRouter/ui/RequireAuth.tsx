@@ -1,9 +1,8 @@
 import { useMemo } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
-import { getUserAuthData, getUserRoles, UserRole } from "@/entities/User";
-import { RoutePath } from "@/shared/config/routeConfig/routeConfig";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
+import { useUserRoles, UserRole, useUserAuthData } from "@/entities/User";
+import { getRouteForbidden, getRouteMain } from "@/shared/const/router";
 
 interface RequireAuthProps {
   children: JSX.Element;
@@ -11,8 +10,8 @@ interface RequireAuthProps {
 }
 
 export function RequireAuth({ children, roles }: RequireAuthProps) {
-  const auth = useAppSelector(getUserAuthData);
-  const userRoles = useAppSelector(getUserRoles);
+  const auth = useUserAuthData();
+  const userRoles = useUserRoles();
   const location = useLocation();
 
   const hasRequiredRoles = useMemo(() => {
@@ -23,12 +22,12 @@ export function RequireAuth({ children, roles }: RequireAuthProps) {
   }, [roles]);
 
   if (!auth) {
-    return <Navigate to={RoutePath.main} state={{ from: location }} replace />;
+    return <Navigate to={getRouteMain()} state={{ from: location }} replace />;
   }
 
   if (!hasRequiredRoles) {
     return (
-      <Navigate to={RoutePath.forbidden} state={{ from: location }} replace />
+      <Navigate to={getRouteForbidden()} state={{ from: location }} replace />
     );
   }
 

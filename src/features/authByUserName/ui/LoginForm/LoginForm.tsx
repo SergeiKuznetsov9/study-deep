@@ -1,22 +1,24 @@
 import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/Button/Button";
-import { Input } from "@/shared/ui/Input/Input";
-import { loginActions, loginReducer } from "../../model/slice/loginSlice";
-import { loginByUserName } from "../../model/services/loginByUserName/loginByUserName";
+import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { useAppSelector } from "@/shared/lib/hooks/useAppSelector/useAppSelector";
-import { Text, TextTheme } from "@/shared/ui/Text/Text";
-import cls from "./LoginForm.module.scss";
-import { getLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
-import { getLoginError } from "../../model/selectors/getLoginError/getLoginError";
-import { getLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
-import { getLoginUserName } from "../../model/selectors/getLoginUserName/getLoginUserName";
+import { Text, TextTheme } from "@/shared/ui/Text";
+
 import {
   DynamicModuleLoader,
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
+
+import { loginActions, loginReducer } from "../../model/slice/loginSlice";
+import { loginByUserName } from "../../model/services/loginByUserName/loginByUserName";
+import { useLoginUserName } from "../../model/selectors/getLoginUserName/getLoginUserName";
+import { useLoginPassword } from "../../model/selectors/getLoginPassword/getLoginPassword";
+import { useLoginError } from "../../model/selectors/getLoginError/getLoginError";
+import { useLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
+import cls from "./LoginForm.module.scss";
 
 interface LoginFormProps {
   className?: string;
@@ -31,10 +33,10 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const username = useAppSelector(getLoginUserName);
-  const password = useAppSelector(getLoginPassword);
-  const error = useAppSelector(getLoginError);
-  const isLoading = useAppSelector(getLoginIsLoading);
+  const username = useLoginUserName();
+  const password = useLoginPassword();
+  const error = useLoginError();
+  const isLoading = useLoginIsLoading();
 
   const onChangeUserName = useCallback(
     (value: string) => {

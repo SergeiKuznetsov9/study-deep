@@ -3,13 +3,13 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 
 import { ArticleList } from "@/entities/Article";
-import { Text } from "@/shared/ui/Text/Text";
+import { Text } from "@/shared/ui/Text";
 
 import { getArticles } from "../../model/slices/articlesPageSlice";
 import {
-  getArticlesPageError,
-  getArticlesPageIsLoading,
-  getArticlesPageView,
+  useArticlesPageError,
+  useArticlesPageIsLoading,
+  useArticlesPageView,
 } from "../../model/selectors/articlesPageSelectors";
 
 interface ArticlesInfinitListProps {
@@ -20,9 +20,9 @@ export const ArticlesInfinitList: FC<ArticlesInfinitListProps> = ({
   className,
 }) => {
   const articles = useSelector(getArticles.selectAll);
-  const isLoading = useSelector(getArticlesPageIsLoading);
-  const error = useSelector(getArticlesPageError);
-  const view = useSelector(getArticlesPageView);
+  const isLoading = useArticlesPageIsLoading();
+  const error = useArticlesPageError();
+  const view = useArticlesPageView();
   const { t } = useTranslation();
 
   if (error) {

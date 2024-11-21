@@ -12,40 +12,57 @@ export const buildPlugins = ({
   paths,
   isDev,
   apiUrl,
-}: BuildOptions): webpack.WebpackPluginInstance[] => [
-  new HtmlWebpackPlugin({
-    template: paths.html,
-  }),
+}: BuildOptions): webpack.WebpackPluginInstance[] => {
+  const isProd = !isDev;
 
-  new webpack.ProgressPlugin(),
-  new MiniCssExtractPlugin({
-    filename: "css/[name].[contenthash:8].css",
-    chunkFilename: "css/[name].[contenthash:8].css",
-  }),
-  new webpack.DefinePlugin({
-    __IS_DEV__: JSON.stringify(isDev),
-    __API__: JSON.stringify(apiUrl),
-  }),
-  new CopyPlugin({
-    patterns: [{ from: paths.locales, to: paths.buildLocales }],
-  }),
-  new webpack.HotModuleReplacementPlugin(),
-  new BundleAnalyzerPlugin({
-    openAnalyzer: false,
-  }),
+  const plugins = [
+    new HtmlWebpackPlugin({
+      template: paths.html,
+    }),
 
-  new CircularDependencyPlugin({
-    exclude: /node_modules/,
-    // add errors to webpack instead of warnings
-    failOnError: true,
-  }),
-  new ForkTsCheckerWebpackPlugin({
-    typescript: {
-      diagnosticOptions: {
-        semantic: true,
-        syntactic: true,
+    new webpack.ProgressPlugin(),
+    new webpack.DefinePlugin({
+      __IS_DEV__: JSON.stringify(isDev),
+      __API__: JSON.stringify(apiUrl),
+    }),
+    new CircularDependencyPlugin({
+      exclude: /node_modules/,
+      // add errors to webpack instead of warnings
+      failOnError: true,
+    }),
+    new ForkTsCheckerWebpackPlugin({
+      typescript: {
+        diagnosticOptions: {
+          semantic: true,
+          syntactic: true,
+        },
+        mode: "write-references",
       },
-      mode: "write-references",
-    },
-  }),
-];
+    }),
+  ];
+
+  if (isDev) {
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+    plugins.push(
+      new BundleAnalyzerPlugin({
+        openAnalyzer: false,
+      })
+    );
+  }
+
+  if (isProd) {
+    plugins.push(
+      new MiniCssExtractPlugin({
+        filename: "css/[name].[contenthash:8].css",
+        chunkFilename: "css/[name].[contenthash:8].css",
+      })
+    );
+    plugins.push(
+      new CopyPlugin({
+        patterns: [{ from: paths.locales, to: paths.buildLocales }],
+      })
+    );
+  }
+
+  return plugins;
+};

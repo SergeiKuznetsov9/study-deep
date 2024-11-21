@@ -1,4 +1,6 @@
 import { StateSchema } from "@/app/providers/StoreProvider";
+import { buildSelector } from "@/shared/lib/store";
 
-export const getLoginUserName = (state: StateSchema) =>
-  state?.loginForm?.username || "";
+export const [useLoginUserName] = buildSelector(
+  (state: StateSchema) => state?.loginForm?.username || ""
+);
