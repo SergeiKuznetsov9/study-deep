@@ -15,7 +15,6 @@ import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters"
 import { ArticlesInfinitList } from "../ArticlesInfinitList/ArticlesInfinitList";
 import { articlesPageReducer } from "../../model/slices/articlesPageSlice";
 import {
-  useArticleItemById,
   useArticlesPageHasMore,
   useArticlesPageIsLoading,
 } from "../../model/selectors/articlesPageSelectors";
@@ -37,9 +36,6 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
   const isHasMoreArticles = useArticlesPageHasMore();
 
   const [searchParams] = useSearchParams();
-  
-  const articleItem = useArticleItemById('670e4a0655e53c8e6099fcfe')
-  console.log(articleItem)
 
   const onLoadNextPart = useCallback(() => {
     dispatch(fetchNextArticlesPage());
