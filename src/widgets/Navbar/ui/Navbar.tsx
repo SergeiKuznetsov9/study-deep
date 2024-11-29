@@ -28,19 +28,25 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
 
   if (authData) {
     return (
-      <header className={classNames(cls.navbar, {}, [className])}>
-        <Text
-          className={cls.appName}
-          title="Wayfarer App"
-          theme={TextTheme.INVERTED}
-        />
-        <AppLink
-          to={getRouteArticleCreate()}
-          theme={AppLinkTheme.SECONDARY}
-          className={cls.createBtn}
-        >
-          {t("Создать статью")}
-        </AppLink>
+      // <header className={classNames(cls.navbar, {}, [className])}>
+      //   <Text
+      //     className={cls.appName}
+      //     title="Wayfarer App"
+      //     theme={TextTheme.INVERTED}
+      //   />
+      //   <AppLink
+      //     to={getRouteArticleCreate()}
+      //     theme={AppLinkTheme.SECONDARY}
+      //     className={cls.createBtn}
+      //   >
+      //     {t("Создать статью")}
+      //   </AppLink>
+      //   <HStack gap="16" className={cls.actions}>
+      //     <NotificationButton />
+      //     <AvatarDropdown authData={authData} />
+      //   </HStack>
+      // </header>
+      <header className={classNames(cls.Navbar, {}, [className])}>
         <HStack gap="16" className={cls.actions}>
           <NotificationButton />
           <AvatarDropdown authData={authData} />
@@ -50,7 +56,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
   }
 
   return (
-    <header className={classNames(cls.navbar, {}, [className])}>
+    <header className={classNames(cls.Navbar, {}, [className])}>
       <Button
         theme={ButtonTheme.CLEAR_INVERTED}
         className={cls.links}

@@ -10,12 +10,10 @@ body {
 }
 
 .app {
-  background: var(--bg-color);
+  background: var(--bg-redesigned);
   min-height: 100vh;
-}
-
-.content-page {
-  display: flex;
+  font: var(--font-m-redesigned);
+  color: var(--text-redesigned);
 }
 
 *::-webkit-scrollbar {

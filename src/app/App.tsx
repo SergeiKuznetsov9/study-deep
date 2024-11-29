@@ -3,12 +3,13 @@ import { AppRouter } from "./providers/AppRouter";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
-import { useUserInited, userActions } from "@/entities/User";
+import { /* useUserInited,  */ userActions } from "@/entities/User";
 import "@/shared/config/i18n/i18n";
+import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const App = () => {
   const dispatch = useAppDispatch();
-  const isUserInit = useUserInited();
+  // const isUserInit = useUserInited();
 
   useEffect(() => {
     dispatch(userActions.initAuthData());
@@ -17,11 +18,12 @@ export const App = () => {
   return (
     <div className="app">
       <Suspense fallback={""}>
-        <Navbar />
-        <div className="content-page">
-          <Sidebar />
-          {isUserInit && <AppRouter />}
-        </div>
+        <MainLayout
+          header={<Navbar />}
+          content={<AppRouter />}
+          sidebar={<Sidebar />}
+          toolbar={<div>TOOLBAR</div>}
+        />
       </Suspense>
     </div>
   );
