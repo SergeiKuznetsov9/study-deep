@@ -2,15 +2,15 @@ import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Text } from "@/shared/ui/Text";
+import { Text } from "@/shared/ui/deprecated/Text";
 import EyeIcon from "@/shared/assets/icons/eye.svg";
-import { Icon } from "@/shared/ui/Icon";
-import { Card } from "@/shared/ui/Card";
-import { Avatar } from "@/shared/ui/Avatar/Avatar";
-import { AppLink } from "@/shared/ui/AppLink/AppLink";
-import { Button, ButtonTheme } from "@/shared/ui/Button";
-import { AppImage } from "@/shared/ui/AppImage/AppImage";
-import { Skeleton } from "@/shared/ui/Skeleton";
+import { Icon } from "@/shared/ui/deprecated/Icon";
+import { Card } from "@/shared/ui/deprecated/Card";
+import { Avatar } from "@/shared/ui/deprecated/Avatar/Avatar";
+import { AppLink } from "@/shared/ui/deprecated/AppLink/AppLink";
+import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { AppImage } from "@/shared/ui/deprecated/AppImage/AppImage";
+import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
 import { getRouteArticleDetails } from "@/shared/const/router";
 
 import { Article, ArticleTextBlock } from "../../model/types/article";

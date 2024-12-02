@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { VStack } from "@/shared/ui/Stack";
-import { Skeleton } from "@/shared/ui/Skeleton";
+import { VStack } from "@/shared/ui/deprecated/Stack";
+import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
 
 import { useNotifications } from "../../api/notificationApi";
 import { NotificationItem } from "../NotificationItem/NotificationItem";

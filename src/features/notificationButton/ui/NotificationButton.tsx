@@ -3,11 +3,11 @@ import { BrowserView, MobileView } from "react-device-detect";
 
 import { NotificationList } from "@/entities/Notification";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Popover } from "@/shared/ui/Popover";
-import { Icon } from "@/shared/ui/Icon";
-import RingBellIcon from "@/shared/assets/icons/bell-ring.svg";
-import { Drawer } from "@/shared/ui/Drawer";
-import { Button, ButtonTheme } from "@/shared/ui/Button";
+import { Popover } from "@/shared/ui/deprecated/Popover";
+import { Icon } from "@/shared/ui/deprecated/Icon";
+import RingBellIcon from "@/shared/assets/icons/deprecated/bell-ring.svg";
+import { Drawer } from "@/shared/ui/deprecated/Drawer";
+import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
 
 import cls from "./NotificationButton.module.scss";
 

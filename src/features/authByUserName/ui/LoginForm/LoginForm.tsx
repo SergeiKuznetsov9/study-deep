@@ -2,10 +2,10 @@ import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/Button";
-import { Input } from "@/shared/ui/Input";
+import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Input } from "@/shared/ui/deprecated/Input";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextTheme } from "@/shared/ui/Text";
+import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
 
 import {
   DynamicModuleLoader,

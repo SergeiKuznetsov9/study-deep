@@ -6,10 +6,10 @@ import { NotificationButton } from "@/features/notificationButton";
 import { AvatarDropdown } from "@/features/avatarDropdown";
 import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/Button";
-import { Text, TextTheme } from "@/shared/ui/Text";
-import { AppLink, AppLinkTheme } from "@/shared/ui/AppLink";
-import { HStack } from "@/shared/ui/Stack";
+import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
+import { AppLink, AppLinkTheme } from "@/shared/ui/deprecated/AppLink";
+import { HStack } from "@/shared/ui/deprecated/Stack";
 import { getRouteArticleCreate } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";

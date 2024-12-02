@@ -1,11 +1,11 @@
 import { FC } from "react";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Avatar } from "@/shared/ui/Avatar";
-import { Text } from "@/shared/ui/Text/Text";
-import { Skeleton } from "@/shared/ui/Skeleton";
-import { VStack } from "@/shared/ui/Stack";
-import { AppLink } from "@/shared/ui/AppLink";
+import { Avatar } from "@/shared/ui/deprecated/Avatar";
+import { Text } from "@/shared/ui/deprecated/Text/Text";
+import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
+import { VStack } from "@/shared/ui/deprecated/Stack";
+import { AppLink } from "@/shared/ui/deprecated/AppLink";
 
 import { Comment } from "../../model/types";
 import cls from "./CommentCard.module.scss";

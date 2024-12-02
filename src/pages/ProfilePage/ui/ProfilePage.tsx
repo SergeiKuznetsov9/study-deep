@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { Page } from "@/widgets/Page";
 import { EditableProfileCard } from "@/features/editableProfileCard";
-import { VStack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/Text";
+import { VStack } from "@/shared/ui/deprecated/Stack";
+import { Text } from "@/shared/ui/deprecated/Text";
 
 const ProfilePage = () => {
   const { username } = useParams<{ username: string }>();

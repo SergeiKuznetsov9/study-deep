@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/Button";
-import { HStack } from "@/shared/ui/Stack";
+import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { HStack } from "@/shared/ui/deprecated/Stack";
 import { getRouteArticleEdit, getRouteArticles } from "@/shared/const/router";
 import { useArticleDetailsData } from "@/entities/Article";
 import { useCanEditArticle } from "../../model/selectors/article";
