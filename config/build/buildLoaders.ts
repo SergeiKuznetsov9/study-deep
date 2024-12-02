@@ -27,7 +27,26 @@ export const buildLoaders = (options: BuildOptions): webpack.RuleSetRule[] => {
   const svgLoader = {
     test: /\.svg$/i,
     issuer: /\.[jt]sx?$/,
-    use: ["@svgr/webpack"],
+    use: [
+      {
+        loader: "@svgr/webpack",
+        // При помощи этой настройки из используемых css выпиливаются все размеры и цвета
+        // После этого ими удобнее управлять
+        options: {
+          icon: true,
+          svgoConfig: {
+            plugins: [
+              {
+                name: "convertColors",
+                params: {
+                  currentColor: true,
+                },
+              },
+            ],
+          },
+        },
+      },
+    ],
   };
 
   const fileLoader = {
