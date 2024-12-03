@@ -3,7 +3,8 @@ import { useTranslation } from "react-i18next";
 
 import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { AppLink, AppLinkTheme } from "@/shared/ui/deprecated/AppLink";
+import { AppLink } from "@/shared/ui/AppLink";
+import { Icon } from "@/shared/ui/Icon";
 
 import { SideBarItemType } from "../../model/types/sidebar";
 import cls from "./SideBarItem.module.scss";
@@ -22,15 +23,15 @@ export const SideBarItem: FC<SideBarItemProps> = memo(({ item, collapsed }) => {
     return null;
   }
 
-  const { path, text, Icon } = item;
+  const { path, text, Icon: icon } = item;
 
   return (
     <AppLink
       to={path}
-      theme={AppLinkTheme.SECONDARY}
       className={classNames(cls.item, { [cls.collapsed]: collapsed })}
+      activeClassName={cls.active}
     >
-      <Icon className={cls.icon} />
+      <Icon Svg={icon} />
       <span className={cls.link}>{t(text)}</span>
     </AppLink>
   );

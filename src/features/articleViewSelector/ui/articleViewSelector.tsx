@@ -2,8 +2,8 @@ import { FC } from "react";
 
 import { ArticleView } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import ListIcon from "@/shared/assets/icons/list.svg";
-import TileIcon from "@/shared/assets/icons/tile.svg";
+import ListIcon from "@/shared/assets/icons/deprecated/list.svg";
+import TileIcon from "@/shared/assets/icons/deprecated/tile.svg";
 import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
 import { Icon } from "@/shared/ui/deprecated/Icon";
 

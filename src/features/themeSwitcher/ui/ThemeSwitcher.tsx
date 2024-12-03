@@ -1,17 +1,15 @@
 import { FC, memo, useEffect } from "react";
 
-import LightIcon from "@/shared/assets/icons/deprecated/light-theme.svg";
-import DarkIcon from "@/shared/assets/icons/deprecated/dark-theme.svg";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import ThemeIcon from "@/shared/assets/icons/theme.svg";
 import { useTheme } from "@/shared/lib/hooks/useTheme/useTheme";
 import { Theme } from "@/shared/const/theme";
-import { Icon } from "@/shared/ui/deprecated/Icon";
+import { Icon } from "@/shared/ui/Icon";
 
 interface ThemeSwitcherProps {
   className?: string;
 }
 
-export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
+export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(() => {
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -19,18 +17,5 @@ export const ThemeSwitcher: FC<ThemeSwitcherProps> = memo(({ className }) => {
     document.body.classList.add(theme);
   }, [theme]);
 
-  return (
-    <Button
-      onClick={toggleTheme}
-      className={className}
-      theme={ButtonTheme.CLEAR}
-    >
-      <Icon
-        Svg={theme === Theme.LIGHT ? DarkIcon : LightIcon}
-        width={"40px"}
-        height={"40px"}
-        inverted
-      />
-    </Button>
-  );
+  return <Icon Svg={ThemeIcon} clickable onClick={toggleTheme} />;
 });

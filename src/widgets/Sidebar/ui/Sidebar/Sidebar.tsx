@@ -4,7 +4,8 @@ import { ThemeSwitcher } from "@/features/themeSwitcher";
 import { LangSwitcher } from "@/features/langSwitcher";
 import { classNames } from "@/shared/lib/classNames/classNames";
 import { VStack } from "@/shared/ui/deprecated/Stack";
-import { Button, ButtonSize, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Icon } from "@/shared/ui/Icon";
+import ArrowIcon from "@/shared/assets/icons/arrow-bottom.svg";
 
 import { SideBarItem } from "../SideBarItem/SideBarItem";
 import cls from "./Sidebar.module.scss";
@@ -19,7 +20,9 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
 
   const [collapsed, setCollapsed] = useState(false);
 
-  const onToggle = () => setCollapsed((prev) => !prev);
+  const onToggle = () => {
+    setCollapsed((prev) => !prev);
+  };
 
   const itemsList = useMemo(
     () =>
@@ -36,23 +39,18 @@ export const Sidebar: FC<SidebarProps> = memo(({ className }) => {
         className,
       ])}
     >
-      <Button
-        data-testid="sidebar-toggle"
-        onClick={onToggle}
-        type="button"
-        className={cls.collapsBtn}
-        theme={ButtonTheme.BACKGROUND_INVERTED}
-        size={ButtonSize.L}
-        square
-      >
-        {collapsed ? ">" : "<"}
-      </Button>
       <VStack role="navigation" gap={"8"} className={cls.items}>
         {itemsList}
       </VStack>
+      <Icon
+        clickable
+        onClick={onToggle}
+        className={cls.collapsBtn}
+        Svg={ArrowIcon}
+      />
       <div className={cls.switchers}>
         <ThemeSwitcher />
-        <LangSwitcher className={cls.lang} short={collapsed} />
+        <LangSwitcher short={collapsed} />
       </div>
     </aside>
   );

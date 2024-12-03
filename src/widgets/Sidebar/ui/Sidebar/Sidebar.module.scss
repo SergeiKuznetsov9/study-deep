@@ -1,85 +1,52 @@
-// .Sidebar {
-//   height: calc(100vh - var(--navbar-height));
-//   width: var(--sidebar-width);
-//   background-color: var(--inverted-bg-color);
-//   position: relative;
-//   transition: width 0.3s;
-// }
-
-// .switchers {
-//   position: absolute;
-//   bottom: 20px;
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-// }
-
-// .lang {
-//   margin-left: 20px;
-// }
-
-// .collapsBtn {
-//   position: absolute;
-//   right: -32px;
-//   bottom: 32px;
-// }
-
-// .items {
-//   margin-top: 20px;
-//   margin-left: 30px;
-// }
-
-// .collapsed {
-//   width: var(--sidebar-width-collapsed);
-
-//   .switchers {
-//     flex-direction: column;
-//     align-items: center;
-//   }
-
-//   .lang {
-//     margin-left: 0;
-//   }
-// }
 .Sidebar {
+  position: relative;
   background-color: var(--light-bg-redesigned);
   width: 220px;
   height: 100%;
   border-radius: 32px;
+  padding-top: 4px;
+
+  .items {
+    margin-top: 40px;
+  }
+
+  .collapsBtn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: rotate(90deg);
+  }
+
+  .switchers {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+  }
 }
 
-// .switchers {
-//   position: absolute;
-//   bottom: 20px;
-//   display: flex;
-//   justify-content: center;
-//   width: 100%;
-// }
+.collapsed {
+  width: 50px;
 
-// .lang {
-//   margin-left: 20px;
-// }
+  .items {
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+  }
 
-// .collapsBtn {
-//   position: absolute;
-//   right: -32px;
-//   bottom: 32px;
-// }
+  .switchers {
+    flex-direction: column;
+    align-items: center;
+  }
 
-// .items {
-//   margin-top: 20px;
-//   margin-left: 30px;
-// }
+  .collapsBtn {
+    transform: rotate(-90deg);
+  }
 
-// .collapsed {
-//   width: var(--sidebar-width-collapsed);
-
-//   .switchers {
-//     flex-direction: column;
-//     align-items: center;
-//   }
-
-//   .lang {
-//     margin-left: 0;
-//   }
-// }
+  .switchers {
+    flex-direction: column;
+    align-items: center;
+  }
+}
