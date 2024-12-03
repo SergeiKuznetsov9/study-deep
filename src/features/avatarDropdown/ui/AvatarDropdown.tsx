@@ -11,8 +11,8 @@ import {
   getRouteArticleAdminPanel,
   getRouteProfile,
 } from "@/shared/const/router";
-import { Dropdown } from "@/shared/ui/deprecated/Dropdown";
-import { Avatar } from "@/shared/ui/deprecated/Avatar";
+import { Dropdown } from "@/shared/ui/Dropdown";
+import { Avatar } from "@/shared/ui/Avatar";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 
 interface AvatarDropdownProps {
@@ -52,9 +52,7 @@ export const AvatarDropdown: FC<AvatarDropdownProps> = ({ authData }) => {
         },
         { id: "2", content: t("Выйти"), onClick: onLogout },
       ]}
-      trigger={
-        <Avatar size={30} src={authData.avatar} fallbackInverted={true} />
-      }
+      trigger={<Avatar size={40} src={authData.avatar} />}
     />
   );
 };

@@ -1,0 +1,39 @@
+.ListBox {
+  position: relative;
+  width: fit-content;
+}
+
+.trigger {
+  background: none;
+  border: none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.options {
+  background: var(--dark-bg-redesigned);
+  position: absolute;
+  z-index: var(--select-dropdown);
+
+  box-shadow: 4px 4px 8px var(--dark-bg-redesigned);
+
+  border-radius: 18px;
+  border: 1px solid var(--accent-redesigned);
+}
+
+.item {
+  padding: 10px 20px;
+}
+
+.focus {
+  background: var(--light-bg-redesigned);
+}
+
+.disabled {
+  opacity: 0.7;
+}
+
+.label {
+  margin-right: 4px;
+}
