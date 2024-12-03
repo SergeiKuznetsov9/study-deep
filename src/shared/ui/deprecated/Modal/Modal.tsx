@@ -3,8 +3,8 @@ import { animated, useSpring } from "@react-spring/web";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
 
-import { Portal } from "../Portal/Portal";
-import { Overlay } from "../Overlay/Overlay";
+import { Portal } from "../../Portal/Portal";
+import { Overlay } from "../../Overlay/Overlay";
 import cls from "./Modal.module.scss";
 
 interface ModalProps {

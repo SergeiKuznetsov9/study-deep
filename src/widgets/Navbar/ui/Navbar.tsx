@@ -9,7 +9,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
 import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
 import { AppLink, AppLinkTheme } from "@/shared/ui/deprecated/AppLink";
-import { HStack } from "@/shared/ui/deprecated/Stack";
+import { HStack } from "@/shared/ui/Stack";
 import { getRouteArticleCreate } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";

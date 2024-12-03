@@ -3,7 +3,7 @@ import { FC, memo, useMemo, useState } from "react";
 import { ThemeSwitcher } from "@/features/themeSwitcher";
 import { LangSwitcher } from "@/features/langSwitcher";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { VStack } from "@/shared/ui/deprecated/Stack";
+import { VStack } from "@/shared/ui/Stack";
 import { Icon } from "@/shared/ui/Icon";
 import ArrowIcon from "@/shared/assets/icons/arrow-bottom.svg";
 

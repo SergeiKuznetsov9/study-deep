@@ -13,7 +13,7 @@ import { Avatar } from "@/shared/ui/deprecated/Avatar";
 import EyeIcon from "@/shared/assets/icons/eye.svg";
 import CalendarIcon from "@/shared/assets/icons/deprecated/calendar.svg";
 import { Icon } from "@/shared/ui/deprecated/Icon";
-import { HStack, VStack } from "@/shared/ui/deprecated/Stack";
+import { HStack, VStack } from "@/shared/ui/Stack";
 
 import { ArticleBlockType } from "../../model/const/const";
 import { ArticleBlock } from "../../model/types/article";

@@ -12,10 +12,6 @@ interface AppImageProps extends ImgHTMLAttributes<HTMLImageElement> {
   errorFallback?: ReactElement;
 }
 
-/**
- * Устарел, необходимо использовать новый компонент
- * @deprecated
- */
 export const AppImage: FC<AppImageProps> = ({
   className,
   src,

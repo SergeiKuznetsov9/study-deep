@@ -6,7 +6,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Text } from "@/shared/ui/deprecated/Text";
 import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { HStack } from "@/shared/ui/deprecated/Stack";
+import { HStack } from "@/shared/ui/Stack";
 
 import { useProfileData } from "../../model/selectors/getProfileData/getProfileData";
 import { profileActions } from "../../model/slice/profileSlice";

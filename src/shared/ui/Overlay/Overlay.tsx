@@ -8,10 +8,6 @@ interface OverlayProps {
   onClick?: () => void;
 }
 
-/**
- * Устарел, необходимо использовать новый компонент
- * @deprecated
- */
 export const Overlay: FC<OverlayProps> = ({ className, onClick }) => (
   <div
     onClick={onClick}

@@ -9,7 +9,7 @@ import { Card } from "@/shared/ui/deprecated/Card";
 import { Avatar } from "@/shared/ui/deprecated/Avatar/Avatar";
 import { AppLink } from "@/shared/ui/deprecated/AppLink/AppLink";
 import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
-import { AppImage } from "@/shared/ui/deprecated/AppImage/AppImage";
+import { AppImage } from "@/shared/ui/AppImage/AppImage";
 import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
 import { getRouteArticleDetails } from "@/shared/const/router";
 

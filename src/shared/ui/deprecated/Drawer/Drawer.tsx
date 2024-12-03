@@ -6,8 +6,8 @@ import {
 } from "@/shared/lib/components/AnimationProvider";
 import { useTheme } from "@/shared/lib/hooks/useTheme/useTheme";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Portal } from "../Portal";
-import { Overlay } from "../Overlay";
+import { Portal } from "../../Portal";
+import { Overlay } from "../../Overlay";
 
 import cls from "./Drawer.module.scss";
 

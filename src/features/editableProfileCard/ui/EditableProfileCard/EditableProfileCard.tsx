@@ -10,7 +10,7 @@ import {
   DynamicModuleLoader,
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
-import { VStack } from "@/shared/ui/deprecated/Stack";
+import { VStack } from "@/shared/ui/Stack";
 
 import { useProfileForm } from "../../model/selectors/getProfileForm/getProfileForm";
 import { useProfileError } from "../../model/selectors/getProfileError/getProfileError";
