@@ -1,21 +1,16 @@
-import { useCallback, useRef, UIEvent } from "react";
+import { useCallback, useRef } from "react";
 
-export function useThrottle(
-  callback: (arg: UIEvent<HTMLDivElement>) => void,
-  delay: number
-) {
-  const throttleRef = useRef(false);
-
+export function useThrottle(callback: (arg: Event) => void, delay: number) {
+  const throttleRef = useRef<ReturnType<typeof setTimeout>>();
   return useCallback(
-    (arg: UIEvent<HTMLDivElement>) => {
-      if (!throttleRef.current) {
-        callback(arg);
-        throttleRef.current = true;
-
-        setTimeout(() => {
-          throttleRef.current = false;
-        }, delay);
+    (arg: Event) => {
+      if (throttleRef.current) {
+        clearTimeout(throttleRef.current);
       }
+
+      throttleRef.current = setTimeout(() => {
+        callback(arg);
+      }, delay);
     },
     [callback, delay]
   );

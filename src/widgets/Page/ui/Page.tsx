@@ -4,7 +4,6 @@ import {
   ReactNode,
   memo,
   useRef,
-  UIEvent,
   useEffect,
 } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
@@ -27,7 +26,6 @@ interface PageProps {
 
 export const Page: FC<PageProps> = memo(
   ({ className, children, onScrollEnd, setIsIntersecting }) => {
-    const wrapperRef = useRef() as MutableRefObject<HTMLDivElement>;
     const triggerRef = useRef() as MutableRefObject<HTMLDivElement>;
     const { pathname } = useLocation();
     const scrollPosition = useSelector((state: StateSchema) =>
@@ -38,33 +36,36 @@ export const Page: FC<PageProps> = memo(
 
     const isIntersecting = useInfiniteScroll({
       triggerRef,
-      wrapperRef,
+      wrapperRef: undefined,
       callback: onScrollEnd,
     });
 
-    const onScroll = useThrottle((event: UIEvent<HTMLDivElement>) => {
+    const scrollHandler = useThrottle((event: Event) => {
+      const scrollTop = (event.target as Document).scrollingElement?.scrollTop;
+
       dispatch(
         pageActions.setScrollPosition({
           path: pathname,
-          position: event.currentTarget.scrollTop,
+          position: scrollTop ?? 0,
         })
       );
-    }, 1000);
+    }, 100);
+
+    useEffect(() => {
+      document.addEventListener("scroll", scrollHandler);
+      return () => document.removeEventListener("scroll", scrollHandler);
+    }, []);
 
     useEffect(() => {
       setIsIntersecting?.(isIntersecting);
     }, [isIntersecting]);
 
     useEffect(() => {
-      wrapperRef.current.scrollTop = scrollPosition;
+      document!.firstElementChild!.scrollTop = scrollPosition;
     }, []);
 
     return (
-      <main
-        className={classNames(cls.Page, {}, [className])}
-        ref={wrapperRef}
-        onScroll={onScroll}
-      >
+      <main className={classNames(cls.Page, {}, [className])}>
         {children}
         {onScrollEnd && <div className={cls.trigger} ref={triggerRef} />}
       </main>
