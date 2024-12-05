@@ -2,10 +2,11 @@ import { FC } from "react";
 
 import { ArticleView } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import ListIcon from "@/shared/assets/icons/deprecated/list.svg";
-import TileIcon from "@/shared/assets/icons/deprecated/tile.svg";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
-import { Icon } from "@/shared/ui/deprecated/Icon";
+import ListIcon from "@/shared/assets/icons/burger.svg";
+import TileIcon from "@/shared/assets/icons/tile.svg";
+import { Icon } from "@/shared/ui/Icon";
+import { Card } from "@/shared/ui/Card";
+import { HStack } from "@/shared/ui/Stack";
 
 import cls from "./articleViewSelector.module.scss";
 
@@ -17,12 +18,12 @@ interface ArticleViewSelectorProps {
 
 const viewTypes = [
   {
-    view: ArticleView.SMALL,
-    icon: TileIcon,
-  },
-  {
     view: ArticleView.BIG,
     icon: ListIcon,
+  },
+  {
+    view: ArticleView.SMALL,
+    icon: TileIcon,
   },
 ];
 
@@ -36,21 +37,20 @@ export const ArticleViewSelector: FC<ArticleViewSelectorProps> = ({
   };
 
   return (
-    <div className={classNames(cls.ArticleViewSelector, {}, [className])}>
-      {viewTypes.map((viewType) => (
-        <Button
-          theme={ButtonTheme.CLEAR}
-          onClick={onClick(viewType.view)}
-          key={viewType.view}
-        >
+    <Card className={classNames("", {}, [className])} border="round">
+      <HStack gap="8">
+        {viewTypes.map((viewType) => (
           <Icon
+            key={viewType.view}
+            clickable
+            onClick={onClick(viewType.view)}
             Svg={viewType.icon}
-            className={classNames(cls.icon, {
+            className={classNames("", {
               [cls.notSelected]: viewType.view !== view,
             })}
           />
-        </Button>
-      ))}
-    </div>
+        ))}
+      </HStack>
+    </Card>
   );
 };

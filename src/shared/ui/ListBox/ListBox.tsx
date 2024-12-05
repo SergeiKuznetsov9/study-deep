@@ -10,23 +10,28 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 
 import cls from "./ListBox.module.scss";
 
-export interface ListBoxItem {
-  value: string;
+export interface ListBoxItem<T extends string> {
+  value: T;
   content: ReactNode;
   disabled?: boolean;
 }
 
-interface ListBoxProps {
-  items?: ListBoxItem[];
-  className?: string;
-  label?: string;
-  value?: string;
-  defaultValue?: string;
-  readonly?: boolean;
-  onChange: <T extends string>(value: T) => void;
+export interface SelectOption<T extends string> {
+  value: T;
+  content: string;
 }
 
-export const ListBox = ({
+interface ListBoxProps<T extends string> {
+  items?: ListBoxItem<T>[];
+  className?: string;
+  label?: string;
+  value?: T;
+  defaultValue?: string;
+  readonly?: boolean;
+  onChange: (value: T) => void;
+}
+
+export const ListBox = <T extends string>({
   items,
   className,
   value,
@@ -34,43 +39,46 @@ export const ListBox = ({
   onChange,
   readonly,
   label,
-}: ListBoxProps) => (
-  <HListbox
-    as={"div"}
-    className={classNames(cls.ListBox, {}, [className])}
-    value={value}
-    onChange={onChange}
-    disabled={readonly}
-  >
-    {label && <span className={cls.label}>{`${label}>`}</span>}
-    <ListboxButton className={cls.trigger} disabled={readonly}>
-      {value ?? defaultValue}
-    </ListboxButton>
-    <ListboxOptions
-      className={`${cls.options} w-[var(--button-width)]`}
-      style={{ width: "var(--button-width)" }}
-      anchor="bottom"
+}: ListBoxProps<T>) => {
+  const selectedItem = items?.find((item) => item.value === value);
+
+  return (
+    <HListbox
+      as={"div"}
+      className={classNames(cls.ListBox, {}, [className])}
+      value={value}
+      onChange={onChange}
+      disabled={readonly}
     >
-      {items?.map((item) => (
-        <ListboxOption
-          key={item.value}
-          value={item.value}
-          disabled={item.disabled}
-          as={Fragment}
-        >
-          {({ focus, selected }) => (
-            <li
-              className={classNames(cls.item, {
-                [cls.focus]: focus,
-                [cls.disabled]: item.disabled,
-              })}
-            >
-              {selected && "!!!"}
-              {item.content}
-            </li>
-          )}
-        </ListboxOption>
-      ))}
-    </ListboxOptions>
-  </HListbox>
-);
+      {label && <span className={cls.label}>{`${label}>`}</span>}
+      <ListboxButton className={cls.trigger} disabled={readonly}>
+        {selectedItem?.content ?? defaultValue}
+      </ListboxButton>
+      <ListboxOptions
+        className={`${cls.options} w-[var(--button-width)]`}
+        anchor="bottom start"
+      >
+        {items?.map((item) => (
+          <ListboxOption
+            key={item.value}
+            value={item.value}
+            disabled={item.disabled}
+            as={Fragment}
+          >
+            {({ focus, selected }) => (
+              <li
+                className={classNames(cls.item, {
+                  [cls.focus]: focus,
+                  [cls.disabled]: item.disabled,
+                  [cls.selected]: selected,
+                })}
+              >
+                {item.content}
+              </li>
+            )}
+          </ListboxOption>
+        ))}
+      </ListboxOptions>
+    </HListbox>
+  );
+};

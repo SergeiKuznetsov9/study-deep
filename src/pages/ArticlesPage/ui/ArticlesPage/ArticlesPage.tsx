@@ -8,18 +8,18 @@ import {
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
+import { StickyContentLayout } from "@/shared/layouts/StickyContentLayout";
 
 import { fetchNextArticlesPage } from "../../model/services/fetchNextArticlesPage/fetchNextArticlesPage";
 import { initArticlesPage } from "../../model/services/initArticlesPage/initArticlesPage";
-import { ArticlesPageFilters } from "../ArticlesPageFilters/ArticlesPageFilters";
 import { ArticlesInfinitList } from "../ArticlesInfinitList/ArticlesInfinitList";
 import { articlesPageReducer } from "../../model/slices/articlesPageSlice";
 import {
   useArticlesPageHasMore,
   useArticlesPageIsLoading,
 } from "../../model/selectors/articlesPageSelectors";
-
-import cls from "./ArticlesPage.module.scss";
+import { ViewSelectorContainer } from "../ViewSelectorContainer/ViewSelectorContainer";
+import { FiltersContainer } from "../FiltersContainer/FiltersContainer";
 
 interface ArticlesPageProps {
   className?: string;
@@ -53,14 +53,20 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
 
   return (
     <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-      <Page
-        className={classNames(cls.ArticlesPage, {}, [className])}
-        onScrollEnd={onLoadNextPart}
-        setIsIntersecting={setIsIntersecting}
-      >
-        <ArticlesPageFilters />
-        <ArticlesInfinitList className={cls.list} />
-      </Page>
+      <StickyContentLayout
+        left={<ViewSelectorContainer />}
+        right={<FiltersContainer />}
+        content={
+          <Page
+            className={classNames("", {}, [className])}
+            onScrollEnd={onLoadNextPart}
+            setIsIntersecting={setIsIntersecting}
+          >
+            {/* <ArticlesPageFilters /> */}
+            <ArticlesInfinitList />
+          </Page>
+        }
+      ></StickyContentLayout>
     </DynamicModuleLoader>
   );
 };

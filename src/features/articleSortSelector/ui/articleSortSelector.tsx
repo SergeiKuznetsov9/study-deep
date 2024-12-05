@@ -3,8 +3,10 @@ import { useTranslation } from "react-i18next";
 
 import { ArticleSortField } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Select, SelectOption } from "@/shared/ui/deprecated/Select";
 import { SortOrder } from "@/shared/types";
+import { SelectOption, ListBox } from "@/shared/ui/ListBox";
+import { VStack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
 
 import cls from "./articleSortSelector.module.scss";
 
@@ -59,19 +61,15 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = ({
 
   return (
     <div className={classNames(cls.ArticleSortSelector, {}, [className])}>
-      <Select<ArticleSortField>
-        options={sortFieldOptions}
-        label={t("Сортировать ПО")}
-        value={sort}
-        onChange={onChangeSort}
-      />
-      <Select
-        options={orderOptions}
-        label={t("по")}
-        value={order}
-        onChange={onChangeOrder}
-        className={cls.order}
-      />
+      <VStack gap="8">
+        <Text text={t("Сортировать по:")} />
+        <ListBox
+          items={sortFieldOptions}
+          value={sort}
+          onChange={onChangeSort}
+        />
+        <ListBox items={orderOptions} value={order} onChange={onChangeOrder} />
+      </VStack>
     </div>
   );
 };
