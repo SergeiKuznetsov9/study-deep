@@ -8,15 +8,20 @@ import {
   useState,
 } from "react";
 import { classNames } from "@/shared/lib/classNames/classNames";
+import { HStack } from "../Stack";
+import { Text } from "../Text";
 import cls from "./Input.module.scss";
+
+type InputSize = "s" | "m" | "l";
 
 interface InputProps
   extends Omit<
     InputHTMLAttributes<HTMLInputElement>,
-    "value" | "onChange" | "readOnly"
+    "value" | "onChange" | "readOnly" | "size"
   > {
   className?: string;
   value?: string | number;
+  label?: string;
   onChange?: (value: string) => void;
   type?: string;
   placeholder?: string;
@@ -24,12 +29,14 @@ interface InputProps
   readonly?: boolean;
   addonLeft?: ReactNode;
   addonRight?: ReactNode;
+  size?: InputSize;
 }
 
 export const Input: FC<InputProps> = memo(
   ({
     className,
     value,
+    label,
     onChange,
     type = "text",
     placeholder,
@@ -37,6 +44,7 @@ export const Input: FC<InputProps> = memo(
     readonly,
     addonLeft,
     addonRight,
+    size = "m",
     ...otherProps
   }) => {
     const [isFocused, setIsFocused] = useState(false);
@@ -62,7 +70,7 @@ export const Input: FC<InputProps> = memo(
       }
     }, [autoFocus]);
 
-    return (
+    const input = (
       <div
         className={classNames(
           cls.InputWrapper,
@@ -72,7 +80,7 @@ export const Input: FC<InputProps> = memo(
             [cls.withAddonLeft]: Boolean(addonLeft),
             [cls.withAddonRight]: Boolean(addonRight),
           },
-          [className]
+          [className, cls[size]]
         )}
       >
         <div className={cls.addonLeft}>{addonLeft}</div>
@@ -91,5 +99,16 @@ export const Input: FC<InputProps> = memo(
         <div className={cls.addonRight}>{addonRight}</div>
       </div>
     );
+
+    if (label) {
+      return (
+        <HStack max gap="8">
+          <Text text={label} />
+          {input}
+        </HStack>
+      );
+    }
+
+    return input;
   }
 );

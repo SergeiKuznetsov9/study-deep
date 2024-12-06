@@ -48,6 +48,7 @@ export const ArticleFilters: FC<ArticleFiltersProps> = ({
           placeholder={t("Поиск")}
           onChange={onChangeSearch}
           value={search}
+          size="s"
           addonLeft={<Icon Svg={SearchIcon} />}
         />
         <ArticleSortSelector
