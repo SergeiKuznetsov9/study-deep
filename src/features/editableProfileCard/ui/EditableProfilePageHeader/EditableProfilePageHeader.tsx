@@ -24,7 +24,7 @@ export const EditableProfilePageHeader: FC<ProfilePageHeaderProps> = ({
   const dispatch = useAppDispatch();
   const authData = useUserAuthData();
   const profileData = useProfileData();
-  const canEdit = authData?._id === profileData?.id;
+  const canEdit = authData?._id === profileData?.userId;
 
   const onEdit = useCallback(() => {
     dispatch(profileActions.setReadOnly(false));

@@ -2,7 +2,8 @@ import { Country } from "@/entities/Country";
 import { Currency } from "@/entities/Currency";
 
 export interface Profile {
-  id?: string;
+  _id?: string;
+  userId?: string;
   first?: string;
   lastname?: string;
   age?: number;
