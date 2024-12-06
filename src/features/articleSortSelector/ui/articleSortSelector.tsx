@@ -7,6 +7,8 @@ import { SortOrder } from "@/shared/types";
 import { SelectOption, ListBox } from "@/shared/ui/ListBox";
 import { VStack } from "@/shared/ui/Stack";
 import { Text } from "@/shared/ui/Text";
+import ArrowIcon from "@/shared/assets/icons/arrow-bottom.svg";
+import { Icon } from "@/shared/ui/Icon";
 
 import cls from "./articleSortSelector.module.scss";
 
@@ -67,8 +69,14 @@ export const ArticleSortSelector: FC<ArticleSortSelectorProps> = ({
           items={sortFieldOptions}
           value={sort}
           onChange={onChangeSort}
+          addonRight={<Icon Svg={ArrowIcon} />}
         />
-        <ListBox items={orderOptions} value={order} onChange={onChangeOrder} />
+        <ListBox
+          items={orderOptions}
+          value={order}
+          onChange={onChangeOrder}
+          addonRight={<Icon Svg={ArrowIcon} />}
+        />
       </VStack>
     </div>
   );

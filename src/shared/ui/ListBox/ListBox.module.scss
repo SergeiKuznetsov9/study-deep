@@ -13,9 +13,35 @@
   margin: 0;
   cursor: pointer;
 
+  .ButtonWrapper {
+    display: flex;
+    align-items: center;
+  }
+
   &:hover {
     color: var(--accent-redesigned);
+
+    .ButtonWrapper {
+      .addonLeft svg,
+      .addonRight svg {
+        color: var(--accent-redesigned);
+      }
+    }
   }
+}
+
+.trigger.withAddon {
+  padding: 0 16px;
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+}
+
+.addonLeft svg,
+.addonRight svg {
+  color: var(--hint-redesigned);
 }
 
 .options {
@@ -49,6 +75,3 @@
 .label {
   margin-right: 4px;
 }
-
-// .filled {
-// }

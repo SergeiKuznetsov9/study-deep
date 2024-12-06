@@ -2,10 +2,31 @@
   cursor: pointer;
   color: var(--text-redesigned);
   padding: 6px 15px;
+  display: flex;
+  align-items: center;
 
   &:hover {
     color: var(--accent-redesigned);
+
+    .addonLeft svg,
+    .addonRight svg {
+      color: var(--accent-redesigned);
+    }
   }
+}
+
+.addonLeft,
+.addonRight {
+  display: flex;
+}
+
+.addonLeft svg,
+.addonRight svg {
+  color: var(--hint-redesigned);
+}
+
+.withAddon {
+  padding: 0;
 }
 
 .clear {

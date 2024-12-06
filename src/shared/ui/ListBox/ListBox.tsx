@@ -29,6 +29,8 @@ interface ListBoxProps<T extends string> {
   defaultValue?: string;
   readonly?: boolean;
   onChange: (value: T) => void;
+  addonLeft?: ReactNode;
+  addonRight?: ReactNode;
 }
 
 export const ListBox = <T extends string>({
@@ -39,6 +41,8 @@ export const ListBox = <T extends string>({
   onChange,
   readonly,
   label,
+  addonLeft,
+  addonRight,
 }: ListBoxProps<T>) => {
   const selectedItem = items?.find((item) => item.value === value);
 
@@ -51,8 +55,28 @@ export const ListBox = <T extends string>({
       disabled={readonly}
     >
       {label && <span className={cls.label}>{`${label}>`}</span>}
-      <ListboxButton className={cls.trigger} disabled={readonly}>
-        {selectedItem?.content ?? defaultValue}
+      <ListboxButton
+        className={classNames(
+          cls.trigger,
+          { [cls.withAddon]: Boolean(addonLeft) || Boolean(addonRight) },
+          []
+        )}
+        disabled={readonly}
+      >
+        <div
+          className={classNames(
+            cls.ButtonWrapper,
+            {
+              [cls.withAddonLeft]: Boolean(addonLeft),
+              [cls.withAddonRight]: Boolean(addonRight),
+            },
+            [className]
+          )}
+        >
+          <div className={cls.addonLeft}>{addonLeft}</div>
+          {selectedItem?.content ?? defaultValue}
+          <div className={cls.addonRight}>{addonRight}</div>
+        </div>
       </ListboxButton>
       <ListboxOptions
         className={`${cls.options} w-[var(--button-width)]`}

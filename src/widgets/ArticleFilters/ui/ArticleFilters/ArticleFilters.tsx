@@ -5,10 +5,12 @@ import { ArticleSortSelector } from "@/features/articleSortSelector";
 import { ArticleTypeTabs } from "@/features/articleTypeTabs";
 import { ArticleSortField, ArticleType } from "@/entities/Article";
 import { classNames } from "@/shared/lib/classNames/classNames";
+import SearchIcon from "@/shared/assets/icons/search.svg";
 import { Card } from "@/shared/ui/Card";
-import { Input } from "@/shared/ui/deprecated/Input";
+import { Input } from "@/shared/ui/Input";
 import { VStack } from "@/shared/ui/Stack";
 import { SortOrder } from "@/shared/types";
+import { Icon } from "@/shared/ui/Icon";
 
 import cls from "./ArticleFilters.module.scss";
 
@@ -46,6 +48,7 @@ export const ArticleFilters: FC<ArticleFiltersProps> = ({
           placeholder={t("Поиск")}
           onChange={onChangeSearch}
           value={search}
+          addonLeft={<Icon Svg={SearchIcon} />}
         />
         <ArticleSortSelector
           order={order}
