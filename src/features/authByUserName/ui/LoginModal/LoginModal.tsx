@@ -1,7 +1,7 @@
 import { FC, ReactNode, Suspense } from "react";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Modal } from "@/shared/ui/deprecated/Modal";
+import { Modal } from "@/shared/ui/Modal";
 import { Loader } from "@/shared/ui/deprecated/Loader";
 
 import { LoginFormAsync } from "../LoginForm/LoginForm.async";

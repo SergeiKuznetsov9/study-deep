@@ -6,7 +6,7 @@ import { classNames } from "@/shared/lib/classNames/classNames";
 import { Popover } from "@/shared/ui/Popover";
 import { Icon } from "@/shared/ui/Icon";
 import NotitficationIcon from "@/shared/assets/icons/notification.svg";
-import { Drawer } from "@/shared/ui/deprecated/Drawer";
+import { Drawer } from "@/shared/ui/Drawer";
 
 import cls from "./NotificationButton.module.scss";
 
