@@ -19,5 +19,9 @@
   "Рекомендуем": "Recomend",
   "Редактировать": "Edit",
   "Редактирование статьи с ID = ": "Editing an article with an ID = ",
-  "Создание новой статьи": "Creating a new article"  
+  "Создание новой статьи": "Creating a new article",
+  "{{count}} просмотров_zero": "{{count}} views",
+  "{{count}} просмотров_few": "{{count}} views",
+  "{{count}} просмотров_one": "{{count}} view",
+  "{{count}} просмотров_other": "{{count}} views"
 }
