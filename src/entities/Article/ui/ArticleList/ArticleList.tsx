@@ -2,7 +2,8 @@ import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Text, TextSize } from "@/shared/ui/deprecated/Text";
+import { Text } from "@/shared/ui/Text";
+import { HStack } from "@/shared/ui/Stack";
 
 import { ArticleView } from "../../model/const/const";
 import { Article } from "../../model/types/article";
@@ -45,16 +46,16 @@ export const ArticleList: FC<ArticleListProps> = ({
 
   if (!isLoading && !articles?.length) {
     return (
-      <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
-        <Text size={TextSize.L} title={t("Статьи не найдены")} />
+      <div className={classNames("", {}, [className, cls[view]])}>
+        <Text size="l" title={t("Статьи не найдены")} />
       </div>
     );
   }
 
   return (
-    <div className={classNames(cls.ArticleList, {}, [className, cls[view]])}>
+    <HStack gap="16" wrap="wrap">
       {articles?.length > 0 ? articles.map(renderArticles) : null}
       {isLoading && getSkeletons(view)}
-    </div>
+    </HStack>
   );
 };

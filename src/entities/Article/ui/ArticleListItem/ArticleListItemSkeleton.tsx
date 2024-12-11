@@ -1,8 +1,9 @@
 import { FC } from "react";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Card } from "@/shared/ui/deprecated/Card";
-import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
+import { Card } from "@/shared/ui/Card";
+import { Skeleton } from "@/shared/ui/Skeleton";
+import { HStack, VStack } from "@/shared/ui/Stack";
 
 import { ArticleView } from "../../model/const/const";
 import cls from "./ArticleListItem.module.scss";
@@ -18,40 +19,50 @@ export const ArticleListItemSkeleton: FC<ArticleListItemSkeletonProps> = ({
 }) => {
   if (view === ArticleView.BIG) {
     return (
-      <div
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+      <Card
+        max
+        padding="24"
+        className={classNames("", {}, [className, cls[view]])}
       >
-        <Card className={cls.card}>
-          <div className={cls.header}>
-            <Skeleton borderRadius="50%" height={30} width={30} />
-            <Skeleton width={150} height={16} className={cls.username} />
-            <Skeleton width={150} height={16} className={cls.date} />
-          </div>
-          <Skeleton width={250} height={24} className={cls.title} />
-          <Skeleton height={200} className={cls.img} />
-          <div className={cls.footer}>
-            <Skeleton height={36} width={200} />
-          </div>
-        </Card>
-      </div>
+        <VStack max gap="16">
+          <HStack max gap="8">
+            <Skeleton borderRadius={16} height={32} width={32} />
+            <Skeleton height={16} width={100} />
+            <Skeleton height={16} width={150} />
+          </HStack>
+          <Skeleton height={20} width={100} />
+          <Skeleton height={20} width={220} />
+          <Skeleton className={cls.img} />
+          <Skeleton className={cls.textBlock} />
+          <HStack max justify="between">
+            <Skeleton borderRadius={16} height={30} width={120} />
+            <HStack gap="8">
+              <Skeleton height={16} width={20} />
+              <Skeleton height={16} width={36} className={cls.view} />
+            </HStack>
+          </HStack>
+        </VStack>
+      </Card>
     );
   }
 
   if (view === ArticleView.SMALL) {
     return (
-      <div
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
-      >
-        <Card className={cls.card}>
-          <div className={cls.imageWrapper}>
-            <Skeleton width={200} height={200} className={cls.img} />
-          </div>
-          <div className={cls.infoWrapper}>
-            <Skeleton width={130} height={16} />
-          </div>
-          <Skeleton width={150} height={16} />
-        </Card>
-      </div>
+      <Card className={classNames(cls.card, {}, [cls[view]])} border="round">
+        <Skeleton className={cls.img} />
+        <VStack className={cls.info} gap="4">
+          <Skeleton width={130} height={24} />
+          <VStack gap="16" className={cls.footer} max>
+            <HStack justify="between" max>
+              <Skeleton width={80} height={16} />
+              <Skeleton width={70} height={16} />
+            </HStack>
+            <HStack gap="4">
+              <Skeleton width={110} height={20} />
+            </HStack>
+          </VStack>
+        </VStack>
+      </Card>
     );
   }
 };

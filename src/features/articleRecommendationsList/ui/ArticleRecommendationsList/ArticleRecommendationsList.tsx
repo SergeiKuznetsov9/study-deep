@@ -17,6 +17,7 @@ export const ArticleRecommendationsList: FC<
   const { t } = useTranslation();
 
   const { isLoading, data: articles, error } = useArticleRecommendationsList(3);
+  console.log({articles})
 
   if (error || !articles) {
     return null;

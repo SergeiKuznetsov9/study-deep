@@ -15,6 +15,7 @@ interface TextProps {
   variant?: TextVariant;
   align?: TextAlign;
   size?: TextSize;
+  bold?: boolean;
 }
 
 type HeaderTag = "h1" | "h2" | "h3";
@@ -33,12 +34,13 @@ export const Text: FC<TextProps> = memo(
     variant = "primary",
     align = "left",
     size = "m",
+    bold,
   }) => {
     const HeaderTag = mapSizeToHeaderTag[size];
 
     return (
       <div
-        className={classNames(cls.Text, {}, [
+        className={classNames(cls.Text, { [cls.bold]: bold }, [
           className,
           cls[variant],
           cls[align],

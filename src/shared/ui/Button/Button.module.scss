@@ -44,10 +44,14 @@
   padding: 8px 16px;
 }
 
-.outline_red {
-  border: 1px solid var(--red-light);
-  color: var(--red-light);
+.outline {
   background: none;
+  border: 1px solid var(--icon-redesigned);
+  border-radius: 34px;
+
+  &:hover {
+    border: 1px solid var(--accent-redesigned);
+  }
 }
 
 .background {

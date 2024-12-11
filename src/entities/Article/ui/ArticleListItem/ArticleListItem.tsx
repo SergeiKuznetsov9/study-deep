@@ -2,20 +2,20 @@ import { FC, HTMLAttributeAnchorTarget } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Text } from "@/shared/ui/deprecated/Text";
+import { Text } from "@/shared/ui/Text";
 import EyeIcon from "@/shared/assets/icons/eye.svg";
-import { Icon } from "@/shared/ui/deprecated/Icon";
-import { Card } from "@/shared/ui/deprecated/Card";
-import { Avatar } from "@/shared/ui/deprecated/Avatar/Avatar";
-import { AppLink } from "@/shared/ui/deprecated/AppLink/AppLink";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Icon } from "@/shared/ui/Icon";
+import { Card } from "@/shared/ui/Card";
+import { Avatar } from "@/shared/ui/Avatar/Avatar";
+import { AppLink } from "@/shared/ui/AppLink/AppLink";
+import { Button } from "@/shared/ui/Button";
 import { AppImage } from "@/shared/ui/AppImage/AppImage";
-import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
+import { Skeleton } from "@/shared/ui/Skeleton";
 import { getRouteArticleDetails } from "@/shared/const/router";
+import { HStack, VStack } from "@/shared/ui/Stack";
 
 import { Article, ArticleTextBlock } from "../../model/types/article";
 import { ArticleBlockType, ArticleView } from "../../model/const/const";
-import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import cls from "./ArticleListItem.module.scss";
 
 interface ArticleListItemProps {
@@ -33,12 +33,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
 }) => {
   const { t } = useTranslation("article");
 
-  const types = <Text text={article.type.join(", ")} className={cls.types} />;
   const views = (
-    <>
-      <Text text={String(article.views)} className={cls.views} />
-      <Icon Svg={EyeIcon} className={cls.svgIcon} />
-    </>
+    <HStack gap="8">
+      <Icon Svg={EyeIcon} />
+      <Text text={String(article.views)} className={cls.view} />
+    </HStack>
   );
 
   if (view === ArticleView.BIG) {
@@ -47,39 +46,39 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
     ) as ArticleTextBlock;
 
     return (
-      <div
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+      <Card
+        max
+        padding="24"
+        className={classNames("", {}, [className, cls[view]])}
       >
-        <Card className={cls.card}>
-          <div className={cls.header}>
-            <Avatar size={30} src={article.user.avatar} />
-            <Text text={article.user.username} className={cls.username} />
-            <Text text={article.createdAt} className={cls.date} />
-          </div>
-          <Text title={article.title} className={cls.title} />
-          {types}
+        <VStack max gap="16">
+          <HStack max gap="8">
+            <Avatar size={32} src={article.user.avatar} />
+            <Text text={article.user.username} bold />
+            <Text text={article.createdAt} />
+          </HStack>
+          <Text title={article.title} bold />
+          <Text title={article.subtitle} size="s" />
           <AppImage
             src={article.img}
             className={cls.img}
             alt={article.title}
             fallback={<Skeleton width="100%" height={250} />}
           />
-          {textBlock && (
-            <ArticleTextBlockComponent
-              block={textBlock}
+          {textBlock?.paragraphs && (
+            <Text
               className={cls.textBlock}
+              text={textBlock.paragraphs.slice(0, 2).join(" ")}
             />
           )}
-          <div className={cls.footer}>
+          <HStack max justify="between">
             <AppLink to={getRouteArticleDetails(article._id)} target={target}>
-              <Button theme={ButtonTheme.OUTLINE}>
-                {t("Читать далее...")}
-              </Button>
+              <Button variant="outline">{t("Читать далее...")}</Button>
             </AppLink>
             {views}
-          </div>
-        </Card>
-      </div>
+          </HStack>
+        </VStack>
+      </Card>
     );
   }
 
@@ -88,23 +87,28 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
       <AppLink
         target={target}
         to={getRouteArticleDetails(article._id)}
-        className={classNames(cls.ArticleListItem, {}, [className, cls[view]])}
+        className={className}
       >
-        <Card className={cls.card}>
-          <div className={cls.imageWrapper}>
-            <AppImage
-              src={article.img}
-              className={cls.img}
-              alt={article.title}
-              fallback={<Skeleton width={200} height={200} />}
-            />
-            <Text text={article.createdAt} className={cls.date} />
-          </div>
-          <div className={cls.infoWrapper}>
-            {types}
-            {views}
-          </div>
-          <Text text={article.title} className={cls.title} />
+        <Card className={classNames(cls.card, {}, [cls[view]])} border="round">
+          <AppImage
+            src={article.img}
+            className={cls.img}
+            alt={article.title}
+            fallback={<Skeleton width={200} height={200} />}
+          />
+          <VStack className={cls.info} gap="4">
+            <Text title={article.title} />
+            <VStack gap="4" className={cls.footer} max>
+              <HStack justify="between" max>
+                <Text text={article.createdAt} />
+                {views}
+              </HStack>
+              <HStack gap="4">
+                <Avatar size={32} src={article.user.avatar} />
+                <Text text={article.user.username} bold />
+              </HStack>
+            </VStack>
+          </VStack>
         </Card>
       </AppLink>
     );
