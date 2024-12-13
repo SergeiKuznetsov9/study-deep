@@ -89,12 +89,16 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
         to={getRouteArticleDetails(article._id)}
         className={className}
       >
-        <Card className={classNames(cls.card, {}, [cls[view]])} border="round">
+        <Card
+          className={classNames(cls.card, {}, [cls[view]])}
+          border="round"
+          padding="0"
+        >
           <AppImage
             src={article.img}
             className={cls.img}
             alt={article.title}
-            fallback={<Skeleton width={200} height={200} />}
+            fallback={<Skeleton width="100%" height={200} />}
           />
           <VStack className={cls.info} gap="4">
             <Text title={article.title} />
@@ -104,7 +108,11 @@ export const ArticleListItem: FC<ArticleListItemProps> = ({
                 {views}
               </HStack>
               <HStack gap="4">
-                <Avatar size={32} src={article.user.avatar} />
+                <Avatar
+                  size={32}
+                  src={article.user.avatar}
+                  className={cls.avatar}
+                />
                 <Text text={article.user.username} bold />
               </HStack>
             </VStack>

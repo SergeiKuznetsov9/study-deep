@@ -1,4 +1,4 @@
-import { FC, memo, useCallback, useEffect } from "react";
+import { FC, memo, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
@@ -7,19 +7,11 @@ import {
   ReducersList,
 } from "@/shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextAlign, TextSize } from "@/shared/ui/deprecated/Text";
-import { Skeleton } from "@/shared/ui/deprecated/Skeleton";
-import { Avatar } from "@/shared/ui/deprecated/Avatar";
-import EyeIcon from "@/shared/assets/icons/eye.svg";
-import CalendarIcon from "@/shared/assets/icons/deprecated/calendar.svg";
-import { Icon } from "@/shared/ui/deprecated/Icon";
-import { HStack, VStack } from "@/shared/ui/Stack";
+import { Text } from "@/shared/ui/Text";
+import { Skeleton } from "@/shared/ui/Skeleton";
+import { VStack } from "@/shared/ui/Stack";
+import { AppImage } from "@/shared/ui/AppImage/AppImage";
 
-import { ArticleBlockType } from "../../model/const/const";
-import { ArticleBlock } from "../../model/types/article";
-import { ArticleCodeBlockComponent } from "../ArticleCodeBlockComponent/ArticleCodeBlockComponent";
-import { ArticleImageBlockComponent } from "../ArticleImageBlockComponent/ArticleImageBlockComponent";
-import { ArticleTextBlockComponent } from "../ArticleTextBlockComponent/ArticleTextBlockComponent";
 import { fetchArticleById } from "../../model/services/fetchArticleById/fetchArticleById";
 import { articleDetailsReducer } from "../../model/slice/articleDetailsSlice";
 import {
@@ -27,6 +19,7 @@ import {
   useArticleDetailsError,
   useArticleDetailsIsLoading,
 } from "../../model/selectors/articleDetails";
+import { renderArticleBlock } from "./renderArticleBlock";
 import cls from "./ArticleDetails.module.scss";
 
 interface ArticleDetailsProps {
@@ -45,40 +38,6 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
     const article = useArticleDetailsData();
     const isLoading = useArticleDetailsIsLoading();
     const error = useArticleDetailsError();
-
-    const renderBlock = useCallback((block: ArticleBlock) => {
-      switch (block.type) {
-        case ArticleBlockType.CODE:
-          return (
-            <ArticleCodeBlockComponent
-              key={block.id}
-              className={cls.block}
-              block={block}
-            />
-          );
-
-        case ArticleBlockType.IMAGE:
-          return (
-            <ArticleImageBlockComponent
-              key={block.id}
-              className={cls.block}
-              block={block}
-            />
-          );
-
-        case ArticleBlockType.TEXT:
-          return (
-            <ArticleTextBlockComponent
-              key={block.id}
-              className={cls.block}
-              block={block}
-            />
-          );
-
-        default:
-          return null;
-      }
-    }, []);
 
     useEffect(() => {
       dispatch(fetchArticleById(id));
@@ -107,7 +66,7 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
       content = (
         <Text
           title={t("Произошла ошибка при загрузке статьи")}
-          align={TextAlign.CENTER}
+          align="center"
         />
       );
     }
@@ -115,27 +74,17 @@ export const ArticleDetails: FC<ArticleDetailsProps> = memo(
     if (article) {
       content = (
         <>
-          <HStack justify="center" max className={cls.avatarWrapper}>
-            <Avatar size={200} src={article.img} className={cls.avatar} />
-          </HStack>
-          <VStack gap="4" max>
-            <Text
-              title={article.title}
-              text={article.subtitle}
-              className={cls.title}
-              size={TextSize.L}
-            />
-            <HStack gap="8" className={cls.articleInfo}>
-              <Icon Svg={EyeIcon} className={cls.icon} />
-              <Text text={String(article?.views)} />
-            </HStack>
-            <HStack gap="8" className={cls.articleInfo}>
-              <Icon Svg={CalendarIcon} className={cls.icon} />
+          <Text title={article.title} size="l" bold />
+          <Text title={article.subtitle} />
+          <AppImage
+            fallback={
+              <Skeleton width="100%" height={420} borderRadius="16px" />
+            }
+            src={article.img}
+            className={cls.img}
+          />
 
-              <Text text={article?.createdAt} />
-            </HStack>
-          </VStack>
-          {article.blocks.map(renderBlock)}
+          {article.blocks.map(renderArticleBlock)}
         </>
       );
     }
