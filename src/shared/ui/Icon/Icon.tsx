@@ -9,6 +9,7 @@ type SvgProps = Omit<React.SVGProps<SVGSVGElement>, "onClick">;
 interface IconBaseProps extends SvgProps {
   Svg: React.FunctionComponent<React.SVGAttributes<SVGElement>>;
   className?: string;
+  noHoverEffect?: boolean;
 }
 
 interface IconNonClickableProps extends IconBaseProps {
@@ -33,6 +34,7 @@ export const Icon: FC<IconProps> = memo((props) => {
     width = 32,
     height = 32,
     clickable,
+    noHoverEffect,
     ...otherProps
   } = props;
 
@@ -51,7 +53,9 @@ export const Icon: FC<IconProps> = memo((props) => {
       <button
         onClick={props.onClick}
         type="button"
-        className={cls.Button}
+        className={classNames(cls.Button, {
+          [cls.noHoverEffect]: noHoverEffect,
+        })}
         style={{ height, width }}
       >
         {icon}

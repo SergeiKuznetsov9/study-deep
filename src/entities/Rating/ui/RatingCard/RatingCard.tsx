@@ -2,13 +2,13 @@ import { FC, useCallback, useState } from "react";
 import { BrowserView, MobileView } from "react-device-detect";
 import { useTranslation } from "react-i18next";
 
-import { Card } from "@/shared/ui/deprecated/Card";
+import { Card } from "@/shared/ui/Card";
 import { HStack, VStack } from "@/shared/ui/Stack";
-import { Text } from "@/shared/ui/deprecated/Text";
-import { StarRating } from "@/shared/ui/deprecated/StarRating";
+import { Text } from "@/shared/ui/Text";
+import { StarRating } from "@/shared/ui/StarRating";
 import { Modal } from "@/shared/ui/Modal";
-import { Input } from "@/shared/ui/deprecated/Input";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
+import { Input } from "@/shared/ui/Input";
+import { Button } from "@/shared/ui/Button";
 import { Drawer } from "@/shared/ui/Drawer";
 
 interface RatingCardProps {
@@ -67,16 +67,14 @@ export const RatingCard: FC<RatingCardProps> = ({
         onChange={setFeedback}
       />
       <HStack max gap="16" justify="end">
-        <Button theme={ButtonTheme.OUTLINE_RED} onClick={cancelHandle}>
-          {t("Закрыть")}
-        </Button>
+        <Button onClick={cancelHandle}>{t("Закрыть")}</Button>
         <Button onClick={acceptHandle}>{t("Отправить")}</Button>
       </HStack>
     </VStack>
   );
 
   return (
-    <Card className={className} max>
+    <Card className={className} padding="24" border="round" max>
       <VStack align="center" gap="8">
         <Text title={starsCount ? t("Спасибо за оценку!") : title} />
         <StarRating
@@ -85,7 +83,6 @@ export const RatingCard: FC<RatingCardProps> = ({
           selectedStars={starsCount}
         />
       </VStack>
-      <Modal isOpen={isModalOpen}></Modal>
       <BrowserView>
         <Modal isOpen={isModalOpen}>{modalContent}</Modal>
       </BrowserView>

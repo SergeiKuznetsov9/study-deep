@@ -14,3 +14,7 @@
 .Button:hover .Icon {
   color: var(--accent-redesigned);
 }
+
+.Button:hover.noHoverEffect .Icon {
+  color: var(--icon-redesigned);
+}
