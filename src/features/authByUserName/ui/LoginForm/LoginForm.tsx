@@ -20,6 +20,7 @@ import { useLoginError } from "../../model/selectors/getLoginError/getLoginError
 import { useLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import cls from "./LoginForm.module.scss";
 import { VStack } from "@/shared/ui/Stack";
+import { Skeleton } from "@/shared/ui/Skeleton";
 
 interface LoginFormProps {
   className?: string;
@@ -56,6 +57,7 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
   const onLoginClick = useCallback(async () => {
     const result = await dispatch(loginByUserName({ username, password }));
     if (result.meta.requestStatus === "fulfilled") {
+      console.log("SUCCESS");
       onSuccess();
     }
   }, [dispatch, onSuccess, username, password]);
@@ -82,29 +84,39 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
             variant="error"
           />
         )}
-        <Input
-          type="text"
-          className={cls.input}
-          placeholder={t("Введите Имя")}
-          autoFocus={true}
-          onChange={onChangeUserName}
-          value={username}
-        />
-        <Input
-          type="text"
-          className={cls.input}
-          placeholder={t("Введите Пароль")}
-          onChange={onChangePassword}
-          value={password}
-        />
-        <Button
-          className={cls.loginBtn}
-          variant="outline"
-          onClick={onLoginClick}
-          disabled={isLoading}
-        >
-          {t("Войти")}
-        </Button>
+        {isLoading ? (
+          <>
+            <Skeleton height="38px" width="100%" />
+            <Skeleton height="38px" width="100%" />
+            <Skeleton height="38px" width="76px" className={cls.loginBtn} />
+          </>
+        ) : (
+          <>
+            <Input
+              type="text"
+              className={cls.input}
+              placeholder={t("Введите Имя")}
+              autoFocus={true}
+              onChange={onChangeUserName}
+              value={username}
+            />
+            <Input
+              type="text"
+              className={cls.input}
+              placeholder={t("Введите Пароль")}
+              onChange={onChangePassword}
+              value={password}
+            />
+            <Button
+              className={cls.loginBtn}
+              variant="outline"
+              onClick={onLoginClick}
+              disabled={isLoading}
+            >
+              {t("Войти")}
+            </Button>
+          </>
+        )}
       </VStack>
     </DynamicModuleLoader>
   );
