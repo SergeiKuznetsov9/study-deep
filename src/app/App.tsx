@@ -3,17 +3,19 @@ import { AppRouter } from "./providers/AppRouter";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
 import { Navbar } from "@/widgets/Navbar";
 import { Sidebar } from "@/widgets/Sidebar";
-import { /* useUserInited,  */ userActions } from "@/entities/User";
+import { useUserInited, userActions } from "@/entities/User";
 import "@/shared/config/i18n/i18n";
 import { MainLayout } from "@/shared/layouts/MainLayout";
 
 export const App = () => {
   const dispatch = useAppDispatch();
-  // const isUserInit = useUserInited();
+  const isUserInit = useUserInited();
 
   useEffect(() => {
-    dispatch(userActions.initAuthData());
-  }, [dispatch]);
+    if (!isUserInit) {
+      dispatch(userActions.initAuthData());
+    }
+  }, [dispatch, isUserInit]);
 
   return (
     <div className="app">
