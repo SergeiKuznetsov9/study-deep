@@ -23,7 +23,6 @@ export const ArticleAdditionalInfo: FC<ArticleAdditionalInfoProps> = ({
   views,
 }) => {
   const { t } = useTranslation("article");
-  console.log(author);
   return (
     <VStack gap="32" className={className}>
       <HStack gap="8">
