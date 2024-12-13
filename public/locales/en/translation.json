@@ -25,5 +25,8 @@
   "Оцените статью": "Rate the article",
   "Оставьте свой отзыв о статье, это поможет улучшить качество": "Stay your comment, it helps do service better",
   "Спасибо за оценку!": "Thanks for rate!",
-  "Создать статью": "Create article"
+  "Создать статью": "Create article",
+  "Для авторизации используйте:": "For log in use:",
+  "Логин: admin": "Login: admin",
+  "Пароль: 123": "Password: 123"
 }
