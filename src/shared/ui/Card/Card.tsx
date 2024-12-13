@@ -4,7 +4,7 @@ import cls from "./Card.module.scss";
 
 export type CardVariant = "normal" | "outline" | "light";
 export type CardPadding = "0" | "8" | "16" | "24";
-export type CardBorder = "round" | "default";
+export type CardBorder = "round" | "default" | "partial";
 
 interface CardProps extends HTMLAttributes<HTMLDivElement> {
   children: ReactNode;

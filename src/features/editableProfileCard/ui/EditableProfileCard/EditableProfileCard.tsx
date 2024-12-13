@@ -5,7 +5,7 @@ import { ProfileCard } from "@/entities/Profile";
 import { Currency } from "@/entities/Currency";
 import { Country } from "@/entities/Country";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
+import { Text } from "@/shared/ui/Text";
 import {
   DynamicModuleLoader,
   ReducersList,
@@ -119,12 +119,12 @@ export const EditableProfileCard: FC<EditableProfileCardProps> = ({
 
   return (
     <DynamicModuleLoader reducers={reducers}>
-      <VStack gap="8" max className={className}>
+      <VStack gap="16" max className={className}>
         <EditableProfilePageHeader />
         {validateErrors?.length &&
           validateErrors.map((err: keyof typeof validateErrorTranslates) => (
             <Text
-              theme={TextTheme.ERROR}
+              variant="error"
               text={validateErrorTranslates[err]}
               key={err}
             />

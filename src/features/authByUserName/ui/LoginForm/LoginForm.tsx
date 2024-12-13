@@ -2,10 +2,10 @@ import { FC, memo, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
-import { Input } from "@/shared/ui/deprecated/Input";
+import { Button } from "@/shared/ui/Button";
+import { Input } from "@/shared/ui/Input";
 import { useAppDispatch } from "@/shared/lib/hooks/useAppDispatch/useAppDispatch";
-import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
+import { Text } from "@/shared/ui/Text";
 
 import {
   DynamicModuleLoader,
@@ -19,6 +19,7 @@ import { useLoginPassword } from "../../model/selectors/getLoginPassword/getLogi
 import { useLoginError } from "../../model/selectors/getLoginError/getLoginError";
 import { useLoginIsLoading } from "../../model/selectors/getLoginIsLoading/getLoginIsLoading";
 import cls from "./LoginForm.module.scss";
+import { VStack } from "@/shared/ui/Stack";
 
 interface LoginFormProps {
   className?: string;
@@ -73,12 +74,12 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
 
   return (
     <DynamicModuleLoader reducers={initialReducers} removeAfterUnmount={true}>
-      <div className={classNames(cls.LoginForm, {}, [className])}>
+      <VStack gap="16" className={classNames(cls.LoginForm, {}, [className])}>
         <Text title={t("Форма авторизации")} />
         {error && (
           <Text
             text={t("Вы ввели неверный логин или пароль")}
-            theme={TextTheme.ERROR}
+            variant="error"
           />
         )}
         <Input
@@ -98,13 +99,13 @@ const LoginForm: FC<LoginFormProps> = memo(({ className, onSuccess }) => {
         />
         <Button
           className={cls.loginBtn}
-          theme={ButtonTheme.OUTLINE}
+          variant="outline"
           onClick={onLoginClick}
           disabled={isLoading}
         >
           {t("Войти")}
         </Button>
-      </div>
+      </VStack>
     </DynamicModuleLoader>
   );
 });

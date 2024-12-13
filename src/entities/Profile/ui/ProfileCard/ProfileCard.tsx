@@ -50,7 +50,7 @@ export const ProfileCard: FC<ProfileCardProps> = ({
   if (error) return <ProfileCardError />;
 
   return (
-    <Card padding="24" max className={className}>
+    <Card padding="24" max className={className} border="partial">
       <VStack gap="32">
         {data?.avatar && (
           <HStack align="center" justify="center" max>

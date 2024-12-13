@@ -6,11 +6,8 @@ import { NotificationButton } from "@/features/notificationButton";
 import { AvatarDropdown } from "@/features/avatarDropdown";
 import { useUserAuthData } from "@/entities/User";
 import { classNames } from "@/shared/lib/classNames/classNames";
-import { Button, ButtonTheme } from "@/shared/ui/deprecated/Button";
-import { Text, TextTheme } from "@/shared/ui/deprecated/Text";
-import { AppLink, AppLinkTheme } from "@/shared/ui/deprecated/AppLink";
+import { Button } from "@/shared/ui/Button";
 import { HStack } from "@/shared/ui/Stack";
-import { getRouteArticleCreate } from "@/shared/const/router";
 
 import cls from "./Navbar.module.scss";
 
@@ -28,24 +25,6 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
 
   if (authData) {
     return (
-      // <header className={classNames(cls.navbar, {}, [className])}>
-      //   <Text
-      //     className={cls.appName}
-      //     title="Wayfarer App"
-      //     theme={TextTheme.INVERTED}
-      //   />
-      //   <AppLink
-      //     to={getRouteArticleCreate()}
-      //     theme={AppLinkTheme.SECONDARY}
-      //     className={cls.createBtn}
-      //   >
-      //     {t("Создать статью")}
-      //   </AppLink>
-      //   <HStack gap="16" className={cls.actions}>
-      //     <NotificationButton />
-      //     <AvatarDropdown authData={authData} />
-      //   </HStack>
-      // </header>
       <header className={classNames(cls.Navbar, {}, [className])}>
         <HStack gap="16" className={cls.actions}>
           <NotificationButton />
@@ -57,11 +36,7 @@ export const Navbar: FC<NavbarPops> = memo(({ className }) => {
 
   return (
     <header className={classNames(cls.Navbar, {}, [className])}>
-      <Button
-        theme={ButtonTheme.CLEAR_INVERTED}
-        className={cls.links}
-        onClick={onShowModal}
-      >
+      <Button variant="clear" className={cls.links} onClick={onShowModal}>
         {t("Войти")}
       </Button>
       <LoginModal isOpen={isAuthModal} onClose={onCloseModal} />
