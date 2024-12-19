@@ -61,10 +61,8 @@ export const profileSlice = createSlice({
       })
       .addCase(
         updateProfileData.fulfilled,
-        (state, action: PayloadAction<Profile>) => {
+        (state) => {
           state.isLoading = false;
-          state.data = action.payload;
-          state.form = action.payload;
           state.readonly = true;
           state.validateError = undefined;
         }
