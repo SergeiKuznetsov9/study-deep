@@ -58,12 +58,18 @@ export const useArticleFilters = () => {
   );
 
   const onChangeSearch = useCallback(
-    (search: string) => {
-      dispatch(articlesPageActions.setSearch(search));
-      dispatch(articlesPageActions.setPage(1));
-      debouncedFetchData();
+    (newSearch: string) => {
+      dispatch(articlesPageActions.setSearch(newSearch));
+
+      const isNeedFetch =
+        newSearch.length > 2 || (newSearch.length === 2 && search.length === 3);
+
+      if (isNeedFetch) {
+        dispatch(articlesPageActions.setPage(1));
+        debouncedFetchData();
+      }
     },
-    [dispatch, debouncedFetchData]
+    [dispatch, debouncedFetchData, search]
   );
 
   const onChangeType = useCallback(

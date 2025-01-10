@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { ThunkConfig } from "@/app/providers/StoreProvider";
 
-import { Profile } from "@/entities/Profile";
+import { Profile, ProfileUpdateModel } from "@/entities/Profile";
 
 import { getProfileForm } from "../../selectors/getProfileForm/getProfileForm";
 import { validateProfileData } from "../validateProfileData/validateProfileData";
@@ -15,6 +15,7 @@ export const updateProfileData = createAsyncThunk<
   "profile/updateProfileData",
   async (_, { rejectWithValue, extra, getState }) => {
     const formData = getProfileForm(getState())!;
+    const { _id, ...profileUpdateModel } = formData;
 
     const errors = validateProfileData(formData);
 
@@ -23,11 +24,11 @@ export const updateProfileData = createAsyncThunk<
     }
 
     try {
-      const response = await extra.api.put<Profile>(
-        `/profile/${formData?.userId}`,
-        formData
+      const response = await extra.api.put<ProfileUpdateModel>(
+        `/profile/${_id}`,
+        profileUpdateModel
       );
-      
+
       return response.data;
     } catch (error) {
       console.error(error);

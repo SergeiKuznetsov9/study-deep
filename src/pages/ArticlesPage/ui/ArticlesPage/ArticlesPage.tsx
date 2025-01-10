@@ -62,7 +62,6 @@ const ArticlesPage: FC<ArticlesPageProps> = ({ className }) => {
             onScrollEnd={onLoadNextPart}
             setIsIntersecting={setIsIntersecting}
           >
-            {/* <ArticlesPageFilters /> */}
             <ArticlesInfinitList />
           </Page>
         }
